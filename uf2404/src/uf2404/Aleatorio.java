@@ -11,7 +11,7 @@ public class Aleatorio {
 		
 		System.out.println(d.getTime());
 		
-		System.out.println(new Date(24 * 3600000));
+		System.out.println(new Date(30 * 24 * 60 * 60 * 1000));
 		
 		System.out.println(dado());
 	}
