@@ -24,7 +24,16 @@ public class Persona {
 	
 	// Métodos de instancia
 	public String getNombreCompleto() {
-		return nombre + " " + apellidos;
+		return nombre + (apellidos == null ? "" : " " + apellidos);
+	}
+	
+	// Métodos estáticos ("de clase")
+	public static String obtenerTextoErrorNombre(String nombre) {
+		if(nombre == null || nombre.trim().length() == 0) {
+			return "El nombre debe estar rellenado";
+		} else {
+			return null;
+		}
 	}
 	
 	// Métodos de acceso: "setters" y "getters"
@@ -33,8 +42,10 @@ public class Persona {
 	}
 	
 	public void setNombre(String nombre) {
-		if(nombre == null || nombre.trim().length() == 0) {
-			throw new RuntimeException("El nombre debe estar rellenado");
+		String textoErrorNombre = obtenerTextoErrorNombre(nombre);
+		
+		if(textoErrorNombre != null) {
+			throw new RuntimeException(textoErrorNombre);
 		}
 		
 		this.nombre = nombre.trim();
