@@ -46,7 +46,7 @@ public class PresentacionConsola {
 		System.out.println("Espera para que se pueda llegar a ver el texto que sale del destructor");
 		
 		for(long l = 0; l < 10000000000L; l++) {
-			
+			// No ponemos código sino que simplemente queremos que tarde en procesar para dar tiempo al garbage collector a liberar el objeto y poder ver el texto
 		}
 		
 		System.out.println(p.getNombreCompleto());
