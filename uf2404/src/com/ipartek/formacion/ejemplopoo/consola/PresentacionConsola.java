@@ -8,11 +8,13 @@ import com.ipartek.formacion.ejemplopoo.tipos.Persona;
 public class PresentacionConsola {
 
 	public static void main(String[] args) {
+		System.out.println(Persona.getContadorInstancias());
+		
 		Persona p; // Se busca una zona de memoria para almacenar la dirección 0 (null) (64bits)
 		
 		p = new Persona(); // Llamada al constructor
 		
-		p.setNombre("     Javier              ");
+		p.setNombre("     Javierrrr              ");
 		p.setApellidos("Lete");
 		
 		System.out.println(p.getNombre());
@@ -33,6 +35,20 @@ public class PresentacionConsola {
 		System.out.println(p4.getNombre());
 		System.out.println(p4.getApellidos());
 		
+		// p = p4;
+		
+		// Liberar la memoria de un objeto se hace simplemente quitando de todas las referencias
+		// el puntero que accede a él
+		p4 = null;
+		
+		System.gc();
+		
+		System.out.println("Espera para que se pueda llegar a ver el texto que sale del destructor");
+		
+		for(long l = 0; l < 10000000000L; l++) {
+			
+		}
+		
 		System.out.println(p.getNombreCompleto());
 		
 		Persona[] arrPersonas = new Persona[2];
@@ -49,7 +65,6 @@ public class PresentacionConsola {
 		personas.add(p);
 		personas.add(p2);
 		personas.add(p3);
-		personas.add(p4);
 		personas.add(new Persona("Juan", "González"));
 		personas.add(new Persona("Yepa"));
 		personas.add(new Persona());
@@ -91,6 +106,8 @@ public class PresentacionConsola {
 		for(Persona persona: personas) {
 			System.out.println(persona.getNombreCompleto());
 		}
+		
+		System.out.println(Persona.getContadorInstancias());
 		
 		s.close();
 	}
