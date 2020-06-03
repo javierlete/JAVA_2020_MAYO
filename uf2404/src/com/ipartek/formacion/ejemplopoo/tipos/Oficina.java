@@ -1,16 +1,26 @@
 package com.ipartek.formacion.ejemplopoo.tipos;
 
+import java.util.ArrayList;
 import java.util.Date;
 
 public class Oficina {
-	private Persona[] puestos;
+	private ArrayList<Persona> puestos;
 	
 	public Oficina(int numeroPuestos) {
-		puestos = new Persona[numeroPuestos];
+		puestos = new ArrayList<Persona>(numeroPuestos);
+	}
+	
+	public Oficina() {
+		puestos = new ArrayList<Persona>();
 	}
 	
 	public void sentarEnPuesto(Persona persona, int numeroPuesto) {
-		puestos[numeroPuesto - 1] = persona;
+		if(puestos.size() < numeroPuesto) {
+			puestos.add(numeroPuesto - 1, persona);
+		} else {
+			puestos.set(numeroPuesto - 1, persona);
+		}
+		
 		System.out.println(
 				new Date() + ": se ha sentado " + persona.getNombre() + 
 				" en el puesto " + numeroPuesto);
@@ -18,16 +28,16 @@ public class Oficina {
 	
 	public void vaciarPuesto(int numeroPuesto) {
 		System.out.println(
-				new Date() + ": se ha marchado " + puestos[numeroPuesto - 1].getNombre() + 
+				new Date() + ": se ha marchado " + puestos.get(numeroPuesto - 1).getNombre() + 
 				" del puesto " + numeroPuesto);
-		puestos[numeroPuesto - 1] = null;
+		puestos.set(numeroPuesto - 1, null);
 	}
 	
 	public Persona obtenerPersona(int numeroPuesto) {
-		return puestos[numeroPuesto - 1];
+		return puestos.get(numeroPuesto - 1);
 	}
 	
 	public int getNumeroPuestos() {
-		return puestos.length;
+		return puestos.size();
 	}
 }
