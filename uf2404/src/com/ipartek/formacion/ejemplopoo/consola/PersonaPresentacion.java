@@ -5,7 +5,7 @@ import java.util.Scanner;
 
 import com.ipartek.formacion.ejemplopoo.tipos.Persona;
 
-public class PresentacionConsola {
+public class PersonaPresentacion {
 
 	public static void main(String[] args) {
 		System.out.println(Persona.getContadorInstancias());
