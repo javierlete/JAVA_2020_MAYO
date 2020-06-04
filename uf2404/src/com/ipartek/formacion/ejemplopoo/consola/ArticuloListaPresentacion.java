@@ -6,6 +6,8 @@ import java.util.ArrayList;
 import com.ipartek.formacion.ejemplopoo.tipos.Articulo;
 
 public class ArticuloListaPresentacion {
+	private static final BigDecimal IVA = new BigDecimal("1.21");
+
 	public static void main(String[] args) {
 		ArrayList<Articulo> articulos = new ArrayList<Articulo>();
 		
@@ -14,8 +16,14 @@ public class ArticuloListaPresentacion {
 		
 		articulos.add(new Articulo(2L, "Monitor", new BigDecimal("234.2")));
 		
+		BigDecimal precioConIVA;
+		
 		for(Articulo articulo: articulos) {
 			System.out.println(articulo);
+			
+			precioConIVA = articulo.getPrecio().multiply(IVA);
+			
+			System.out.println("Precio con IVA = " + precioConIVA);
 		}
 	}
 }
