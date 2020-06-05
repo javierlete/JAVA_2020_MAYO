@@ -12,29 +12,21 @@ public class Cuadros {
 		
 		boolean repetir;
 		
-		//Probablemente sería más recomendable crear un cuadro vacío y utilizar
-		//los setter para guardar los datos (usaríamos la clase Cuadro como un modelo)
-		// Cuadro cuadro = new Cuadro();
-		String titulo, autor;
-		int altura, anchura, anyo;
-		boolean restaurado;
-		double precio;
+		Cuadro cuadro = new Cuadro();
 		
 		do {
 			repetir = Consola.leerBoolean("¿Quieres introducir un cuadro?");
 			
 			if(repetir) {
-				titulo = Consola.leerString("Titular");
-				autor = Consola.leerString("Autor");
-				altura = Consola.leerInt("Altura");
-				anchura = Consola.leerInt("Anchura");
-				anyo = Consola.leerInt("Año");
-				restaurado = Consola.leerBoolean("Restaurado");
-				// cuadro.setRestaurado("sí".equalsIgnoreCase(s.nextLine());
-				// cuadro.setRestaurado(leerBooleano("Restaurado");
-				precio = Consola.leerDouble("Precio");
+				cuadro.setTitulo(Consola.leerString("Titular"));
+				cuadro.setAutor(Consola.leerString("Autor"));
+				cuadro.setAltura(Consola.leerInt("Altura"));
+				cuadro.setAnchura(Consola.leerInt("Anchura"));
+				cuadro.setAnyo(Consola.leerInt("Año"));
+				cuadro.setRestaurado(Consola.leerBoolean("Restaurado"));
+				cuadro.setPrecio(Consola.leerDouble("Precio"));
 				
-				cuadros[i++] = new Cuadro(titulo, autor, altura, anchura, anyo, restaurado, precio);
+				cuadros[i++] = cuadro;
 				
 				if(i >= cuadros.length) {
 					repetir = false;
