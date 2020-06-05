@@ -25,7 +25,7 @@ public class Consola {
 	}
 	
 	public static boolean leerBoolean(String mensaje) {
-		mostrar(mensaje + "(sí/no)");
+		mostrar(mensaje + " (sí/NO)");
 		return s.nextLine().matches("^[sS][iIíÍ]?$");
 	}
 	

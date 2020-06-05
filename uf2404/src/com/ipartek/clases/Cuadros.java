@@ -1,20 +1,16 @@
 package com.ipartek.clases;
 
-import java.util.Scanner;
+import com.ipartek.formacion.biblioteca.Consola;
 
 //Yo reservaría ese nombre para clases que representan un conjunto de datos
 //No suelo utilizar nombres en plural
 public class Cuadros {
 	public static void main(String[] args) {
-		Scanner s = new Scanner(System.in);
-		
 		Cuadro[] cuadros = new Cuadro[10];
 		
 		int i = 0;
 		
 		boolean repetir;
-		
-		String respuesta;
 		
 		//Probablemente sería más recomendable crear un cuadro vacío y utilizar
 		//los setter para guardar los datos (usaríamos la clase Cuadro como un modelo)
@@ -25,47 +21,18 @@ public class Cuadros {
 		double precio;
 		
 		do {
-			repetir = false;
+			repetir = Consola.leerBoolean("¿Quieres introducir un cuadro?");
 			
-			System.out.print("¿Quieres introducir un cuadro? (sí/NO)");
-			respuesta = s.nextLine();
-			
-			if("sí".equalsIgnoreCase(respuesta)) {
-				repetir = true;
-				
-				System.out.print("Titular: ");
-				// cuadro.setTitulo(s.nextLine());
-				titulo = s.nextLine();
-				
-				System.out.print("Autor: ");
-				autor = s.nextLine();
-
-				System.out.print("Altura: ");
-				altura = s.nextInt();
-				s.nextLine();
-				
-				System.out.print("Anchura: ");
-				anchura = s.nextInt();
-				s.nextLine();
-				
-				System.out.print("Año: ");
-				anyo = s.nextInt();
-				s.nextLine();
-				
-				System.out.print("Restaurado (sí/no): ");
+			if(repetir) {
+				titulo = Consola.leerString("Titular");
+				autor = Consola.leerString("Autor");
+				altura = Consola.leerInt("Altura");
+				anchura = Consola.leerInt("Anchura");
+				anyo = Consola.leerInt("Año");
+				restaurado = Consola.leerBoolean("Restaurado");
 				// cuadro.setRestaurado("sí".equalsIgnoreCase(s.nextLine());
 				// cuadro.setRestaurado(leerBooleano("Restaurado");
-				restaurado = "sí".equalsIgnoreCase(s.nextLine());
-				
-//				if("sí".equalsIgnoreCase(s.nextLine())) {
-//					restaurado = true;
-//				} else {
-//					restaurado = false;
-//				}
-				
-				System.out.print("Precio: ");
-				precio = s.nextDouble();
-				s.nextLine();
+				precio = Consola.leerDouble("Precio");
 				
 				cuadros[i++] = new Cuadro(titulo, autor, altura, anchura, anyo, restaurado, precio);
 				
@@ -77,11 +44,9 @@ public class Cuadros {
 		
 		i = 0;
 		
-		do {
+		while(cuadros[i] != null) {
 			System.out.println(cuadros[i++]);
-		} while(cuadros[i] != null);
-		
-		s.close();
+		} 
 	}
 }
 
