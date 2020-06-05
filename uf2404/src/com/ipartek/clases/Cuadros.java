@@ -1,14 +1,14 @@
 package com.ipartek.clases;
 
+import java.util.ArrayList;
+
 import com.ipartek.formacion.biblioteca.Consola;
 
 //Yo reservaría ese nombre para clases que representan un conjunto de datos
 //No suelo utilizar nombres en plural
 public class Cuadros {
 	public static void main(String[] args) {
-		Cuadro[] cuadros = new Cuadro[10];
-		
-		int i = 0;
+		ArrayList<Cuadro> cuadros = new ArrayList<Cuadro>();
 		
 		boolean repetir;
 		
@@ -28,18 +28,12 @@ public class Cuadros {
 				cuadro.setRestaurado(Consola.leerBoolean("Restaurado"));
 				cuadro.setPrecio(Consola.leerDouble("Precio"));
 				
-				cuadros[i++] = cuadro;
-				
-				if(i >= cuadros.length) {
-					repetir = false;
-				}
+				cuadros.add(cuadro);
 			}
 		} while(repetir);
 		
-		i = 0;
-		
-		while(cuadros[i] != null) {
-			System.out.println(cuadros[i++]);
+		for(Cuadro c: cuadros) {
+			System.out.println(c);
 		} 
 	}
 }
