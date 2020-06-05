@@ -12,12 +12,14 @@ public class Cuadros {
 		
 		boolean repetir;
 		
-		Cuadro cuadro = new Cuadro();
+		Cuadro cuadro;
 		
 		do {
 			repetir = Consola.leerBoolean("¿Quieres introducir un cuadro?");
 			
 			if(repetir) {
+				cuadro = new Cuadro();
+				
 				cuadro.setTitulo(Consola.leerString("Titular"));
 				cuadro.setAutor(Consola.leerString("Autor"));
 				cuadro.setAltura(Consola.leerInt("Altura"));
