@@ -13,17 +13,39 @@ public class Cuadros {
 		boolean repetir;
 		
 		Cuadro cuadro;
+		Autor autor;
+		TamanyoLienzo tamanyoLienzo;
 		
 		do {
 			repetir = Consola.leerBoolean("¿Quieres introducir un cuadro?");
 			
 			if(repetir) {
 				cuadro = new Cuadro();
+				autor = new Autor();
+				tamanyoLienzo = new TamanyoLienzo();
 				
 				cuadro.setTitulo(Consola.leerString("Titular"));
-				cuadro.setAutor(Consola.leerString("Autor"));
-				cuadro.setAltura(Consola.leerInt("Altura"));
-				cuadro.setAnchura(Consola.leerInt("Anchura"));
+				
+				System.out.println("DATOS DEL AUTOR");
+				
+				autor.setNombre(Consola.leerString("Nombre"));
+				autor.setApellidos(Consola.leerString("Apellidos"));
+				autor.setFallecido(Consola.leerBoolean("Fallecido"));
+				autor.setAnyoNacimiento(Consola.leerInt("Año nacimiento"));
+				
+				cuadro.setAutor(autor);
+				
+				System.out.println("---------------");
+				
+				System.out.println("Tamaño de lienzo");
+				
+				tamanyoLienzo.setAltura(Consola.leerInt("Altura"));
+				tamanyoLienzo.setAnchura(Consola.leerInt("Anchura"));
+				
+				cuadro.setTamanyoLienzo(tamanyoLienzo);
+				
+				System.out.println("----------------");
+				
 				cuadro.setAnyo(Consola.leerInt("Año"));
 				cuadro.setRestaurado(Consola.leerBoolean("Restaurado"));
 				cuadro.setPrecio(Consola.leerDouble("Precio"));
