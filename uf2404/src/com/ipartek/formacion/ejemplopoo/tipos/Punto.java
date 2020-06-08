@@ -1,6 +1,9 @@
 package com.ipartek.formacion.ejemplopoo.tipos;
 
-public class Punto {
+public class Punto { //public class Punto extends Object {
+	protected static final double Y_POR_DEFECTO = 0.0; // protected = visible a través de herencia Y/O mismo paquete
+	protected static final double X_POR_DEFECTO = 0.0;
+	
 	// 1. Variables de instancia (almacenamiento de datos)
 	private double x, y;
 
@@ -9,6 +12,10 @@ public class Punto {
 	public Punto(double x, double y) {
 		setX(x);
 		setY(y);
+	}
+	
+	public Punto() {
+		this(X_POR_DEFECTO, Y_POR_DEFECTO);
 	}
 
 	// 6. Métodos de instancia
