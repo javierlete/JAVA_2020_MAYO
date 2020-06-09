@@ -81,4 +81,9 @@ public class Persona {
 	public static void setContadorInstancias(int contadorInstancias) {
 		Persona.contadorInstancias = contadorInstancias;
 	}
+
+	@Override
+	public String toString() {
+		return "Persona [nombre=" + nombre + ", apellidos=" + apellidos + "]";
+	}
 }
