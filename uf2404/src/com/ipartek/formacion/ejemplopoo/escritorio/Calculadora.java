@@ -10,6 +10,8 @@ import javax.swing.JPanel;
 import javax.swing.JTextField;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import java.awt.Font;
+import javax.swing.SwingConstants;
 
 public class Calculadora {
 
@@ -48,6 +50,7 @@ public class Calculadora {
 		// Código escrito a mano
 		for(int i = 0; i < 10; i++) {
 			boton = new JButton(numeros[i]);
+			boton.setFont(new Font("Dialog", Font.PLAIN, 26));
 			boton.addActionListener(e -> { 
 				JButton botonPulsado = (JButton) e.getSource();
 				txtResultado.setText(txtResultado.getText() + botonPulsado.getText()); 
@@ -69,6 +72,8 @@ public class Calculadora {
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		
 		txtResultado = new JTextField();
+		txtResultado.setHorizontalAlignment(SwingConstants.RIGHT);
+		txtResultado.setFont(new Font("Dialog", Font.PLAIN, 26));
 		frame.getContentPane().add(txtResultado, BorderLayout.NORTH);
 		txtResultado.setColumns(10);
 		
@@ -85,6 +90,7 @@ public class Calculadora {
 		pBotoneraOperaciones.setLayout(new GridLayout(0, 1, 10, 10));
 		
 		JButton btnSumar = new JButton("+");
+		btnSumar.setFont(new Font("Dialog", Font.BOLD, 26));
 		btnSumar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				operando1 = Double.parseDouble(txtResultado.getText());
@@ -95,15 +101,19 @@ public class Calculadora {
 		pBotoneraOperaciones.add(btnSumar);
 		
 		JButton btnRestar = new JButton("-");
+		btnRestar.setFont(new Font("Dialog", Font.BOLD, 26));
 		pBotoneraOperaciones.add(btnRestar);
 		
 		JButton btnMultiplicar = new JButton("x");
+		btnMultiplicar.setFont(new Font("Dialog", Font.BOLD, 26));
 		pBotoneraOperaciones.add(btnMultiplicar);
 		
 		JButton btnDividir = new JButton("/");
+		btnDividir.setFont(new Font("Dialog", Font.BOLD, 26));
 		pBotoneraOperaciones.add(btnDividir);
 		
 		JButton btnIgual = new JButton("=");
+		btnIgual.setFont(new Font("Dialog", Font.BOLD, 26));
 		btnIgual.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				double total;
