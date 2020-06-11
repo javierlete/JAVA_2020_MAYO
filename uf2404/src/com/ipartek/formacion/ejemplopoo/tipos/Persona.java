@@ -60,7 +60,7 @@ public class Persona {
 		String textoErrorNombre = obtenerTextoErrorNombre(nombre);
 		
 		if(textoErrorNombre != null) {
-			throw new RuntimeException(textoErrorNombre);
+			throw new TiposException(textoErrorNombre);
 		}
 		
 		this.nombre = nombre.trim();

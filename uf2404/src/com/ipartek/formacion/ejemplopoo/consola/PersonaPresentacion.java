@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 import com.ipartek.formacion.ejemplopoo.tipos.Persona;
+import com.ipartek.formacion.ejemplopoo.tipos.TiposException;
 
 public class PersonaPresentacion {
 
@@ -13,6 +14,12 @@ public class PersonaPresentacion {
 		Persona p; // Se busca una zona de memoria para almacenar la dirección 0 (null) (64bits)
 		
 		p = new Persona(); // Llamada al constructor
+		
+		try {
+			p.setNombre(null); // Para probar la PersonaException
+		} catch (TiposException e) {
+			System.out.println("Se ha intentado meter un nombre incorrecto");
+		}
 		
 		p.setNombre("     Javierrrr              ");
 		p.setApellidos("Lete");

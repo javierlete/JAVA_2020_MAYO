@@ -1,5 +1,6 @@
 package uf2404;
 
+import java.util.InputMismatchException;
 import java.util.Scanner;
 
 public class Menus {
@@ -19,7 +20,7 @@ public class Menus {
 			opcion = pedirOpcion(s);
 
 			switch (opcion) {
-			case MENU_SALIR: 
+			case MENU_SALIR:
 				salir();
 				break;
 			case MENU_HOLA:
@@ -46,10 +47,22 @@ public class Menus {
 	}
 
 	private static int pedirOpcion(Scanner s) {
-		int opcion;
-		System.out.print("Elige una opcion: ");
-		opcion = s.nextInt();
-		s.nextLine();
+		int opcion = Integer.MIN_VALUE;
+		
+		do {
+			System.out.print("Elige una opcion: ");
+			
+			try {
+				opcion = s.nextInt();
+			} catch (InputMismatchException e) {
+				System.out.println("Intenta con un número");
+			} catch (Exception e) {
+				throw new RuntimeException("ERROR NO ESPERADO AL LEER EL NÚMERO", e);
+			} finally {
+				s.nextLine();
+			}
+		} while (opcion == Integer.MIN_VALUE);
+
 		return opcion;
 	}
 
