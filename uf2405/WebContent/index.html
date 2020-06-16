@@ -1,0 +1,327 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, user-scalable=yes" />
+    <meta name="author" content="Javier Lete" />
+    <meta name="description" content="Página de demostración de características de HTML" />
+    <meta name="keywords" content="HTML etiquetas tutorial tablas multimedia titulos enlaces" />
+    <title>Ejemplo HTML</title>
+</head>
+
+<body>
+    <header>
+        <hgroup>
+            <h1>Ejemplo HTML</h1>
+            <h2>Pequeños y concisos</h2>
+        </hgroup>
+        <p>Pequeños ejemplos de HTML</p>
+    </header>
+
+    <nav>
+        <ul>
+            <li>
+                <a href="segunda.html">Segunda sección</a>
+            </li>
+            <li>
+                <a href="#formularios">Formularios</a>
+            </li>
+        </ul>
+    </nav>
+
+    <main>
+        <article id="html">
+            <h2>HTML</h2>
+            <section id="titulos">
+                <!--<h1>Título 1</h1>-->
+                <!--<h2>Título 2</h2>-->
+                <h3>Títulos</h3>
+                <h4>Título 4</h4>
+                <h5>Título 5</h5>
+                <h6>Título 6</h6>
+            </section>
+            <section id="parrafos">
+                <h3>Párrafos</h3>
+
+                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Officia quidem voluptates qui in! Atque consequuntur ut, ipsa delectus, tenetur corporis, sit natus soluta, qui impedit at. Animi voluptas ullam minima.</p>
+                <p>Qui impedit recusandae fugiat voluptatem repellendus dolorum quis, doloremque, atque eveniet assumenda similique temporibus! Modi autem ut cupiditate, est explicabo culpa obcaecati possimus sint, expedita debitis, iste hic tenetur dolor.</p>
+                <p>Blanditiis mollitia saepe quod quasi tempore ducimus magnam earum reiciendis, nostrum voluptatem iusto pariatur repellendus vero eaque fuga! Consequuntur, accusantium accusamus fugiat vel delectus dolorum, perspiciatis rerum! Dolores, pariatur, recusandae.</p>
+
+                <pre>
+public class Hola {
+    public static void main(String[] args) {
+        System.out.println("Hola");
+    }
+}
+    </pre>
+            </section>
+            <section id="listas">
+                <h3>Listas</h3>
+                <ul>
+                    <li>Opción 1</li>
+                    <li>Opción 2</li>
+                    <li>Opción 3</li>
+                </ul>
+
+                <ol>
+                    <li>Opción 1</li>
+                    <li>Opción 2</li>
+                    <li>Opción 3</li>
+                    <li>Opción 4
+                        <ol>
+                            <li>Subopción 1</li>
+                            <li>Subopción 2</li>
+                        </ol>
+                    </li>
+                </ol>
+
+                <dl>
+                    <dt>HTML</dt>
+                    <dd>Hyper Text Markup Language</dd>
+                    <dt>CSS</dt>
+                    <dd>Cascade Style Sheets</dd>
+                </dl>
+            </section>
+
+            <section id="inline">
+                <h3>Inline</h3>
+                <p>El <abbr title="Hyper Text Markup Language">HTML</abbr> se utiliza para <strong>desarrollar</strong> <del>chapuzas</del> <ins><em>páginas web</em></ins></p>
+            </section>
+
+            <section id="tablas">
+                <h3>Tablas</h3>
+                <table>
+                    <caption>Ejemplo de tabla</caption>
+                    <thead>
+                        <tr>
+                            <th>Id</th>
+                            <th>Nombre</th>
+                            <th>Apellido</th>
+                            <th>Notas</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <th>1</th>
+                            <td>Javier</td>
+                            <td>Lete</td>
+                            <td>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Rerum neque iusto tempora, cupiditate incidunt expedita deserunt vel in nostrum consequatur corporis, at necessitatibus! Iste hic praesentium ea, nostrum voluptas consequuntur.</td>
+                        </tr>
+                        <tr>
+                            <th>2</th>
+                            <td>Pepe</td>
+                            <td>Pérez</td>
+                            <td>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Est, tenetur repudiandae hic dolore ex veniam ad, illum ipsum laboriosam tempora, maxime consectetur illo dolorum ipsa optio natus impedit. Nesciunt, reprehenderit.</td>
+                        </tr>
+                        <tr>
+                            <th>3</th>
+                            <td>González</td>
+                            <td>Jiménez</td>
+                            <td>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Tempore illum iste mollitia repellendus natus. Distinctio voluptatem cum voluptate, animi eius quas commodi consectetur repudiandae quia. Numquam nisi sequi dolore debitis.</td>
+                        </tr>
+                    </tbody>
+                    <tfoot>
+                        <tr>
+                            <th>Id</th>
+                            <th>Nombre</th>
+                            <th>Apellido</th>
+                            <th>Notas</th>
+                        </tr>
+                    </tfoot>
+                </table>
+            </section>
+            <section id="multimedia">
+                <h3>Multimedia</h3>
+
+                <figure>
+
+                    <figcaption>Ordenador con pantalla de código</figcaption>
+                    <img src="imgs/desarrollo.jpg" alt="Ordenador con pantalla de código" width="600" height="400" />
+                </figure>
+
+                <audio controls>
+                    <source src="sounds/badumtss.mp3" />
+                </audio>
+
+                <iframe src="https://open.spotify.com/embed/track/3FheBJqDVdDCGW6h1llQNh" width="300" height="380" allow="encrypted-media"></iframe>
+
+                <video controls>
+                    <source src="videos/small.mp4" />
+                </video>
+                <iframe width="560" height="315" src="https://www.youtube.com/embed/SVGjOUnQZ58" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+            </section>
+            <section id="formularios">
+                <h3>Formularios</h3>
+                <form action="https://www.google.com/search" method="get">
+                    <fieldset>
+                        <legend>Buscar por Google</legend>
+                        <input name="q" />
+                        <button>Buscar</button>
+                    </fieldset>
+                </form>
+                <form action="#" method="get"> <!-- mejor POST -->
+                    <fieldset>
+                        <legend>Login</legend>
+                        
+                        <div>
+                            <label for="email">Email</label>
+                            <input type="email" id="email" name="email" placeholder="Email habitual" required />
+                        </div>
+                        <div>
+                            <label for="password">Contraseña</label>
+                            <input type="password" id="password" name="password" placeholder="Contraseña con mayúsculas" pattern="^.*[A-Z].*$" required />
+                        </div>
+                        <div>
+                            <label for="nombre">Nombre</label>
+                            <input type="text" id="nombre" name="nombre" placeholder="Como te llaman tus colegas" minlength="3" />
+                        </div>
+                        <div>
+                            <label for="codigo-postal">Código Postal</label>
+                            <input type="text" id="codigo-postal" name="codigo-postal" placeholder="Cinco dígitos" pattern="^\d{5}$" />
+                        </div>
+                        <div>
+                            <button>Enviar los <strong>datos</strong></button>
+                            <input type="submit" value="<strong>Enviar</strong>" />
+                        </div>
+                    </fieldset>
+                    <fieldset>
+                        <legend>Selección múltiple</legend>
+                        <input type="checkbox" />
+                        <input type="checkbox" />
+                        <input type="radio" id="opcion1" name="opcion" value="opcion1" />
+                        <input type="radio" id="opcion2" name="opcion" value="opcion2" />
+                        
+                        <select name="desplegable">
+                            <option value="1">Uno</option>
+                            <option value="2">Dos</option>
+                            <option value="3">Tres</option>
+                            <optgroup label="deportes">
+                                <option>Fútbol</option>
+                                <option>Baloncesto</option>
+                                <option>Golf</option>
+                            </optgroup>
+                            <optgroup label="juegos">
+                                <option>Left 4 Dead 2</option>
+                                <option>Dying Light</option>
+                            </optgroup>
+                        </select>
+                        
+                        <select name="desplegable" multiple>
+                            <option value="1">Uno</option>
+                            <option value="2">Dos</option>
+                            <option value="3">Tres</option>
+                        </select>
+                        
+                        <textarea rows="5" cols="40"></textarea>
+                    </fieldset>
+                    <fieldset>
+                        <legend>Tipos de fecha</legend>
+                        
+                        <input type="date" />
+                        <input type="time" />
+                        <input type="datetime-local" />
+                        <input type="week" />
+                        <input type="month" />
+                    </fieldset>
+                    <fieldset>
+                        <legend>Otros</legend>
+                        <input type="color" />
+                        <input type="file" />
+                        <input type="image" src="imgs/desarrollo.jpg" width="60" height="40" alt="Botón de desarrollo" />
+                        <input type="number" step=".01" value="10.0" />
+                        <input type="range" min="1" max="10" />
+                        <input type="reset" />
+                        <input type="tel" />
+                        <input type="url" />
+                        <meter value="30" min="1" max="100"></meter>
+                        <progress></progress>
+                        <output>Resultado</output>
+                    </fieldset>
+                </form>
+            </section>
+        </article>
+    </main>
+
+    <aside>
+        <nav>
+            <ul>
+                <li>
+                    <a href="https://validator.w3.org/#validate_by_input">Validador de HTML online del W3C</a>
+                </li>
+                <li>
+                    <a href="http://users.skynet.be/mgueury/mozilla/">Extensión para Firefox y Chrome de Validación de HTML</a>
+                </li>
+                <li>
+                    <a href="https://html.spec.whatwg.org/multipage#toc-semantics">HTML Living Standard</a> (Referencia oficial de etiquetas HTML)
+                </li>
+                <li>
+                    <a href="https://uniwebsidad.com/libros/xhtml">Uniwebsidad XHTML</a>
+                </li>
+                <li>
+                    <a href="https://islavisual.com/tutoriales/manual_de_html5_en_castellano.pdf">Manual de HTML5 en castellano</a> (Sólo lo que le diferencia de XHTML)
+                </li>
+                <li>
+                    <a href="http://diveinto.html5doctor.com/semantics.html">Etiquetas específicas de la versión 5 de HTML</a>
+                </li>
+                <li>
+                    <a href="http://diveinto.html5doctor.com/video.html">Explicación de la problemática de los videos en la web y ejemplo compatibilidad 100%</a>
+                </li>
+                <li>
+                    <a href="http://diveinto.html5doctor.com/forms.html">Mejoras a formularios en HTML5</a>
+                </li>
+                <li>
+                    <a href="https://www.zdnet.com/article/microsoft-security-chief-ie-is-not-a-browser-so-stop-using-it-as-your-default/">Internet Explorer no es un navegador</a>
+                </li>
+                <li>
+                    <a href="https://developer.mozilla.org/es/docs/M%C3%B3vil/Viewport_meta_tag#Un_pixel_no_es_un_pixel">ViewPort</a>
+                </li>
+                <li>
+                    <a href="https://www.w3schools.com/tags/tryit.asp?filename=tryhtml5_picture">Ejemplo Picture</a>
+                </li>
+                <li>
+                    <a href="https://caniuse.com/">Can I Use</a> (Saber si cierta tecnología funciona en ciertos navegadores)
+                </li>
+                <li>
+                    <a href="https://developer.mozilla.org/en-US/docs/Learn/HTML">Mozilla Development Network Learning HTML</a>
+                </li>
+                <li>
+                    <a href="https://www.w3schools.com/html/">w3schools (HTML)</a> (Información ligera de digerir)
+                </li>
+                <li>
+                    <a href="https://gs.statcounter.com/">Estadísticas de navegación</a>
+                </li>
+            </ul>
+        </nav>
+    </aside>
+
+    <footer>
+        <p>&copy;2020 Javier Lete</p>
+        <address>
+            <a href="formacion@ipartek.es">Para más información contactar con Ipartek</a>
+        </address>
+    </footer>
+
+    <!-- Sólo para este ejemplo pongo unas cuantas líneas sueltas -->
+
+    <br />
+    <br />
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+</body></html>
