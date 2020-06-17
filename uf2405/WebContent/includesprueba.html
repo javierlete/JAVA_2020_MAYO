@@ -6,6 +6,8 @@
 </head>
 
 <body>
+    <!-- NOTA: El fichero de include debe contener UNA etiqueta raíz y tener todo dentro de esa etiqueta para que esta técnica funcione -->
+    
     <iframe src="includes/cabecera.html" onload="this.before((this.contentDocument.body||this.contentDocument).children[0]);this.remove()"></iframe>
 
     <h1>Prueba de includes</h1>
