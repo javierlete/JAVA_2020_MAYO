@@ -1,0 +1,285 @@
+/* Tipos de letra de Google: Roboto y Montserrat */
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,300;0,400;0,700;1,300;1,400;1,700&family=Roboto:wght@100;400;700&display=swap');
+
+body {
+    font-family: Montserrat, sans-serif;
+    font-size: 0.8em;
+    margin: 0;
+    /*
+    margin: 10px;
+    border: 10px solid red;
+    padding: 10px;
+    */
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    font-family: Roboto, sans-serif;
+}
+
+a {
+    color: dodgerblue;
+    font-weight: bold;
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+header {
+    background-color: black;
+    color: white;
+    margin-top: 0;
+    padding: 0.5em;
+}
+
+header,
+header p {
+    text-align: center;
+}
+
+nav ul {
+    padding-left: 0;
+    list-style: none;
+}
+
+body > nav {
+    background-color: dodgerblue;
+    padding: 0.5em;
+    text-align: center;
+}
+
+body > nav a {
+    color: white;
+    padding: 0.5em;
+}
+
+body > nav ul {
+    margin: 0;
+}
+
+body > nav li {
+    display: inline;
+}
+
+body > nav a:hover {
+    color: dodgerblue;
+    background-color: white;
+    text-decoration: none;
+}
+
+article > h2:first-child {
+    background-color: black;
+    color: white;
+    text-align: center;
+    padding: 0.5em;
+}
+
+section {
+    margin: 1em;
+}
+
+section > h3:first-child {
+    text-align: center;
+    font-size: 1.75em;
+    border-bottom: 1px solid black;
+}
+
+section > h3:first-child:before {
+    content: '<';
+}
+
+section > h3:first-child:after {
+    content: '>';
+}
+
+#titulos h1 {
+    font-size: 2em;
+}
+
+p {
+    text-align: justify;
+    line-height: 1.5em;
+    margin: 2em 0;
+}
+
+pre,
+dl {
+    background-color: #f2f2f2;
+    padding: 1em;
+    border: 1px solid darkgray;
+    border-radius: 1em;
+    line-height: 1.5em;
+}
+
+dl {
+    box-sizing: border-box;
+    float: left;
+    width: 100%;
+}
+
+dt {
+    font-weight: bold;
+    float: left;
+    clear: left;
+}
+
+dd {
+    font-style: italic;
+    float: right;
+    margin: 0;
+}
+
+strong {
+    font-weight: normal;
+    font-variant: small-caps;
+    font-size: 1.5em;
+}
+
+ins {
+    text-decoration: none;
+    background-color: yellow;
+    border: 1px dotted black;
+    border-radius: 3px;
+}
+
+abbr {
+    text-decoration: none;
+    cursor: help;
+    font-weight: bold;
+}
+
+abbr:hover:before {
+    color: darkgray;
+    content: "definición->";
+}
+
+abbr:hover:after {
+    color: darkgray;
+    content: "<-definición";
+}
+
+table {
+    width: 100%;
+}
+
+table,
+caption,
+td,
+th {
+    border: 1px solid darkgray;
+    border-collapse: collapse;
+}
+
+caption {
+    font-size: 1.25em;
+    font-weight: bold;
+
+}
+
+th,
+caption {
+    background-color: black;
+    color: white;
+}
+
+th,
+td,
+caption {
+    padding: 0.5em;
+}
+
+thead th,
+tfoot th {
+    text-align: left;
+}
+
+thead th:first-child,
+tfoot th:first-child {
+    text-align: right;
+}
+
+tbody tr:nth-child(even) {
+    background-color: lightgray;
+}
+
+tbody tr:hover {
+    background-color: yellow;
+}
+
+tbody th {
+    text-align: right;
+}
+
+td {
+    max-width: 20em;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+td:hover {
+    overflow: inherit;
+    white-space: inherit;
+}
+
+#multimedia video,
+#multimedia audio,
+#multimedia iframe,
+#multimedia img,
+#multimedia figure {
+    margin: 1em 0;
+    width: 100%;
+    border: 0;
+    border-radius: 0.5em;
+}
+
+.video-responsive {
+    height: 0;
+    overflow: hidden;
+    /* Aspecto del video 4:3 = 3/4 = 0.75 */
+    position: relative;
+}
+
+.video-responsive iframe,
+.video-responsive object,
+.video-responsive embed {
+    height: 100%;
+    left: 0;
+    position: absolute;
+    top: 0;
+    width: 100%;
+}
+
+.aspecto43 {
+    padding-bottom: 75%;
+}
+
+.aspecto34 {
+    padding-bottom: 133.33%;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -8,6 +8,8 @@
     <meta name="description" content="Página de demostración de características de HTML" />
     <meta name="keywords" content="HTML etiquetas tutorial tablas multimedia titulos enlaces" />
     <title>Ejemplo HTML</title>
+
+    <link rel="stylesheet" href="css/ipartek.css" />
 </head>
 
 <body>
@@ -34,9 +36,11 @@
         <article id="html">
             <h2>HTML</h2>
             <section id="titulos">
-                <!--<h1>Título 1</h1>-->
-                <!--<h2>Título 2</h2>-->
                 <h3>Títulos</h3>
+
+                <h1>Título 1</h1>
+                <h2>Título 2</h2>
+                <h3>Título 3</h3>
                 <h4>Título 4</h4>
                 <h5>Título 5</h5>
                 <h6>Título 6</h6>
@@ -144,12 +148,15 @@ public class Hola {
                     <source src="sounds/badumtss.mp3" />
                 </audio>
 
-                <iframe src="https://open.spotify.com/embed/track/3FheBJqDVdDCGW6h1llQNh" width="300" height="380" allow="encrypted-media"></iframe>
-
+                <div class="video-responsive aspecto34">
+                    <iframe src="https://open.spotify.com/embed/track/3FheBJqDVdDCGW6h1llQNh" allow="encrypted-media"></iframe>
+                </div>
                 <video controls>
                     <source src="videos/small.mp4" />
                 </video>
-                <iframe width="560" height="315" src="https://www.youtube.com/embed/SVGjOUnQZ58" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                <div class="video-responsive aspecto43">
+                    <iframe src="https://www.youtube.com/embed/SVGjOUnQZ58" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                </div>
             </section>
             <section id="formularios">
                 <h3>Formularios</h3>
@@ -160,10 +167,11 @@ public class Hola {
                         <button>Buscar</button>
                     </fieldset>
                 </form>
-                <form action="#" method="get"> <!-- mejor POST -->
+                <form action="#" method="get">
+                    <!-- mejor POST -->
                     <fieldset>
                         <legend>Login</legend>
-                        
+
                         <div>
                             <label for="email">Email</label>
                             <input type="email" id="email" name="email" placeholder="Email habitual" required />
@@ -191,7 +199,7 @@ public class Hola {
                         <input type="checkbox" />
                         <input type="radio" id="opcion1" name="opcion" value="opcion1" />
                         <input type="radio" id="opcion2" name="opcion" value="opcion2" />
-                        
+
                         <select name="desplegable">
                             <option value="1">Uno</option>
                             <option value="2">Dos</option>
@@ -206,18 +214,18 @@ public class Hola {
                                 <option>Dying Light</option>
                             </optgroup>
                         </select>
-                        
+
                         <select name="desplegable" multiple>
                             <option value="1">Uno</option>
                             <option value="2">Dos</option>
                             <option value="3">Tres</option>
                         </select>
-                        
+
                         <textarea rows="5" cols="40"></textarea>
                     </fieldset>
                     <fieldset>
                         <legend>Tipos de fecha</legend>
-                        
+
                         <input type="date" />
                         <input type="time" />
                         <input type="datetime-local" />
