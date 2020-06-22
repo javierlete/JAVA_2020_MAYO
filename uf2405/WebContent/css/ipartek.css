@@ -239,6 +239,10 @@ td:hover {
     border-radius: 0.5em;
 }
 
+#multimedia img {
+    height: auto;
+}
+
 .video-responsive {
     height: 0;
     overflow: hidden;
@@ -321,7 +325,51 @@ footer {
     font-size: 1.25em;
 }
 
+@media (min-width: 760px) {
+    article h2 {
+        grid-area: titulo-articulo;
+    }
+    
+    #titulos {
+        grid-area: stitulos;
+    }
+    
+    #parrafos {
+        grid-area: sparrafos;
+    }
+    
+    #listas {
+        grid-area: slistas;
+    }
+    
+    #inline {
+        grid-area: sinline;
+    }
+    
+    #tablas {
+        grid-area: stablas;
+    }
+    
+    #multimedia {
+        grid-area: smultimedia;
+    }
 
+    #formularios {
+        grid-area: sformularios;
+    }
+    
+    article {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        grid-template-rows: auto;
+        grid-template-areas:
+            'titulo-articulo titulo-articulo'
+            'stitulos sparrafos'
+            'slistas sinline'
+            'stablas stablas'
+            'smultimedia sformularios'
+    }
+}
 
 
 
