@@ -390,7 +390,8 @@ footer {
         grid-template-areas:
             'titulo-articulo titulo-articulo titulo-articulo'
             'stitulos sparrafos slistas'
-            'sinline stablas stablas'
+            'sinline sinline sinline'
+            'stablas stablas stablas'
             'smultimedia smultimedia sformularios'
     }
 
