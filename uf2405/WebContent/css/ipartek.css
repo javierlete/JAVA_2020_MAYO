@@ -58,11 +58,11 @@ body > nav {
     background-color: dodgerblue;
     padding: 0.5em;
     text-align: center;
-    position: fixed;
+    /*position: fixed;
     z-index: 1;
     top: 0;
     left: 0;
-    right: 0;
+    right: 0;*/
 }
 
 body > nav a {
