@@ -384,6 +384,8 @@ footer {
 
 @media (min-width: 1024px) {
     article {
+        /*margin: 0 auto;
+        max-width: 1280px;*/
         grid-template-columns: 1fr 1fr 1fr;
         grid-template-areas:
             'titulo-articulo titulo-articulo titulo-articulo'
@@ -395,7 +397,7 @@ footer {
     #multimedia {
         display: grid;
         grid-template-columns: 1fr 1fr;
-        grid-template-rows: 2em 4em 20em 30em;
+        grid-template-rows: 2em 4em auto auto;
         column-gap: 1em;
         row-gap: 1em;
     }
@@ -404,25 +406,16 @@ footer {
         grid-column-start: 1;
         grid-column-end: 3;
         align-self: start;
-        /* height: auto; */
     }
     
     #multimedia audio {
         grid-column-start: 1;
         grid-column-end: 3;
         grid-row-start: 2;
-        grid-row-end: 3;
-        align-self: start;
     }
     
     #multimedia video {
         grid-column-start: 2;
-        grid-column-end: 3;
         grid-row-start: 3;
-        grid-row-end: 4;
-    }
-
-    #multimedia img {
-        height: auto;
     }
 }
