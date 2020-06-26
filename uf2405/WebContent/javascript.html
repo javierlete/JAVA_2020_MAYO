@@ -3,12 +3,38 @@
 <head>
     <meta charset="UTF-8">
     <title>Ejemplos JavaScript</title>
+    
+    <style>
+        .error {
+            color: red;
+        }
+        
+        input.error {
+            border: 1px solid red;
+        }
+    </style>
+    
     <script src="js/javascript.js"></script>
 </head>
 <body>
     <h1>Ejemplos JavaScript</h1>
     
+    <form>
+<!--       required pattern=".*\w+.*"-->
+        <input placeholder="Nombre"/>
+        <button>Saludar</button>
+        <label></label>
+    </form>
     
+    <form>
+        <input pattern="\d{5}" placeholder="Código postal" />
+        <input pattern="\d{8}[A-Za-z]" placeholder="DNI" />
+        <input pattern="[^\s]+@[^\s]+\.[^\s]+" placeholder="Email" />
+        <input type="email" placeholder="type=email"/>
+        <input pattern="\(\d{3}\) \d{3}-\d{4}" placeholder="(123) 123-1234" />
+        <input style="display: block; width: 100%;" pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$" placeholder="Mínimo 8 caracteres, mayúscula, minúscula, número, caracter especial" type="password"/>
+        <button>Aceptar</button>
+    </form>
     
     <p>Frameworks y Bibliotecas de JavaScript</p>
     
@@ -18,6 +44,7 @@
         <li>React (Facebook)</li>
         <li>Vue (Evan You)</li>
         <li>Svelte</li>
+        <li>Fusion.js</li>
         <li>Web Components (LS)</li>
     </ul>
     
