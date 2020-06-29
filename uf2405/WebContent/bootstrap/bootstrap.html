@@ -17,31 +17,31 @@
     <link rel="stylesheet" href="css/all.min.css" />
 </head>
 
-<body>
+<body class="container-fluid row">
 
-    <header>
+    <header class="col-12 text-center">
         <hgroup>
-            <h1>Ejemplo HTML</h1>
+            <h1 class="display-1">Ejemplo HTML</h1>
             <h2>Pequeños y concisos</h2>
         </hgroup>
-        <p>Pequeños ejemplos de HTML</p>
+        <p class="lead">Pequeños ejemplos de HTML</p>
     </header>
 
-    <nav>
-        <ul>
-            <li>
+    <nav class="col-12">
+        <ul class="list-inline">
+            <li class="list-inline-item">
                 <a href="segunda.html">Segunda sección</a>
             </li>
-            <li>
+            <li class="list-inline-item">
                 <a href="#formularios">Formularios</a>
             </li>
         </ul>
     </nav>
 
-    <main>
-        <article id="html">
-            <h2>HTML</h2>
-            <section id="titulos">
+    <main class="col-12 col-xl-9">
+        <article id="html" class="row">
+            <h2 class="col-12">HTML</h2>
+            <section id="titulos" class="col-sm-3 col-md-4 order-md-1">
                 <h3>Títulos</h3>
 
                 <h1>Título 1</h1>
@@ -51,7 +51,7 @@
                 <h5>Título 5</h5>
                 <h6>Título 6</h6>
             </section>
-            <section id="parrafos">
+            <section id="parrafos" class="col-sm-9 col-md-12 order-md-4 col-lg-6">
                 <h3>Párrafos</h3>
 
                 <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Officia quidem voluptates qui in! Atque consequuntur ut, ipsa delectus, tenetur corporis, sit natus soluta, qui impedit at. Animi voluptas ullam minima.</p>
@@ -66,7 +66,7 @@ public class Hola {
 }
     </pre>
             </section>
-            <section id="listas">
+            <section id="listas" class="col-sm-6 col-md-4 order-md-2">
                 <h3>Listas</h3>
                 <ul>
                     <li>Opción 1</li>
@@ -86,85 +86,88 @@ public class Hola {
                     </li>
                 </ol>
 
-                <dl>
-                    <dt>HTML</dt>
-                    <dd>Hyper Text Markup Language</dd>
-                    <dt>CSS</dt>
-                    <dd>Cascade Style Sheets</dd>
+                <dl class="row">
+                    <dt class="col-2">HTML</dt>
+                    <dd class="col-10">Hyper Text Markup Language</dd>
+                    <dt class="col-2">CSS</dt>
+                    <dd class="col-10">Cascade Style Sheets</dd>
                 </dl>
             </section>
 
-            <section id="inline">
+            <section id="inline" class="col-sm-6 col-md-4 order-md-3">
                 <h3>Inline</h3>
-                <p>El <abbr title="Hyper Text Markup Language">HTML</abbr> se utiliza para <strong>desarrollar</strong> <del>chapuzas</del> <ins><em>páginas web</em></ins></p>
+                <p>El <abbr title="Hyper Text Markup Language" class="initialism">HTML</abbr> se utiliza para <strong>desarrollar</strong> <del>chapuzas</del> <ins><em>páginas web</em></ins></p>
             </section>
 
-            <section id="tablas">
+            <section id="tablas" class="order-md-5 col-lg-6">
+
                 <h3>Tablas</h3>
-                <table>
-                    <caption>Ejemplo de tabla</caption>
-                    <thead>
-                        <tr>
-                            <th>Id</th>
-                            <th>Nombre</th>
-                            <th>Apellido</th>
-                            <th>Notas</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <th>1</th>
-                            <td>Javier</td>
-                            <td>Lete</td>
-                            <td>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Rerum neque iusto tempora, cupiditate incidunt expedita deserunt vel in nostrum consequatur corporis, at necessitatibus! Iste hic praesentium ea, nostrum voluptas consequuntur.</td>
-                        </tr>
-                        <tr>
-                            <th>2</th>
-                            <td>Pepe</td>
-                            <td>Pérez</td>
-                            <td>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Est, tenetur repudiandae hic dolore ex veniam ad, illum ipsum laboriosam tempora, maxime consectetur illo dolorum ipsa optio natus impedit. Nesciunt, reprehenderit.</td>
-                        </tr>
-                        <tr>
-                            <th>3</th>
-                            <td>González</td>
-                            <td>Jiménez</td>
-                            <td>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Tempore illum iste mollitia repellendus natus. Distinctio voluptatem cum voluptate, animi eius quas commodi consectetur repudiandae quia. Numquam nisi sequi dolore debitis.</td>
-                        </tr>
-                    </tbody>
-                    <tfoot>
-                        <tr>
-                            <th>Id</th>
-                            <th>Nombre</th>
-                            <th>Apellido</th>
-                            <th>Notas</th>
-                        </tr>
-                    </tfoot>
-                </table>
+                <div class="table-responsive">
+                    <table class="table table-striped table-bordered table-hover table-sm">
+                        <caption>Ejemplo de tabla</caption>
+                        <thead class="thead-dark">
+                            <tr>
+                                <th>Id</th>
+                                <th>Nombre</th>
+                                <th>Apellido</th>
+                                <th>Notas</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <th>1</th>
+                                <td>Javier</td>
+                                <td>Lete</td>
+                                <td>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Rerum neque iusto tempora, cupiditate incidunt expedita deserunt vel in nostrum consequatur corporis, at necessitatibus! Iste hic praesentium ea, nostrum voluptas consequuntur.</td>
+                            </tr>
+                            <tr>
+                                <th>2</th>
+                                <td>Pepe</td>
+                                <td>Pérez</td>
+                                <td>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Est, tenetur repudiandae hic dolore ex veniam ad, illum ipsum laboriosam tempora, maxime consectetur illo dolorum ipsa optio natus impedit. Nesciunt, reprehenderit.</td>
+                            </tr>
+                            <tr>
+                                <th>3</th>
+                                <td>González</td>
+                                <td>Jiménez</td>
+                                <td>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Tempore illum iste mollitia repellendus natus. Distinctio voluptatem cum voluptate, animi eius quas commodi consectetur repudiandae quia. Numquam nisi sequi dolore debitis.</td>
+                            </tr>
+                        </tbody>
+                        <tfoot class="thead-dark">
+                            <tr>
+                                <th>Id</th>
+                                <th>Nombre</th>
+                                <th>Apellido</th>
+                                <th>Notas</th>
+                            </tr>
+                        </tfoot>
+                    </table>
+                </div>
             </section>
-            <section id="multimedia">
+            <section id="multimedia" class="col-md-6 order-md-6">
                 <h3>Multimedia</h3>
 
-                <figure>
+                <figure class="figure">
+                    <img class="figure-img img-fluid rounded" src="imgs/desarrollo.jpg" alt="Ordenador con pantalla de código" />
 
-                    <figcaption>Ordenador con pantalla de código</figcaption>
-                    <img src="imgs/desarrollo.jpg" alt="Ordenador con pantalla de código" width="600" height="400" />
+                    <figcaption class="figure-caption">Ordenador con pantalla de código</figcaption>
                 </figure>
 
-                <audio controls>
+                <audio controls class="w-100">
                     <source src="sounds/badumtss.mp3" type="audio/mpeg" />
                 </audio>
 
-                <div class="video-responsive aspecto-cuadrado">
-                    <iframe src="https://open.spotify.com/embed/track/3FheBJqDVdDCGW6h1llQNh" allow="encrypted-media"></iframe>
+                <div class="embed-responsive embed-responsive-4by3">
+                    <iframe class="embed-responsive-item rounded" src="https://open.spotify.com/embed/track/3FheBJqDVdDCGW6h1llQNh" allow="encrypted-media"></iframe>
                 </div>
-                <video controls>
+                <video controls class="w-100 rounded">
                     <source src="videos/small.mp4" type="video/mp4" />
                 </video>
-                <div class="video-responsive aspecto43">
-                    <iframe src="https://www.youtube.com/embed/SVGjOUnQZ58" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                <div class="embed-responsive embed-responsive-4by3">
+                    <iframe class="embed-responsive-item rounded" src="https://www.youtube.com/embed/SVGjOUnQZ58" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
                 </div>
             </section>
-            <section id="formularios">
+            <section id="formularios" class="col-md-6 order-md-7">
                 <h3>Formularios</h3>
                 <form action="https://www.google.com/search" method="get">
                     <fieldset>
@@ -257,10 +260,10 @@ public class Hola {
         </article>
     </main>
 
-    <aside>
+    <aside class="col-12 col-xl-3">
         <h2>Vínculos interesantes</h2>
         <nav>
-            <ul>
+            <ul class="list-unstyled">
                 <li>
                     <a href="https://validator.w3.org/#validate_by_input">Validador de HTML online del W3C</a>
                 </li>
@@ -310,7 +313,7 @@ public class Hola {
         </nav>
     </aside>
 
-    <footer>
+    <footer class="col-12">
         <p>&copy;2020 Javier Lete</p>
         <address>
             <a href="formacion@ipartek.es">Para más información contactar con Ipartek</a>
