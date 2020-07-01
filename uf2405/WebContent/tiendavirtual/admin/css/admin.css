@@ -1,3 +1,7 @@
 #portatiles td:nth-child(1), #portatiles th:nth-child(1), #portatiles td:nth-child(3), #portatiles th:nth-child(3) {
     text-align: right;
 }
+
+body > footer .navbar-nav {
+    flex-direction: row;
+}
