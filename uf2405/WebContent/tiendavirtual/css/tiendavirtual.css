@@ -1,0 +1,25 @@
+section, main > div > nav {
+    padding-top: 4em;
+}
+
+h1 {
+    display: none;
+}
+
+article a.btn {
+    display: block;
+}
+
+#login {
+    width: 15em;
+}
+
+body > footer .navbar-nav {
+    flex-direction: row;
+}
+
+@media (min-width: 576px) {
+    main > div > nav {
+        position: fixed;
+    }
+}
