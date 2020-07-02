@@ -12,6 +12,8 @@
     <link rel="stylesheet" href="css/all.min.css" />
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="css/bootstrap.min.css" />
+    <link rel="stylesheet" href="admin/css/dataTables.bootstrap4.min.css" />    
+    
     <link rel="stylesheet" href="admin/css/admin.css" />
 
     <title>Administración</title>
@@ -105,7 +107,7 @@
                 </tfoot>
             </table>
 
-            <div id="confirmar-borrar" class="modal"  data-backdrop="static" data-keyboard="false" tabindex="-1" role="dialog">
+            <div id="confirmar-borrar" class="modal" data-backdrop="static" data-keyboard="false" tabindex="-1" role="dialog">
                 <div class="modal-dialog">
                     <div class="modal-content">
                         <div class="modal-header">
@@ -162,4 +164,15 @@
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
     <script src="js/jquery-3.5.1.min.js"></script>
     <script src="js/bootstrap.bundle.min.js"></script>
+    <script src="admin/js/jquery.dataTables.min.js"></script>
+    <script src="admin/js/dataTables.bootstrap4.min.js"></script>
+    <script>
+        $(function() {
+            $('table').DataTable({
+                language: {
+                    url: 'admin/js/spanish.dataTables.json'
+                }
+            });
+        });
+    </script>
 </body></html>
