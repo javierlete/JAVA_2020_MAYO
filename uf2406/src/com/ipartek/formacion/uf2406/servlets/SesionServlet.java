@@ -30,7 +30,7 @@ public class SesionServlet extends HttpServlet {
 		
 		producto = (String) session.getAttribute("producto"); // Obtenemos el valor del producto de sesión
 		
-		out.println("<h1>Producto: " + producto);
+		out.println("<h1>Producto: " + producto + "</h1>");
 		
 		out.println("<a href='sesion.html'>Volver al formulario</a>");
 	}
