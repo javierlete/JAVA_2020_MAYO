@@ -30,7 +30,7 @@ public class LoginServlet extends HttpServlet {
 		}
 		
 		request.getSession().setAttribute("email", email);
-		response.sendRedirect("principal.jsp");
+		response.sendRedirect("principal");
 //		response.getWriter().println(email);
 //		response.getWriter().println(password);
 	}
