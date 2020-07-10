@@ -7,6 +7,7 @@
 <title>Bienvenido</title>
 </head>
 <body>
-	<h1>Bienvenido a la zona para usuarios registrados</h1>
+	<h1>Bienvenido ${email} a la zona para usuarios registrados</h1>
+	<%-- <h1><%= session.getAttribute("email") %></h1> --%>
 </body>
 </html>
