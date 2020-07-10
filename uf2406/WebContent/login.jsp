@@ -10,9 +10,10 @@
 	<h1>Inicio sesión usuario</h1>
 	
 	<form action="login">
-		<input type="email" name="email" placeholder="Email" />
+		<input type="email" name="email" placeholder="Email" value="<%= request.getParameter("email") != null ? request.getParameter("email") : "" %>" />
 		<input type="password" name="password" placeholder="Password" />
 		<button>Inicio sesión</button>
 	</form>
+	<p><%= request.getAttribute("error") != null ? request.getAttribute("error") : "" %></p>
 </body>
 </html>

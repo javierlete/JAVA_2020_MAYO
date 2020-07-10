@@ -23,7 +23,9 @@ public class LoginServlet extends HttpServlet {
 		}
 		
 		if(!"javierlete@email.net".equals(email) || !"contra".equals(password)) {
-			response.sendRedirect("errorlogin.jsp");
+			request.setAttribute("error", "El usuario o la password no son correctas");
+			//response.sendRedirect("login.jsp");
+			request.getRequestDispatcher("login.jsp").forward(request, response);
 			return;
 		}
 		
