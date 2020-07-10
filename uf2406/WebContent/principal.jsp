@@ -1,6 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%-- https://repo1.maven.org/maven2/jstl/jstl/1.2/jstl-1.2.jar --%>
+<%-- Colocar en WEB-INF/lib --%>
 <!DOCTYPE html>
 <html>
 <head>
