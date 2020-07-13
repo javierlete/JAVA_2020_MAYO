@@ -10,6 +10,10 @@
 <body>
 	<h1>Carrito</h1>
 	
+	<c:if test="${carrito.size() == 0}">
+		<h2>No hay productos todavía</h2>
+	</c:if>
+	
 	<ul>
 		<c:forEach items="${carrito}" var="producto">
 			<li>
