@@ -10,6 +10,19 @@
 <body>
 	<h1>Tienda virtual</h1>
 	
+	<h2>Selecciona tu favorito</h2>
+	
+	<form action="favorito">
+		<select name="producto">
+			<option>Producto 1</option>
+			<option>Producto 2</option>
+		</select>
+		
+		<button>Fijar favorito</button>
+	</form>
+	
+	<h2>Listado de productos disponibles</h2>
+	
 	<ul>
 		<c:forEach items="${productos}" var="producto">
 			<li>
