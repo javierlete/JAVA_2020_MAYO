@@ -10,12 +10,22 @@
 <body>
 	<h1>Tienda virtual</h1>
 
-	<h2>Selecciona tu favorito</h2>
+	<c:choose>
+		<c:when test="${favorito != null}">
+			<h2>Tu favorito es ${favorito}</h2>
+		</c:when>
+		<c:otherwise>
+			<h2>Selecciona tu favorito</h2>
+		</c:otherwise>
+	</c:choose>
 
 	<form action="favorito">
 		<select name="producto">
+			<option>Sin favorito</option>
 			<c:forEach items="${productos}" var="producto">
-				<option>${producto}</option>
+				<!-- ${producto} ${favorito} ${producto == favorito} ${producto == favorito ? "selected" : ""} -->
+				<option ${producto == favorito ? "selected" : ""}
+					value="${producto}">${producto}</option>
 			</c:forEach>
 		</select>
 
