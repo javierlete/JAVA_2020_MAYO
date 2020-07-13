@@ -22,5 +22,9 @@
 			</li>
 		</c:forEach>
 	</ul>
+	
+	<p>
+		<a href="carrito">Ver carrito</a>
+	</p>
 </body>
 </html>
