@@ -13,7 +13,12 @@
 	<ul>
 		<c:forEach items="${productos}" var="producto">
 			<li>
-				<a href="carrito.jsp">${producto}</a>
+				<a href="carrito?producto=${producto}">${producto}</a>
+				
+				<form action="carrito">
+					<input type="hidden" name="producto" value="${producto}" />
+					<button>${producto}</button>
+				</form>
 			</li>
 		</c:forEach>
 	</ul>
