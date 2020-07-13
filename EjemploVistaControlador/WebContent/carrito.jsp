@@ -13,7 +13,7 @@
 	<ul>
 		<c:forEach items="${carrito}" var="producto">
 			<li>
-				<a href="#">${producto}</a>
+				<a href="borrarproductocarrito?producto=${producto}">${producto}</a>
 			</li>
 		</c:forEach>
 		
