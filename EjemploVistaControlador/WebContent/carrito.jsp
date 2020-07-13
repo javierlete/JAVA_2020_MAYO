@@ -21,6 +21,8 @@
 	
 	<p>
 		<a href="index">Volver a listado de productos</a>
+		
+		<a href="cerrarsesion">Cerrar sesión</a>
 	</p>
 </body>
 </html>
