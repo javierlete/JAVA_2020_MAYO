@@ -1,7 +1,7 @@
 package com.ipartek.formacion.ejemplomvc.servlets;
 
 import java.io.IOException;
-import java.util.List;
+import java.util.Map;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -17,13 +17,15 @@ public class AdminBorrarServlet extends HttpServlet {
        
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String sid = request.getParameter("id");
-		Long elId = Long.parseLong(sid);
+		Long id = Long.parseLong(sid);
 		
 		@SuppressWarnings("unchecked")
-		List<Usuario> usuarios = (List<Usuario>) getServletContext().getAttribute("usuarios");
+		Map<Long, Usuario> usuarios = (Map<Long, Usuario>) getServletContext().getAttribute("usuariosmap");
 		
 		// Java 8: no existe en versiones anteriores.
-		usuarios.removeIf( usuario -> usuario.getId() == elId );
+		//usuarios.removeIf( usuario -> usuario.getId() == elId );
+		
+		usuarios.remove(id);
 		
 		request.getRequestDispatcher("/WEB-INF/vistas/admin/index.jsp").forward(request, response);
 	}
