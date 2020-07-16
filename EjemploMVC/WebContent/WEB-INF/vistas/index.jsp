@@ -10,7 +10,7 @@
 <body>
 	<h1>Mockup de página principal</h1>
 	<p>
-		<a href="admin/index.jsp">Administración</a>
+		<a href="admin/index">Administración</a>
 	</p>
 	<ul>
 		<c:forEach items="${usuarios}" var="usuario">
