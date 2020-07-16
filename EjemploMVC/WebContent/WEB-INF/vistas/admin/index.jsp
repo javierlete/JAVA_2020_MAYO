@@ -26,18 +26,18 @@
 					<th>${usuario.id}</th>
 					<td>${usuario.email}</td>
 					<td>${usuario.password}</td>
-					<td><a href="usuario.jsp">Editar</a> <a href="#">Borrar</a></td>
+					<td><a href="usuario">Editar</a> <a href="borrar?id=${usuario.id}">Borrar</a></td>
 				</tr>
 			</c:forEach>
 		</tbody>
 	</table>
 
 	<p>
-		<a href="usuario.jsp">Nuevo usuario</a>
+		<a href="usuario">Nuevo usuario</a>
 	</p>
 
 	<p>
-		<a href="../index.jsp">Volver a página Principal</a>
+		<a href="../index">Volver a página Principal</a>
 	</p>
 </body>
 </html>
