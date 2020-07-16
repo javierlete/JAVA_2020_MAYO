@@ -1,7 +1,7 @@
 package com.ipartek.formacion.ejemplomvc.listeners;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.Map;
+import java.util.TreeMap;
 
 import javax.servlet.ServletContextEvent;
 import javax.servlet.ServletContextListener;
@@ -22,12 +22,13 @@ public class InicioAplicacionListener implements ServletContextListener {
 	}
 
 	public void contextInitialized(ServletContextEvent sce) {
-		List<Usuario> usuarios = new ArrayList<>();
+		Map<Long, Usuario> usuarios = new TreeMap<>();
 
-		usuarios.add(new Usuario(1L, "javier@email.net", "contrajavier"));
-		usuarios.add(new Usuario(2L, "lete@email.net", "contralete"));
+		usuarios.put(1L, new Usuario(1L, "javier@email.net", "contrajavier"));
+		usuarios.put(2L, new Usuario(2L, "lete@email.net", "contralete"));
 
-		sce.getServletContext().setAttribute("usuarios", usuarios);
+		sce.getServletContext().setAttribute("usuariosmap", usuarios);
+		sce.getServletContext().setAttribute("usuarios", usuarios.values());
 	}
 
 }
