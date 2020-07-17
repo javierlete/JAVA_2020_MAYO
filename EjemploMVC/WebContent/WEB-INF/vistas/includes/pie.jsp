@@ -19,7 +19,7 @@
 
 			</ul>
 			<ul class="navbar-nav">
-				<li class="nav-item"><a class="nav-link" href="../index.html">Arriba</a>
+				<li class="nav-item"><a class="nav-link" href="#">Arriba</a>
 				</li>
 				<li class="nav-item"><i
 					class="fab fa-facebook-f navbar-text pl-2"></i></li>
@@ -37,8 +37,8 @@
 </footer>
 <!-- Optional JavaScript -->
 <!-- jQuery first, then Popper.js, then Bootstrap JS -->
-<script src="${pageContext.request.contextPath}/js/jquery-3.5.1.min.js"></script>
+<script src="js/jquery-3.5.1.min.js"></script>
 <script
-	src="${pageContext.request.contextPath}/js/bootstrap.bundle.min.js"></script>
+	src="js/bootstrap.bundle.min.js"></script>
 </body>
 </html>

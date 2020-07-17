@@ -2,7 +2,7 @@
     pageEncoding="UTF-8"%>
 <%@ include file="/WEB-INF/vistas/includes/cabecera.jsp" %>
 
-	<form action="usuario" method="post">
+	<form action="admin/usuario" method="post">
 		<div class="form-group row">
 			<label for="id" class="col-sm-3 col-form-label">ID</label>
 			<div class="col-sm-9">
@@ -23,7 +23,7 @@
 		</div>
 		<div>
 			<button class="btn btn-primary">Aceptar</button>
-			<a class="btn btn-warning" href="index">Cancelar</a>
+			<a class="btn btn-warning" href="admin/index">Cancelar</a>
 		</div>
 	</form>
 <%@ include file="/WEB-INF/vistas/includes/pie.jsp" %>

@@ -19,14 +19,14 @@
 					<th>${usuario.id}</th>
 					<td>${usuario.email}</td>
 					<td>${usuario.password}</td>
-					<td><a class="btn btn-primary" href="usuario?id=${usuario.id}">Editar</a> <a class="btn btn-danger" href="borrar?id=${usuario.id}">Borrar</a></td>
+					<td><a class="btn btn-primary" href="admin/usuario?id=${usuario.id}">Editar</a> <a class="btn btn-danger" href="admin/borrar?id=${usuario.id}">Borrar</a></td>
 				</tr>
 			</c:forEach>
 		</tbody>
 	</table>
 
 	<p>
-		<a class="btn btn-primary" href="usuario">Nuevo usuario</a>
+		<a class="btn btn-primary" href="admin/usuario">Nuevo usuario</a>
 	</p>
 
 <%@ include file="/WEB-INF/vistas/includes/pie.jsp" %>

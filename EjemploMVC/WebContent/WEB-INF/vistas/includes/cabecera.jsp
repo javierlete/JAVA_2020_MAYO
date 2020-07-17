@@ -4,14 +4,15 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
+<base href="${pageContext.request.contextPath}/" />
 <meta charset="UTF-8">
 <meta name="viewport"
 	content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <title>EjemploMVC</title>
 <!-- Bootstrap CSS -->
-<link rel="stylesheet" href="${pageContext.request.contextPath}/css/bootstrap.min.css" />
+<link rel="stylesheet" href="css/bootstrap.min.css" />
 <!-- FontAwesome -->
-<link rel="stylesheet" href="${pageContext.request.contextPath}/css/all.min.css" />
+<link rel="stylesheet" href="css/all.min.css" />
 </head>
 <body>
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark sticky-top">
