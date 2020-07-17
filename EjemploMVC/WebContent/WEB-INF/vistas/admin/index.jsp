@@ -26,7 +26,7 @@
 					<th>${usuario.id}</th>
 					<td>${usuario.email}</td>
 					<td>${usuario.password}</td>
-					<td><a href="usuario">Editar</a> <a href="borrar?id=${usuario.id}">Borrar</a></td>
+					<td><a href="usuario?id=${usuario.id}">Editar</a> <a href="borrar?id=${usuario.id}">Borrar</a></td>
 				</tr>
 			</c:forEach>
 		</tbody>
