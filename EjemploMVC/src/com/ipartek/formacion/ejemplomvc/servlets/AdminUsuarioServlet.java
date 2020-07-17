@@ -40,18 +40,40 @@ public class AdminUsuarioServlet extends HttpServlet {
 		TreeMap<Long, Usuario> usuarios = (TreeMap<Long, Usuario>) getServletContext().getAttribute("usuariosmap");
 		
 		Usuario usuario;
-		Long id;
+		Long id = null;
 		
-		if(sid.length() == 0) { // Si no recibo ningún ID, es que quiero añadir el usuario
-			id = usuarios.lastKey() + 1L;
-		} else {
+		if(sid.length() != 0) { // Si recibo un ID, es que quiero modificar un usuario existente
 			id = Long.parseLong(sid);
 		}
 		
 		usuario = new Usuario(id, email, password);
+
+		for(Usuario u: usuarios.values()) {
+			if(u.getEmail().equals(email) && u.getId() != id) {
+				request.setAttribute("usuario", usuario);
+				
+				request.setAttribute("alertanivel", "danger");
+				request.setAttribute("alertamensaje", "El email introducido ya existe");
+				
+				request.getRequestDispatcher("/WEB-INF/vistas/admin/usuario.jsp").forward(request, response);
+				
+				return;
+			}
+		}
+		
+		if(usuario.getId() == null) {
+			usuario.setId(usuarios.lastKey() + 1L);
+			
+			request.setAttribute("alertamensaje", "El usuario se ha insertado correctamente");
+		} else {
+			request.setAttribute("alertamensaje", "El usuario se ha modificado correctamente");			
+		}
+		
+		request.setAttribute("alertanivel", "success");
+		
 		usuarios.put(usuario.getId(), usuario);
 		
-		response.sendRedirect("index");
+		request.getRequestDispatcher("index").forward(request, response);
 	}
 
 }
