@@ -1,14 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-<!DOCTYPE html>
-<html>
-<head>
-<meta charset="UTF-8">
-<title>Listado de usuarios</title>
-</head>
-<body>
-	<h1>Listado de usuarios</h1>
+<%@ include file="/WEB-INF/vistas/includes/cabecera.jsp" %>
+	<h2>Listado de usuarios</h2>
 
 	<table>
 		<thead>
@@ -39,5 +32,4 @@
 	<p>
 		<a href="../index">Volver a página Principal</a>
 	</p>
-</body>
-</html>
+<%@ include file="/WEB-INF/vistas/includes/pie.jsp" %>
