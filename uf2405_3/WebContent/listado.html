@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="css/bootstrap.min.css" />
+
+    <meta name="author" content="Javier Lete" />
+    <meta name="description" content="Página de demostración de características de HTML" />
+    <meta name="keywords" content="HTML etiquetas tutorial tablas multimedia titulos enlaces" />
+    <link rel="icon" type="image/png" href="imgs/icono.png">
+    <title>Ejemplo HTML</title>
+
+    <link rel="stylesheet" href="css/all.min.css" />
+    <link rel="stylesheet" href="admin/css/dataTables.bootstrap4.min.css" />
+</head>
+
+<body class="container-fluid">
+
+    <div class="table-responsive">
+        <table class="table table-striped table-bordered table-hover table-sm" style="table-layout: fixed">
+            <caption>Ejemplo de tabla</caption>
+            <thead class="thead-dark">
+                <tr>
+                    <th>Id</th>
+                    <th>Descripción</th>
+                    <th>Precio</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <th>1</th>
+                    <td>BEEFEATER ginebra inglesa botella 70cl</td>
+                    <td>12,95 €</td>
+                </tr>
+               <tr>
+                    <th>1</th>
+                    <td>BEEFEATER ginebra inglesa botella 70cl</td>
+                    <td>12,95 €</td>
+                </tr>
+                <tr>
+                    <th>1</th>
+                    <td>BEEFEATER ginebra inglesa botella 70cl</td>
+                    <td>12,95 €</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="js/jquery-3.5.1.min.js"></script>
+    <script src="js/bootstrap.bundle.min.js"></script>
+    <script src="js/jquery.dataTables.min.js"></script>
+    <script src="js/dataTables.bootstrap4.min.js"></script>
+    <script>
+        $(function() {
+            $('table').DataTable({
+                language: {
+                    url: 'js/spanish.dataTables.json'
+                }
+            });
+        });
+    </script>
+</body></html>
