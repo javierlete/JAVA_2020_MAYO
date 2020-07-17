@@ -2,6 +2,7 @@ package com.ipartek.formacion.ejemplomvc.servlets;
 
 import java.io.IOException;
 import java.util.Map;
+import java.util.TreeMap;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -31,7 +32,43 @@ public class AdminUsuarioServlet extends HttpServlet {
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		doGet(request, response);
+		String sid = request.getParameter("id");
+		String email = request.getParameter("email");
+		String password = request.getParameter("password");
+		
+		@SuppressWarnings("unchecked")
+		TreeMap<Long, Usuario> usuarios = (TreeMap<Long, Usuario>) getServletContext().getAttribute("usuariosmap");
+		
+		Usuario usuario;
+		Long id;
+		
+		if(sid.length() == 0) { // Si no recibo ningún ID, es que quiero añadir el usuario
+			id = usuarios.lastKey() + 1L;
+		} else {
+			id = Long.parseLong(sid);
+		}
+		
+		usuario = new Usuario(id, email, password);
+		usuarios.put(usuario.getId(), usuario);
+		
+		response.sendRedirect("index");
 	}
 
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

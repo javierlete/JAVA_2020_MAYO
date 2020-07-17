@@ -8,7 +8,7 @@
 </head>
 <body>
 
-	<form action="index.jsp">
+	<form action="usuario" method="post">
 		<div>
 			<label for="id">ID</label>
 			<input name="id" id="id" value="${usuario.id}" readonly />
