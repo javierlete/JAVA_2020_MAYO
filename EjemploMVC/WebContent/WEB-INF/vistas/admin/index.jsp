@@ -3,7 +3,7 @@
 <%@ include file="/WEB-INF/vistas/includes/cabecera.jsp" %>
 	<h2>Listado de usuarios</h2>
 
-	<table>
+	<table class="table table-striped table-bordered table-hover table-sm">
 		<thead>
 			<tr>
 				<th>ID</th>
@@ -19,17 +19,14 @@
 					<th>${usuario.id}</th>
 					<td>${usuario.email}</td>
 					<td>${usuario.password}</td>
-					<td><a href="usuario?id=${usuario.id}">Editar</a> <a href="borrar?id=${usuario.id}">Borrar</a></td>
+					<td><a class="btn btn-primary" href="usuario?id=${usuario.id}">Editar</a> <a class="btn btn-danger" href="borrar?id=${usuario.id}">Borrar</a></td>
 				</tr>
 			</c:forEach>
 		</tbody>
 	</table>
 
 	<p>
-		<a href="usuario">Nuevo usuario</a>
+		<a class="btn btn-primary" href="usuario">Nuevo usuario</a>
 	</p>
 
-	<p>
-		<a href="../index">Volver a página Principal</a>
-	</p>
 <%@ include file="/WEB-INF/vistas/includes/pie.jsp" %>
