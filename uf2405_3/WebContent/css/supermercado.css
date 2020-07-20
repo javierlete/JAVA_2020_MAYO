@@ -1,0 +1,132 @@
+.card {
+    border-radius: 0;
+}
+
+.descuento {
+    position: absolute;
+
+    top: 0.5em;
+    left: 0.5em;
+
+    width: 3em;
+
+    background-color: #F45A5E;
+    color: white;
+    font-size: 1.1em;
+    padding: 0.2em;
+    border-radius: 1em;
+    padding-left: 0.5em;
+}
+
+.card-body p:first-child {
+    margin-bottom: 0;
+}
+
+.precio-tachado {
+    position: relative;
+}
+
+.precio-tachado:before {
+    position: absolute;
+    content: '';
+    left: 0;
+    top: 55%;
+    right: 0;
+    border-top: 1px solid;
+    border-color: inherit;
+    -webkit-transform: skewY(-10deg);
+    -moz-transform: skewY(-10deg);
+    transform: skewY(-10deg);
+}
+
+.precio, .precio-final {
+    font-weight: bold;
+    font-size: 1.2em;
+}
+
+.precio {
+    font-size: 1.5em;
+    font-weight: normal;
+}
+
+.precio-final {
+    color: #F45A5E;
+}
+
+.precio-unidad {
+    color: lightgray;
+    font-size: 0.9em;
+}
+
+.cantidad {
+    text-align: center;
+}
+
+.cantidad span {
+    padding: 0.5em 1em;
+    font-weight: bold;
+    background-color: #F5F5F5;
+}
+
+.menos {
+    border-radius: 4em 0em 0em 4em;
+    border-left: 1px solid lightgray;
+    border-top: 1px solid lightgray;
+    border-bottom: 1px solid lightgray;
+}
+
+.mas {
+    border-radius: 0em 4em 4em 0em;
+    border-right: 1px solid lightgray;
+    border-top: 1px solid lightgray;
+    border-bottom: 1px solid lightgray;
+}
+
+.numero {
+    border-top: 1px solid lightgray;
+    border-bottom: 1px solid lightgray;
+}
+
+#top {
+    display: none;
+
+    position: fixed;
+    right: 1em;
+    bottom: 1em;
+
+    padding: 0.5em;
+    border-radius: 0.5em;
+    font-weight: bold;
+
+    z-index: 10000;
+
+    background-color: darkblue;
+}
+
+#top a {
+    color: white;
+}
+
+.cantidad {
+    margin-bottom: 4em;
+}
+
+.btn-success {
+    background-color: #89CC88;
+    text-transform: uppercase;
+    border: 0;
+    border-radius: 0;
+    
+    padding: 1em;
+    
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    right: 0;
+}
+
+@media (max-width: 576px) {
+    #top {
+        display: block;
+    }
+}
