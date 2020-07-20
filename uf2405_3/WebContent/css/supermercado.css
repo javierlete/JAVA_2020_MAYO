@@ -1,3 +1,7 @@
+.card {
+    border-radius: 0;
+}
+
 .descuento {
     position: absolute;
 
@@ -12,6 +16,10 @@
     padding: 0.2em;
     border-radius: 1em;
     padding-left: 0.5em;
+}
+
+.card-body p:first-child {
+    margin-bottom: 0;
 }
 
 .precio-tachado {
@@ -31,10 +39,18 @@
     transform: skewY(-10deg);
 }
 
-.precio-final {
-    color: #F45A5E;
+.precio, .precio-final {
     font-weight: bold;
     font-size: 1.2em;
+}
+
+.precio {
+    font-size: 1.5em;
+    font-weight: normal;
+}
+
+.precio-final {
+    color: #F45A5E;
 }
 
 .precio-unidad {
@@ -89,6 +105,24 @@
 
 #top a {
     color: white;
+}
+
+.cantidad {
+    margin-bottom: 4em;
+}
+
+.btn-success {
+    background-color: #89CC88;
+    text-transform: uppercase;
+    border: 0;
+    border-radius: 0;
+    
+    padding: 1em;
+    
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    right: 0;
 }
 
 @media (max-width: 576px) {
