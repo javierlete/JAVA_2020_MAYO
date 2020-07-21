@@ -8,6 +8,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.ipartek.formacion.ejemplomvc.modelos.Usuario;
+
 @WebServlet("/login")
 public class LoginServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
@@ -20,7 +22,19 @@ public class LoginServlet extends HttpServlet {
 		String email = request.getParameter("email");
 		String password = request.getParameter("password");
 		
-		if("javier@email.net".equals(email) && "contra".equals(password)) {
+		@SuppressWarnings("unchecked")
+		Iterable<Usuario> usuarios = (Iterable<Usuario>) request.getServletContext().getAttribute("usuarios");
+		
+		Usuario usuario = null;
+		
+		for(Usuario u: usuarios) {
+			if(u.getEmail().equals(email)) {
+				usuario = u;
+				break;
+			}
+		}
+		
+		if(usuario != null && usuario.getPassword().equals(password)) {
 			request.getSession().setAttribute("email", email);
 			
 			response.sendRedirect(request.getContextPath() + "/admin/index");
