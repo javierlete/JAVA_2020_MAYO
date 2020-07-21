@@ -26,12 +26,25 @@
 
 		<div class="collapse navbar-collapse" id="navbarSupportedContent">
 			<ul class="navbar-nav mr-auto">
-				<li class="nav-item active"><a class="nav-link"
-					href="${pageContext.request.contextPath}/index">Principal <span
-						class="sr-only">(current)</span></a></li>
-				<li class="nav-item"><a class="nav-link"
-					href="${pageContext.request.contextPath}/admin/index">Administración</a>
+				<li class="nav-item active"><a class="nav-link" href="index">Principal
+						<span class="sr-only">(current)</span>
+				</a></li>
+				<li class="nav-item"><a class="nav-link" href="admin/index">Administración</a>
 				</li>
+			</ul>
+			<ul class="navbar-nav">
+				<c:choose>
+					<c:when test="${sessionScope.email != null}">
+						<li class="nav-item"><span class="navbar-text">${sessionScope.email}</span>
+						</li>
+						<li class="nav-item"><a class="nav-link" href="cerrarsesion">Cerrar
+								sesión</a></li>
+					</c:when>
+					<c:otherwise>
+						<li class="nav-item"><a class="nav-link" href="login">Iniciar
+								sesión</a></li>
+					</c:otherwise>
+				</c:choose>
 			</ul>
 		</div>
 	</nav>
