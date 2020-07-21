@@ -8,11 +8,15 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.ipartek.formacion.ejemplomvc.accesodatos.Dao;
+import com.ipartek.formacion.ejemplomvc.accesodatos.UsuarioMapDao;
 import com.ipartek.formacion.ejemplomvc.modelos.Usuario;
 
 @WebServlet("/login")
 public class LoginServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
+	
+	private static Dao<Usuario> dao = UsuarioMapDao.getInstancia();
        
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		request.getRequestDispatcher("/WEB-INF/vistas/login.jsp").forward(request, response);
@@ -22,12 +26,9 @@ public class LoginServlet extends HttpServlet {
 		String email = request.getParameter("email");
 		String password = request.getParameter("password");
 		
-		@SuppressWarnings("unchecked")
-		Iterable<Usuario> usuarios = (Iterable<Usuario>) request.getServletContext().getAttribute("usuarios");
-		
 		Usuario usuario = null;
 		
-		for(Usuario u: usuarios) {
+		for(Usuario u: dao.obtenerTodos()) {
 			if(u.getEmail().equals(email)) {
 				usuario = u;
 				break;

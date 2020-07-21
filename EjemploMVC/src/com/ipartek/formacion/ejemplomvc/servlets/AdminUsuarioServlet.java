@@ -1,8 +1,6 @@
 package com.ipartek.formacion.ejemplomvc.servlets;
 
 import java.io.IOException;
-import java.util.Map;
-import java.util.TreeMap;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -10,22 +8,21 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.ipartek.formacion.ejemplomvc.accesodatos.Dao;
+import com.ipartek.formacion.ejemplomvc.accesodatos.UsuarioMapDao;
 import com.ipartek.formacion.ejemplomvc.modelos.Usuario;
 
 @WebServlet("/admin/usuario")
 public class AdminUsuarioServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-       
+    
+	private static Dao<Usuario> dao = UsuarioMapDao.getInstancia();
+	
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String id = request.getParameter("id");
 		
 		if(id != null) {
-			@SuppressWarnings("unchecked")
-			Map<Long, Usuario> usuarios = (Map<Long, Usuario>) getServletContext().getAttribute("usuariosmap");
-			
-			Usuario usuario = usuarios.get(Long.parseLong(id));
-			
-			request.setAttribute("usuario", usuario);
+			request.setAttribute("usuario", dao.obtenerPorId(Long.parseLong(id)));
 		}
 		
 		request.getRequestDispatcher("/WEB-INF/vistas/admin/usuario.jsp").forward(request, response);
@@ -36,9 +33,6 @@ public class AdminUsuarioServlet extends HttpServlet {
 		String email = request.getParameter("email");
 		String password = request.getParameter("password");
 		
-		@SuppressWarnings("unchecked")
-		TreeMap<Long, Usuario> usuarios = (TreeMap<Long, Usuario>) getServletContext().getAttribute("usuariosmap");
-		
 		Usuario usuario;
 		Long id = null;
 		
@@ -48,7 +42,7 @@ public class AdminUsuarioServlet extends HttpServlet {
 		
 		usuario = new Usuario(id, email, password);
 
-		for(Usuario u: usuarios.values()) {
+		for(Usuario u: dao.obtenerTodos()) {
 			if(u.getEmail().equals(email) && u.getId() != id) {
 				request.setAttribute("usuario", usuario);
 				
@@ -62,16 +56,16 @@ public class AdminUsuarioServlet extends HttpServlet {
 		}
 		
 		if(usuario.getId() == null) {
-			usuario.setId(usuarios.lastKey() + 1L);
+			usuario = dao.insertar(usuario);
 			
 			request.setAttribute("alertamensaje", "El usuario se ha insertado correctamente");
 		} else {
+			dao.modificar(usuario);
+			
 			request.setAttribute("alertamensaje", "El usuario se ha modificado correctamente");			
 		}
 		
 		request.setAttribute("alertanivel", "success");
-		
-		usuarios.put(usuario.getId(), usuario);
 		
 		request.getRequestDispatcher("index").forward(request, response);
 	}
