@@ -8,11 +8,15 @@ public class Producto {
 	private BigDecimal precio = BigDecimal.ZERO;
 	private Integer cantidad = 0;
 	
-	public Producto(Long numero, String nombre, String precio) {
+	public Producto(Long numero, String nombre, BigDecimal precio) {
 		super();
 		this.numero = numero;
 		this.nombre = nombre;
-		this.precio = new BigDecimal(precio);
+		this.precio = precio;
+	}
+
+	public Producto(Long numero, String nombre, String precio) {
+		this(numero, nombre, new BigDecimal(precio));
 	}
 	
 	public BigDecimal getTotal() {

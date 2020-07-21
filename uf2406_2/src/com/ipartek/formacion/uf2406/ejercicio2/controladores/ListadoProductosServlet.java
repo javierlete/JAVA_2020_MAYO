@@ -25,6 +25,8 @@ public class ListadoProductosServlet extends HttpServlet {
 			productos.put(111L, new Producto(111L, "motores", "34347"));
 			productos.put(222L, new Producto(222L, "escoba", "760"));
 			productos.put(333L, new Producto(333L, "lapiz", "123"));
+			productos.put(444L, new Producto(444L, "goma", "224"));
+			productos.put(555L, new Producto(555L, "papel", "322"));
 			
 			//getServletContext().setAttribute("productos", productos);
 			request.getSession().setAttribute("productos", productos);
