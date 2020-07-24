@@ -31,6 +31,8 @@ public class EjemploJDBC {
 		borrar();
 		
 		obtenerTodos();
+		
+		con.close();
 	}
 
 	private static void obtenerPorId() throws SQLException {
@@ -43,6 +45,9 @@ public class EjemploJDBC {
 		} else {
 			System.err.println("No se ha encontrado un registro con el id 24");
 		}
+		
+		rs.close();
+		s.close();
 	}
 
 	private static void borrar() throws SQLException {
@@ -63,6 +68,8 @@ public class EjemploJDBC {
 		int numeroFilasModificadas = s.executeUpdate(sql);
 		
 		System.out.println("La operación ha afectado a " + numeroFilasModificadas + " registros");
+		
+		s.close();
 	}
 	
 	private static void obtenerTodos() throws SQLException {
@@ -73,5 +80,8 @@ public class EjemploJDBC {
 		while (rs.next()) {
 			System.out.println(rs.getString("id") + ": " + rs.getString("nombre"));
 		}
+		
+		rs.close();
+		s.close();
 	}
 }
