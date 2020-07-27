@@ -5,7 +5,7 @@ import java.util.TreeMap;
 
 import com.ipartek.formacion.ejemplomvc.modelos.Usuario;
 
-public class UsuarioMapDao implements Dao<Usuario> {
+class UsuarioMapDao implements Dao<Usuario> {
 	private static Map<Long, Usuario> usuarios = new TreeMap<>();
 	
 	// PATRÓN SINGLETON

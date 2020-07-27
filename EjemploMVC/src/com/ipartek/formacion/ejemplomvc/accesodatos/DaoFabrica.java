@@ -49,7 +49,7 @@ public class DaoFabrica {
 	public Dao<Usuario> getDaoUsuario() {
 		switch(tipo) {
 		case "map": return UsuarioMapDao.getInstancia();
-		//case "mysql": return UsuarioMySqlDao.getInstancia();
+		case "mysql": return new UsuarioMySqlDao(url, usuario, password);
 		default: throw new AccesoDatosException("No dispongo de ese dao");
 		}
 	}

@@ -8,14 +8,20 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.ipartek.formacion.ejemplomvc.accesodatos.Dao;
 import com.ipartek.formacion.ejemplomvc.accesodatos.DaoFabrica;
+import com.ipartek.formacion.ejemplomvc.modelos.Usuario;
 
 @WebServlet("/index")
 public class IndexServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		request.setAttribute("usuarios", DaoFabrica.getInstancia().getDaoUsuario().obtenerTodos());
+		DaoFabrica fabrica = DaoFabrica.getInstancia();
+		Dao<Usuario> dao = fabrica.getDaoUsuario();
+		Iterable<Usuario> usuarios = dao.obtenerTodos();
+		
+		request.setAttribute("usuarios", usuarios); // DaoFabrica.getInstancia().getDaoUsuario().obtenerTodos());
 		request.getRequestDispatcher("/WEB-INF/vistas/index.jsp").forward(request, response);
 	}
 
