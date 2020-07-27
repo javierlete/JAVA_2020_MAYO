@@ -6,19 +6,19 @@ public class EjemploJDBC {
 
 	private static Connection con;
 	
-	private static final String usuario = "debian-sys-maint";
-	private static final String password = "o8lAkaNtX91xMUcV";
-	private static final String url = "jdbc:mysql://localhost:3306/supermercado?serverTimezone=UTC";
+	private static final String USUARIO = "debian-sys-maint";
+	private static final String PASSWORD = "o8lAkaNtX91xMUcV";
+	private static final String URL = "jdbc:mysql://localhost:3306/supermercado?serverTimezone=UTC";
 	
-	private static final String sqlObtenerTodos = "SELECT id, nombre FROM producto ORDER BY id";
-	private static final String sqlObtenerPorId = "SELECT id, nombre FROM producto WHERE id = 25";
+	private static final String SQL_OBTENER_TODOS = "SELECT id, nombre FROM producto ORDER BY id";
+	private static final String SQL_OBTENER_POR_ID = "SELECT id, nombre FROM producto WHERE id = 25";
 	
-	private static final String sqlInsertar = "INSERT INTO producto (nombre, id_usuario) VALUES ('NUEVO3', 1)";
-	private static final String sqlModificar = "UPDATE producto SET nombre = 'MODIFICADO' WHERE id = 25";
-	private static final String sqlBorrar = "DELETE FROM producto WHERE id = 25";
+	private static final String SQL_INSERTAR = "INSERT INTO producto (nombre, id_usuario) VALUES ('NUEVO4', 1)";
+	private static final String SQL_MODIFICAR = "UPDATE producto SET nombre = 'MODIFICADO' WHERE id = 25";
+	private static final String SQL_BORRAR = "DELETE FROM producto WHERE id = 25";
 	
 	public static void main(String[] args) throws SQLException {
-		con = DriverManager.getConnection(url, usuario, password);
+		con = DriverManager.getConnection(URL, USUARIO, PASSWORD);
 
 		System.out.println("Conectado");
 		
@@ -38,7 +38,7 @@ public class EjemploJDBC {
 	private static void obtenerPorId() throws SQLException {
 		Statement s = con.createStatement();
 
-		ResultSet rs = s.executeQuery(sqlObtenerPorId);
+		ResultSet rs = s.executeQuery(SQL_OBTENER_POR_ID);
 		
 		if (rs.next()) {
 			System.out.println(rs.getString("id") + ": " + rs.getString("nombre"));
@@ -51,15 +51,15 @@ public class EjemploJDBC {
 	}
 
 	private static void borrar() throws SQLException {
-		actualizar(sqlBorrar);
+		actualizar(SQL_BORRAR);
 	}
 
 	private static void modificar() throws SQLException {
-		actualizar(sqlModificar);
+		actualizar(SQL_MODIFICAR);
 	}
 
 	private static void insertar() throws SQLException {
-		actualizar(sqlInsertar);
+		actualizar(SQL_INSERTAR);
 	}
 	
 	private static void actualizar(String sql) throws SQLException {
@@ -75,7 +75,7 @@ public class EjemploJDBC {
 	private static void obtenerTodos() throws SQLException {
 		Statement s = con.createStatement();
 
-		ResultSet rs = s.executeQuery(sqlObtenerTodos);
+		ResultSet rs = s.executeQuery(SQL_OBTENER_TODOS);
 		
 		while (rs.next()) {
 			System.out.println(rs.getString("id") + ": " + rs.getString("nombre"));
