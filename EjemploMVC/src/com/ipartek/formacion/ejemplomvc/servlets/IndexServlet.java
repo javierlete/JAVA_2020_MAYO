@@ -8,14 +8,14 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.ipartek.formacion.ejemplomvc.accesodatos.UsuarioMapDao;
+import com.ipartek.formacion.ejemplomvc.accesodatos.DaoFabrica;
 
 @WebServlet("/index")
 public class IndexServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		request.setAttribute("usuarios", UsuarioMapDao.getInstancia().obtenerTodos());
+		request.setAttribute("usuarios", DaoFabrica.getInstancia().getDaoUsuario().obtenerTodos());
 		request.getRequestDispatcher("/WEB-INF/vistas/index.jsp").forward(request, response);
 	}
 

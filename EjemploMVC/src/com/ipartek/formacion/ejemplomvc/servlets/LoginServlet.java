@@ -9,14 +9,14 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.ipartek.formacion.ejemplomvc.accesodatos.Dao;
-import com.ipartek.formacion.ejemplomvc.accesodatos.UsuarioMapDao;
+import com.ipartek.formacion.ejemplomvc.accesodatos.DaoFabrica;
 import com.ipartek.formacion.ejemplomvc.modelos.Usuario;
 
 @WebServlet("/login")
 public class LoginServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	
-	private static Dao<Usuario> dao = UsuarioMapDao.getInstancia();
+	private static Dao<Usuario> dao = DaoFabrica.getInstancia().getDaoUsuario();
        
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		request.getRequestDispatcher("/WEB-INF/vistas/login.jsp").forward(request, response);
