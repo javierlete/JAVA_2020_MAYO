@@ -6,18 +6,18 @@ import java.util.TreeMap;
 import com.ipartek.formacion.ejemplomvc.modelos.Usuario;
 
 class UsuarioMapDao implements Dao<Usuario> {
-	private static Map<Long, Usuario> usuarios = new TreeMap<>();
+	private Map<Long, Usuario> usuarios = new TreeMap<>();
 	
 	// PATRÓN SINGLETON
-	private UsuarioMapDao() {
-		usuarios.put(1L, new Usuario(1L, "javi@email.net", "contrajavi"));
-		usuarios.put(2L, new Usuario(2L, "lete@email.net", "contralete"));
+	public static UsuarioMapDao getInstancia() { // Método que devuelve la única instancia del objeto que queremos
+		return instancia;
 	}
 	
-	private static UsuarioMapDao instancia = new UsuarioMapDao();
+	private static UsuarioMapDao instancia = new UsuarioMapDao(); // Instancia estática para tener el objeto global que se quiere dar
 	
-	public static UsuarioMapDao getInstancia() {
-		return instancia;
+	private UsuarioMapDao() { //Constructor privado para que no sea accesible desde otra clase
+		usuarios.put(1L, new Usuario(1L, "javi@email.net", "contrajavi"));
+		usuarios.put(2L, new Usuario(2L, "lete@email.net", "contralete"));
 	}
 	// FIN PATRÓN SINGLETON
 	
