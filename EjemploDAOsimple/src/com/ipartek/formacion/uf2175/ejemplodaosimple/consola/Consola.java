@@ -9,7 +9,7 @@ import com.ipartek.formacion.uf2175.ejemplodaosimple.modelos.Producto;
 
 public class Consola {
 
-	public static void main(String[] args) throws SQLException {
+	public static void main(String[] args) throws SQLException, ClassNotFoundException {
 		Producto producto = ProductoDao.obtenerPorId(3L);
 
 		System.out.println(producto);
