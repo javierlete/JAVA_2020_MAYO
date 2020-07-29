@@ -19,7 +19,7 @@ public class Consola {
 
 		ProductoDao.modificar(producto);
 
-		ProductoDao.insertar(new Producto(null, "Nuevo", new BigDecimal("1234.23"), null));
+		ProductoDao.insertar(new Producto(null, "Nuevo", new BigDecimal("1234.23"), "nuevo.png"));
 
 		ProductoDao.borrar(4L);
 		

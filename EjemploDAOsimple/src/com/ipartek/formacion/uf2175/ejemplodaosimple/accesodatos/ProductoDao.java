@@ -24,7 +24,7 @@ public class ProductoDao {
 		ResultSet rs = s.executeQuery("SELECT * FROM productos");
 		
 		while(rs.next()) {
-			productos.add(new Producto(rs.getLong("id"), rs.getString("nombre"), rs.getBigDecimal("precio"), null));
+			productos.add(new Producto(rs.getLong("id"), rs.getString("nombre"), rs.getBigDecimal("precio"), rs.getString("foto")));
 		}
 		
 		rs.close();
@@ -46,7 +46,7 @@ public class ProductoDao {
 		ResultSet rs = ps.executeQuery();
 		
 		if(rs.next()) {
-			producto = new Producto(rs.getLong("id"), rs.getString("nombre"), rs.getBigDecimal("precio"), null);
+			producto = new Producto(rs.getLong("id"), rs.getString("nombre"), rs.getBigDecimal("precio"), rs.getString("foto"));
 		}
 		
 		rs.close();
@@ -59,10 +59,11 @@ public class ProductoDao {
 	public static void insertar(Producto producto) throws SQLException {
 		Connection con = conectar();
 		
-		PreparedStatement ps = con.prepareStatement("INSERT INTO productos (nombre, precio) VALUES (?, ?)");
+		PreparedStatement ps = con.prepareStatement("INSERT INTO productos (nombre, precio, foto) VALUES (?, ?, ?)");
 		
 		ps.setString(1, producto.getNombre());
 		ps.setBigDecimal(2, producto.getPrecio());
+		ps.setString(3,  producto.getFoto());
 		
 		ps.executeUpdate();
 		
@@ -73,11 +74,12 @@ public class ProductoDao {
 	public static void modificar(Producto producto) throws SQLException {
 		Connection con = conectar();
 		
-		PreparedStatement ps = con.prepareStatement("UPDATE productos SET nombre = ?, precio = ? WHERE id = ?");
+		PreparedStatement ps = con.prepareStatement("UPDATE productos SET nombre = ?, precio = ?, foto = ? WHERE id = ?");
 		
 		ps.setString(1, producto.getNombre());
 		ps.setBigDecimal(2, producto.getPrecio());
-		ps.setLong(3, producto.getId());
+		ps.setString(3, producto.getFoto());
+		ps.setLong(4, producto.getId());
 		
 		ps.executeUpdate();
 		

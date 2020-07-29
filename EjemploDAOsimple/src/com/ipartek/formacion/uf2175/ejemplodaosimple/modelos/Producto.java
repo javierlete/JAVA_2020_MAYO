@@ -6,7 +6,10 @@ public class Producto {
 	private Long id;
 	private String nombre;
 	private BigDecimal precio;
-	private Integer cantidad; // Integer puede valer null, int no
+	private Integer cantidad; 
+	private String foto;
+	
+	// Integer puede valer null, int no
 
 	// Java 5 en adelante hace las conversiones implícitas (autoboxing)
 	// Java < 5 necesita conversiones explícitas
@@ -19,6 +22,14 @@ public class Producto {
 		this.nombre = nombre;
 		this.precio = precio;
 		this.cantidad = cantidad;
+	}
+
+	public Producto(Long id, String nombre, BigDecimal precio, String foto) {
+		super();
+		this.id = id;
+		this.nombre = nombre;
+		this.precio = precio;
+		this.foto = foto;
 	}
 
 	public Long getId() {
@@ -53,11 +64,20 @@ public class Producto {
 		this.cantidad = cantidad;
 	}
 
+	public String getFoto() {
+		return foto;
+	}
+
+	public void setFoto(String foto) {
+		this.foto = foto;
+	}
+
 	@Override
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
 		result = prime * result + ((cantidad == null) ? 0 : cantidad.hashCode());
+		result = prime * result + ((foto == null) ? 0 : foto.hashCode());
 		result = prime * result + ((id == null) ? 0 : id.hashCode());
 		result = prime * result + ((nombre == null) ? 0 : nombre.hashCode());
 		result = prime * result + ((precio == null) ? 0 : precio.hashCode());
@@ -77,6 +97,11 @@ public class Producto {
 			if (other.cantidad != null)
 				return false;
 		} else if (!cantidad.equals(other.cantidad))
+			return false;
+		if (foto == null) {
+			if (other.foto != null)
+				return false;
+		} else if (!foto.equals(other.foto))
 			return false;
 		if (id == null) {
 			if (other.id != null)
@@ -98,7 +123,8 @@ public class Producto {
 
 	@Override
 	public String toString() {
-		return "Producto [id=" + id + ", nombre=" + nombre + ", precio=" + precio + ", cantidad=" + cantidad + "]";
+		return "Producto [id=" + id + ", nombre=" + nombre + ", precio=" + precio + ", cantidad=" + cantidad + ", foto="
+				+ foto + "]";
 	}
 
 	
