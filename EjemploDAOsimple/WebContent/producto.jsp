@@ -8,7 +8,7 @@
 </head>
 <body>
 
-<form action="insertarproducto" method="get">
+<form action="insertarproducto" method="post">
 	<div>
 		<label for="nombre">Nombre</label>
 		<input name="nombre" id="nombre" />
