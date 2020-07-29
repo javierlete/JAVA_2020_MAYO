@@ -8,7 +8,7 @@
 </head>
 <body>
 
-<form action="insertarproducto" method="post">
+<form action="insertarproducto" method="post" enctype="multipart/form-data">
 	<div>
 		<label for="nombre">Nombre</label>
 		<input name="nombre" id="nombre" />
@@ -19,7 +19,7 @@
 	</div>
 	<div>
 		<label for="foto">Foto</label>
-		<input name="foto" id="foto" />
+		<input type="file" name="foto" id="foto" />
 	</div>
 	<div>
 		<button>Aceptar</button>
