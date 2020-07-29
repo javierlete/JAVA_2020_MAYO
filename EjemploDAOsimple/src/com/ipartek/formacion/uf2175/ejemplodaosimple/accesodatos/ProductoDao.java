@@ -10,11 +10,13 @@ public class ProductoDao {
 	private final static String usuario = "debian-sys-maint";
 	private final static String password = "o8lAkaNtX91xMUcV";
 	
-	private static Connection conectar() throws SQLException {
+	private static Connection conectar() throws SQLException, ClassNotFoundException {
+		Class.forName("com.mysql.cj.jdbc.Driver");
+		//new com.mysql.cj.jdbc.Driver();
 		return DriverManager.getConnection(url, usuario, password);
 	}
 	
-	public static ArrayList<Producto> obtenerTodos() throws SQLException {
+	public static ArrayList<Producto> obtenerTodos() throws SQLException, ClassNotFoundException {
 		ArrayList<Producto> productos = new ArrayList<>();
 		
 		Connection con = conectar();
@@ -34,7 +36,7 @@ public class ProductoDao {
 		return productos;
 	}
 	
-	public static Producto obtenerPorId(Long id) throws SQLException {
+	public static Producto obtenerPorId(Long id) throws SQLException, ClassNotFoundException {
 		Producto producto = null;
 		
 		Connection con = conectar();
@@ -56,7 +58,7 @@ public class ProductoDao {
 		return producto;
 	}
 	
-	public static void insertar(Producto producto) throws SQLException {
+	public static void insertar(Producto producto) throws SQLException, ClassNotFoundException {
 		Connection con = conectar();
 		
 		PreparedStatement ps = con.prepareStatement("INSERT INTO productos (nombre, precio, foto) VALUES (?, ?, ?)");
@@ -71,7 +73,7 @@ public class ProductoDao {
 		con.close();
 	}
 	
-	public static void modificar(Producto producto) throws SQLException {
+	public static void modificar(Producto producto) throws SQLException, ClassNotFoundException {
 		Connection con = conectar();
 		
 		PreparedStatement ps = con.prepareStatement("UPDATE productos SET nombre = ?, precio = ?, foto = ? WHERE id = ?");
@@ -87,7 +89,7 @@ public class ProductoDao {
 		con.close();
 	}
 	
-	public static void borrar(Long id) throws SQLException {
+	public static void borrar(Long id) throws SQLException, ClassNotFoundException {
 		Connection con = conectar();
 		
 		PreparedStatement ps = con.prepareStatement("DELETE FROM productos WHERE id = ?");
