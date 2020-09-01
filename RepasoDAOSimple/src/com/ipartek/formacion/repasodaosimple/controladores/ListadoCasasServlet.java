@@ -1,7 +1,6 @@
 package com.ipartek.formacion.repasodaosimple.controladores;
 
 import java.io.IOException;
-import java.util.ArrayList;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -9,7 +8,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.ipartek.formacion.repasodaosimple.modelos.Casa;
+import com.ipartek.formacion.repasodaosimple.dao.CasaDaoArrayList;
 
 @WebServlet("/listado")
 public class ListadoCasasServlet extends HttpServlet {
@@ -17,12 +16,9 @@ public class ListadoCasasServlet extends HttpServlet {
        
 	// Cualquier petición por URL o <form> o <form method="get"> llega a doGet
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		ArrayList<Casa> casas = new ArrayList<>();
-		
-		casas.add(new Casa(1L, "Bizkaia", "48000", "Gran Vía", "5B", "3", "Izquierda"));
-		casas.add(new Casa(2L, "Araba", "28000", "Autonomía", "20", "Bajo", "3ª"));
-		
-		request.setAttribute("casas", casas);
+		//Guardamos en la variable casas de ámbito request todas las casas
+		//Accederemos a ellas en la JSP a través de Expression Language usando ${casas}
+		request.setAttribute("casas", CasaDaoArrayList.obtenerTodas());
 		
 		//Es importante fijarse en que sólo el objeto requestDispatcher no hace nada
 		//Es necesario utilizar un forward para reenviar la petición al index.jsp

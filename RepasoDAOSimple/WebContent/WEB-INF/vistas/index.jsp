@@ -24,9 +24,9 @@
 			</tr>
 		</thead>
 		<tbody>
-			<c:forEach items="${casas}" var="casa">
+			<c:forEach items="${casas}" var="casa"> <%-- for(Casa casa: request.getAttribute("casas")) --%>
 				<tr>
-					<td>${casa.id}</td>
+					<td>${casa.id}</td> <%-- casa.getId() --%>
 					<td>${casa.provincia}</td>
 					<td>${casa.codigoPostal}</td>
 					<td>${casa.direccion}</td>
