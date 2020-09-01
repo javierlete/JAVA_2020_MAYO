@@ -44,7 +44,7 @@ public class CasaDaoMySQL {
 					try (ResultSet rs = s.executeQuery(SQL_SELECT)) {
 						Casa casa;
 
-						// Mientras haya un registro siguiente
+						// Se posiciona en el registro siguiente y mientras haya un registro siguiente
 						while (rs.next()) {
 							// Tomamos los campos del registro en el que nos encontramos en esta repetición,
 							// y rellenamos con ellos un objeto nuevo de tipo Casa
@@ -61,7 +61,7 @@ public class CasaDaoMySQL {
 				// Devolvemos todas las casas en un ArrayList
 				return casas;
 			} catch (SQLException e) {
-				throw new DaoException("Ha habido un error en el acceso a datos", e);
+				throw new DaoException("Ha habido un error al obtener todas las casas", e);
 				// Para generar la clase, le damos desde la línea roja que nos aparece cuando
 				// todavía no existe
 				// seleccionamos Create Class DaoException
