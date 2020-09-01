@@ -2,6 +2,7 @@ package com.ipartek.formacion.repasodaosimple.dao;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -11,6 +12,7 @@ import com.ipartek.formacion.repasodaosimple.modelos.Casa;
 
 //DAO: Data Access Object (Objeto de acceso a datos)
 public class CasaDaoMySQL {
+	private static final String SQL_INSERT = "INSERT INTO casas (provincia, codigopostal, direccion, numero, piso, puerta) VALUES (?, ?, ?, ?, ?, ?)";
 	private static final String SQL_SELECT = "SELECT * FROM casas";
 	// serverTimezone=UTC es necesario a partir de la versión 8 del driver de MySQL
 	private static final String URL = "jdbc:mysql://localhost:3306/inmobiliaria?serverTimezone=UTC";
@@ -72,5 +74,30 @@ public class CasaDaoMySQL {
 		} catch (ClassNotFoundException e) {
 			throw new DaoException("No se ha encontrado el driver", e);
 		}
+	}
+
+	public static void insertar(Casa casa) {
+		try {
+			Class.forName("com.mysql.cj.jdbc.Driver");
+			
+			try (Connection con = DriverManager.getConnection(URL, USUARIO, PASSWORD)) {
+				try (PreparedStatement ps = con.prepareStatement(SQL_INSERT)) {
+					ps.setString(1, casa.getProvincia());
+					ps.setString(2, casa.getCodigoPostal());
+					ps.setString(3, casa.getDireccion());
+					ps.setString(4, casa.getNumero());
+					ps.setString(5, casa.getPiso());
+					ps.setString(6, casa.getPuerta());
+					
+					ps.executeUpdate();
+				}
+				
+			} catch (SQLException e) {
+				throw new DaoException("Ha habido un error al insertar una casa", e);
+			}
+		} catch (ClassNotFoundException e) {
+			throw new DaoException("No se ha encontrado el driver", e);
+		}
+		
 	}
 }

@@ -8,7 +8,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.ipartek.formacion.repasodaosimple.dao.CasaDaoArrayList;
+import com.ipartek.formacion.repasodaosimple.dao.CasaDaoMySQL;
 import com.ipartek.formacion.repasodaosimple.modelos.Casa;
 
 @WebServlet("/casa")
@@ -39,7 +39,7 @@ public class CasaServlet extends HttpServlet {
 		
 		// 3. Tomar decisiones con respecto a los datos recibidos
 		
-		CasaDaoArrayList.insertar(casa);
+		CasaDaoMySQL.insertar(casa);
 		
 		// 3. Redireccionar a la siguiente vista
 		
