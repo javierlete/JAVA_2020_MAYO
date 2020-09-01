@@ -9,7 +9,7 @@
 <body>
 	<h1>Casa</h1>
 
-	<form>
+	<form action="casa" method="post">
 		<div>
 			<label for="provincia">Provincia</label> <input name="provincia"
 				id="provincia" />

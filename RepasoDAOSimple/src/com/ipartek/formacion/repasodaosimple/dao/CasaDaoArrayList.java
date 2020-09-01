@@ -24,4 +24,26 @@ public class CasaDaoArrayList {
 	public static ArrayList<Casa> obtenerTodas() {
 		return casas;
 	}
+
+	public static void insertar(Casa casa) {
+		// Buscar el id más grande y sumarle uno
+		
+		Long max = 0L;
+		
+		for(Casa c: casas) {
+			//max = c.getId() > max ? c.getId(): max;
+			
+			if(c.getId() > max) {
+				max = c.getId();
+			}
+		}
+		
+		// El id a insertar es el máximo que haya más uno
+		Long id = max + 1;
+		
+		// Rellenar el id en la casa recibida
+		casa.setId(id);
+		
+		casas.add(casa);
+	}
 }
