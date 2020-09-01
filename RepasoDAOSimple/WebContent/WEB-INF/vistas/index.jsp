@@ -21,6 +21,7 @@
 				<th>Número</th>
 				<th>Piso</th>
 				<th>Puerta</th>
+				<th>Opciones</th>
 			</tr>
 		</thead>
 		<tbody>
@@ -33,6 +34,10 @@
 					<td>${casa.numero}</td>
 					<td>${casa.piso}</td>
 					<td>${casa.puerta}</td>
+					<td>
+						<a href="modificar?id=${casa.id}">Modificar</a>
+						<a href="borrar?id=${casa.id}">Borrar</a>
+					</td>
 				</tr>
 			</c:forEach>
 		</tbody>
