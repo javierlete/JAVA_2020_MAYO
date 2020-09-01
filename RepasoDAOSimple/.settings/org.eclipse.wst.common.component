@@ -2,7 +2,7 @@
     <wb-module deploy-name="RepasoDAOSimple">
         <wb-resource deploy-path="/" source-path="/WebContent" tag="defaultRootSource"/>
         <wb-resource deploy-path="/WEB-INF/classes" source-path="/src"/>
-        <property name="context-root" value="RepasoDAOSimple"/>
         <property name="java-output-path" value="/RepasoDAOSimple/build/classes"/>
+        <property name="context-root" value="RepasoDAOSimple"/>
     </wb-module>
 </project-modules>
