@@ -13,5 +13,15 @@
 	src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"
 	integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV"
 	crossorigin="anonymous"></script>
+
+<script
+	src="https://cdn.datatables.net/1.10.21/js/jquery.dataTables.min.js"></script>
+<script
+	src="https://cdn.datatables.net/1.10.21/js/dataTables.bootstrap4.min.js"></script>
+<script>
+	$(function() {
+		$('table').DataTable();
+	});
+</script>
 </body>
 </html>
