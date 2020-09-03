@@ -8,7 +8,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.ipartek.formacion.repasodaosimple.dao.CasaDaoMySQL;
+import com.ipartek.formacion.repasodaosimple.dao.CasaDaoArrayList;
 
 @WebServlet("/listado")
 public class ListadoCasasServlet extends HttpServlet {
@@ -18,7 +18,7 @@ public class ListadoCasasServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		//Guardamos en la variable casas de ámbito request todas las casas
 		//Accederemos a ellas en la JSP a través de Expression Language usando ${casas}
-		request.setAttribute("casas", CasaDaoMySQL.obtenerTodas());
+		request.setAttribute("casas", CasaDaoArrayList.obtenerTodas());
 		
 		//Es importante fijarse en que sólo el objeto requestDispatcher no hace nada
 		//Es necesario utilizar un forward para reenviar la petición al index.jsp
