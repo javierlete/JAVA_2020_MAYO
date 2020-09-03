@@ -50,9 +50,26 @@ public class CasaDaoArrayList {
 	}
 
 	public static void borrar(Long id) {
-		for (Casa c : casas) {
-			if (c.getId() == id) {
-				casas.remove(c);
+		casas.remove(obtenerPorId(id));
+	}
+
+	public static Casa obtenerPorId(long id) {
+		for (Casa casa : casas) {
+			if (casa.getId() == id) {
+				return casa;
+			}
+		}
+		
+		return null;
+	}
+
+	public static void modificar(Casa casa) {
+		Casa c = null;
+		
+		for (int i = 0; i < casas.size(); i++) {
+			c = casas.get(i);
+			if (c.getId() == casa.getId()) {
+				casas.set(i, casa);
 				return;
 			}
 		}

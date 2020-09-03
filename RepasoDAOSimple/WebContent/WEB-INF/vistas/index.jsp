@@ -30,7 +30,7 @@
 					<td>${casa.numero}</td>
 					<td>${casa.piso}</td>
 					<td>${casa.puerta}</td>
-					<td><a class="btn btn-primary" href="modificar?id=${casa.id}">Modificar</a>
+					<td><a class="btn btn-primary" href="casa?id=${casa.id}">Modificar</a>
 						<a class="btn btn-danger" href="borrar?id=${casa.id}">Borrar</a></td>
 				</tr>
 			</c:forEach>
