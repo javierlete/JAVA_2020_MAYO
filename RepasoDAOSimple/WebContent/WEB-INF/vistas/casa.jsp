@@ -52,6 +52,7 @@
 	<div class="form-group row">
 		<div class="offset-sm-2 col-sm-10">
 			<button class="btn btn-primary">Aceptar</button>
+			<a class="btn btn-danger" href="listado">Cancelar</a>
 		</div>
 	</div>
 </form>
