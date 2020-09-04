@@ -31,7 +31,7 @@
 					<td>${casa.piso}</td>
 					<td>${casa.puerta}</td>
 					<td><a class="btn btn-primary" href="casa?id=${casa.id}">Modificar</a>
-						<a class="btn btn-danger" href="borrar?id=${casa.id}">Borrar</a></td>
+						<a onclick="return confirm('¿Estás seguro de que quieres borrar el registro id = ${casa.id}?')" class="btn btn-danger" href="borrar?id=${casa.id}">Borrar</a></td>
 				</tr>
 			</c:forEach>
 		</tbody>
