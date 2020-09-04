@@ -5,17 +5,20 @@ public class Casa {
 	private Long id;
 	private String provincia, codigoPostal, direccion, numero, piso, puerta;
 	
+	private String errorCodigoPostal;
+	
+	private boolean correcto = true;
+	
 	// Constructor completo: Menú/Source/Generate Constructor using Fields...
 	public Casa(Long id, String provincia, String codigoPostal, String direccion, String numero, String piso,
 			String puerta) {
-		super();
-		this.id = id;
-		this.provincia = provincia;
-		this.codigoPostal = codigoPostal;
-		this.direccion = direccion;
-		this.numero = numero;
-		this.piso = piso;
-		this.puerta = puerta;
+		setId(id);
+		setProvincia(provincia);
+		setCodigoPostal(codigoPostal);
+		setDireccion(direccion);
+		setNumero(numero);
+		setPiso(piso);
+		setPuerta(puerta);
 	}
 
 	// Setters y Getters: Menú/Source/Generate Getters and Setters
@@ -40,6 +43,12 @@ public class Casa {
 	}
 
 	public void setCodigoPostal(String codigoPostal) {
+		if(!codigoPostal.matches("\\d{5}")) {
+			setErrorCodigoPostal("El código postal deben ser cinco dígitos");
+		} else if(Integer.parseInt(codigoPostal) >= 53000) {
+			setErrorCodigoPostal("No existe ese código postal");
+		}
+		
 		this.codigoPostal = codigoPostal;
 	}
 
@@ -73,6 +82,19 @@ public class Casa {
 
 	public void setPuerta(String puerta) {
 		this.puerta = puerta;
+	}
+
+	public String getErrorCodigoPostal() {
+		return errorCodigoPostal;
+	}
+
+	public void setErrorCodigoPostal(String errorCodigoPostal) {
+		correcto = false;
+		this.errorCodigoPostal = errorCodigoPostal;
+	}
+
+	public boolean isCorrecto() {
+		return correcto;
 	}
 
 	// Hashcode e equals: Menú/Source/Generate hashCode() and equals()...

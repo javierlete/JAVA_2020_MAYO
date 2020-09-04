@@ -23,9 +23,9 @@
 		<label for="codigopostal" class="col-sm-2 col-form-label">Código
 			Postal</label>
 		<div class="col-sm-10">
-			<input pattern="\d{5}" maxlength="5" class="form-control"
+			<input maxlength="5" class="form-control ${casa.errorCodigoPostal != null ? 'is-invalid' : 'is-valid'}"
 				name="codigopostal" id="codigopostal" value="${casa.codigoPostal}" />
-			<div class="invalid-feedback">El código postal tiene que ser cinco dígitos</div>
+			<div class="invalid-feedback">${casa.errorCodigoPostal != null ? casa.errorCodigoPostal : 'El código postal tiene que ser cinco dígitos'}</div>
 		</div>
 	</div>
 	<div class="form-group row">

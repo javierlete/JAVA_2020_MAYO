@@ -28,7 +28,7 @@ public class CasaServlet extends HttpServlet {
 			request.setAttribute("casa", casa);
 		}
 
-		request.getRequestDispatcher("WEB-INF/vistas/casa.jsp").forward(request, response);
+		request.getRequestDispatcher("/WEB-INF/vistas/casa.jsp").forward(request, response);
 	}
 
 	// <form method="post">
@@ -59,6 +59,17 @@ public class CasaServlet extends HttpServlet {
 
 		// 3. Tomar decisiones con respecto a los datos recibidos
 
+		if(!casa.isCorrecto()) {
+			request.setAttribute("alerta",
+					new Alerta("danger", "La casa no es correcta"));
+			
+			request.setAttribute("casa", casa);
+			
+			request.getRequestDispatcher("/WEB-INF/vistas/casa.jsp").forward(request, response);
+			
+			return;
+		}
+		
 		HttpSession session = request.getSession();
 		
 		if (id == null) {
