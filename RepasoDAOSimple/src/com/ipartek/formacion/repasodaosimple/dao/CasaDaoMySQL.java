@@ -140,7 +140,11 @@ public class CasaDaoMySQL {
 				try (PreparedStatement ps = con.prepareStatement(SQL_DELETE)) {
 					ps.setLong(1, id);
 					
-					ps.executeUpdate();
+					int numeroRegistrosModificados = ps.executeUpdate();
+					
+					if(numeroRegistrosModificados != 1) {
+						throw new DaoException("No se ha borrado el registro");
+					}
 				}
 				
 			} catch (SQLException e) {

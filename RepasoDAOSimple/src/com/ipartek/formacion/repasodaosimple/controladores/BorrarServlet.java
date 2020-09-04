@@ -7,8 +7,10 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import com.ipartek.formacion.repasodaosimple.dao.CasaDaoMySQL;
+import com.ipartek.formacion.repasodaosimple.modelos.Alerta;
 
 @WebServlet("/borrar")
 public class BorrarServlet extends HttpServlet {
@@ -22,7 +24,17 @@ public class BorrarServlet extends HttpServlet {
 		Long id = Long.parseLong(sId);
 		
 		// 3. Llamada a lógica de negocio o capa de acceso a datos en este caso
-		CasaDaoMySQL.borrar(id);
+		HttpSession session = request.getSession();
+		
+		try {
+			CasaDaoMySQL.borrar(id);
+			
+			session.setAttribute("alerta",
+					new Alerta("success", "Se ha borrado correctamente el registro"));
+		} catch (Exception e) {
+			session.setAttribute("alerta",
+					new Alerta("danger", "No se ha podido borrar el registro"));
+		}
 		
 		// 4. Redirección a nueva pantalla
 		
