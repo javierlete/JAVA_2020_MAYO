@@ -1,13 +1,14 @@
 package com.ipartek.formacion.repasodaosimple.controladores;
 
 import java.io.IOException;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.ipartek.formacion.repasodaosimple.dao.CasaDaoArrayList;
+import com.ipartek.formacion.repasodaosimple.dao.CasaDaoMySQL;
 
 @WebServlet("/borrar")
 public class BorrarServlet extends HttpServlet {
@@ -21,7 +22,7 @@ public class BorrarServlet extends HttpServlet {
 		Long id = Long.parseLong(sId);
 		
 		// 3. Llamada a lógica de negocio o capa de acceso a datos en este caso
-		CasaDaoArrayList.borrar(id);
+		CasaDaoMySQL.borrar(id);
 		
 		// 4. Redirección a nueva pantalla
 		

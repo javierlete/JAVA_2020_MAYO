@@ -8,7 +8,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.ipartek.formacion.repasodaosimple.dao.CasaDaoArrayList;
+import com.ipartek.formacion.repasodaosimple.dao.CasaDaoMySQL;
 import com.ipartek.formacion.repasodaosimple.modelos.Casa;
 
 @WebServlet("/casa")
@@ -20,7 +20,7 @@ public class CasaServlet extends HttpServlet {
 		String sId = request.getParameter("id");
 		
 		if(sId != null) {
-			Casa casa = CasaDaoArrayList.obtenerPorId(Long.parseLong(sId));
+			Casa casa = CasaDaoMySQL.obtenerPorId(Long.parseLong(sId));
 			
 			request.setAttribute("casa", casa);
 		}
@@ -55,9 +55,9 @@ public class CasaServlet extends HttpServlet {
 		// 3. Tomar decisiones con respecto a los datos recibidos
 		
 		if(id == null) {
-			CasaDaoArrayList.insertar(casa);
+			CasaDaoMySQL.insertar(casa);
 		} else {
-			CasaDaoArrayList.modificar(casa);
+			CasaDaoMySQL.modificar(casa);
 		}
 		
 		// 3. Redireccionar a la siguiente vista
