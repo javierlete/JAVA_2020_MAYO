@@ -10,10 +10,13 @@ import java.util.ArrayList;
 
 import com.ipartek.formacion.repasodaosimple.modelos.Casa;
 
+// TODO Comprobación de número de modificaciones
+
 //DAO: Data Access Object (Objeto de acceso a datos)
 public class CasaDaoMySQL {
 	private static final String SQL_INSERT = "INSERT INTO casas (provincia, codigopostal, direccion, numero, piso, puerta) VALUES (?, ?, ?, ?, ?, ?)";
 	private static final String SQL_SELECT = "SELECT * FROM casas";
+	private static final String SQL_DELETE = "DELETE FROM casas WHERE id = ?";
 	// serverTimezone=UTC es necesario a partir de la versión 8 del driver de MySQL
 	private static final String URL = "jdbc:mysql://localhost:3306/inmobiliaria?serverTimezone=UTC";
 	private static final String USUARIO = "debian-sys-maint";
@@ -99,5 +102,32 @@ public class CasaDaoMySQL {
 			throw new DaoException("No se ha encontrado el driver", e);
 		}
 		
+	}
+
+	public static void modificar(Casa casa) {
+		throw new DaoException("Modificar no implementado");
+	}
+
+	public static void borrar(Long id) {
+		try {
+			Class.forName("com.mysql.cj.jdbc.Driver");
+			
+			try (Connection con = DriverManager.getConnection(URL, USUARIO, PASSWORD)) {
+				try (PreparedStatement ps = con.prepareStatement(SQL_DELETE)) {
+					ps.setLong(1, id);
+					
+					ps.executeUpdate();
+				}
+				
+			} catch (SQLException e) {
+				throw new DaoException("Ha habido un error al borrar una casa", e);
+			}
+		} catch (ClassNotFoundException e) {
+			throw new DaoException("No se ha encontrado el driver", e);
+		}
+	}
+
+	public static Casa obtenerPorId(long parseLong) {
+		throw new DaoException("Obtener por ID no implementado");
 	}
 }
