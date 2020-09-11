@@ -5,7 +5,7 @@ import java.math.BigDecimal;
 public class Fibra extends Servicio {
 	private int anchoDeBandaEnMb;
 
-	public Fibra(Long id, String nombre, int mesesPromocion, BigDecimal precioMensualPromocion,
+	public Fibra(Long id, String nombre, Integer mesesPromocion, BigDecimal precioMensualPromocion,
 			BigDecimal precioMensual, int anchoDeBandaEnMb) {
 		super(id, nombre, mesesPromocion, precioMensualPromocion, precioMensual);
 		this.anchoDeBandaEnMb = anchoDeBandaEnMb;

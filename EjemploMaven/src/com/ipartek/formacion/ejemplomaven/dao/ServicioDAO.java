@@ -34,13 +34,13 @@ public class ServicioDAO {
 							
 							switch(tipo) {
 							case "Fibra": 
-								servicio = new Fibra(rs.getLong("id"), rs.getString("nombre"), rs.getInt("meses_promocion"), rs.getBigDecimal("precio_mensual_promocion"), rs.getBigDecimal("precio_mensual"), rs.getInt("ancho_de_banda_en_mb"));
+								servicio = new Fibra(rs.getLong("id"), rs.getString("nombre"), (Integer)rs.getObject("meses_promocion"), rs.getBigDecimal("precio_mensual_promocion"), rs.getBigDecimal("precio_mensual"), rs.getInt("ancho_de_banda_en_mb"));
 								break;
 							case "Movil": 
-								servicio = new Movil(rs.getLong("id"), rs.getString("nombre"), rs.getInt("meses_promocion"), rs.getBigDecimal("precio_mensual_promocion"), rs.getBigDecimal("precio_mensual"), rs.getInt("datos_en_gb"));
+								servicio = new Movil(rs.getLong("id"), rs.getString("nombre"), (Integer)rs.getObject("meses_promocion"), rs.getBigDecimal("precio_mensual_promocion"), rs.getBigDecimal("precio_mensual"), rs.getInt("datos_en_gb"));
 								break;
 							case "Servicio":
-								servicio = new Servicio(rs.getLong("id"), rs.getString("nombre"), rs.getInt("meses_promocion"), rs.getBigDecimal("precio_mensual_promocion"), rs.getBigDecimal("precio_mensual"));
+								servicio = new Servicio(rs.getLong("id"), rs.getString("nombre"), (Integer)rs.getObject("meses_promocion"), rs.getBigDecimal("precio_mensual_promocion"), rs.getBigDecimal("precio_mensual"));
 								break;
 							default: throw new DaoException("Tipo no reconocido: " + tipo);
 							}

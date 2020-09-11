@@ -5,11 +5,11 @@ import java.math.BigDecimal;
 public class Servicio {
 	private Long id;
 	private String nombre;
-	private int mesesPromocion;
+	private Integer mesesPromocion;
 	private BigDecimal precioMensualPromocion;
 	private BigDecimal precioMensual;
 	
-	public Servicio(Long id, String nombre, int mesesPromocion, BigDecimal precioMensualPromocion,
+	public Servicio(Long id, String nombre, Integer mesesPromocion, BigDecimal precioMensualPromocion,
 			BigDecimal precioMensual) {
 		super();
 		this.id = id;
@@ -35,11 +35,11 @@ public class Servicio {
 		this.nombre = nombre;
 	}
 
-	public int getMesesPromocion() {
+	public Integer getMesesPromocion() {
 		return mesesPromocion;
 	}
 
-	public void setMesesPromocion(int mesesPromocion) {
+	public void setMesesPromocion(Integer mesesPromocion) {
 		this.mesesPromocion = mesesPromocion;
 	}
 

@@ -5,7 +5,7 @@ import java.math.BigDecimal;
 public class Movil extends Servicio {
 	private int datosEnGb;
 
-	public Movil(Long id, String nombre, int mesesPromocion, BigDecimal precioMensualPromocion,
+	public Movil(Long id, String nombre, Integer mesesPromocion, BigDecimal precioMensualPromocion,
 			BigDecimal precioMensual, int datosEnGb) {
 		super(id, nombre, mesesPromocion, precioMensualPromocion, precioMensual);
 		this.datosEnGb = datosEnGb;
