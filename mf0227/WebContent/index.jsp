@@ -52,17 +52,28 @@ DESTINO = http://localhost:8081/mf0227/ + detalles.html
 				</li>
 			</ul>
 			<form class="form-inline my-2 my-lg-0" action="login" method="post">
-				<label class="sr-only" for="usuario">Usuario</label> <input
-					type="text" class="form-control mb-2 mr-sm-2" id="usuario"
-					placeholder="Usuario" name="usuario"> <label
-					class="sr-only" for="password">Contraseña</label> <input
-					type="password" class="form-control mb-2 mr-sm-2" id="password"
-					placeholder="Contraseña" name="password">
-
+				<div>
+					<label class="sr-only" for="usuario">Usuario</label> <input
+						type="text"
+						class="form-control mb-2 mr-sm-2 ${param.usuario != null ? (errorUsuario == null ? 'is-valid' : 'is-invalid') : ''}"
+						id="usuario" placeholder="Usuario" name="usuario" />
+					<div class="invalid-feedback">${errorUsuario}</div>
+					<div class="valid-feedback">El formato de usuario es correcto</div>
+				</div>
+				<div>
+					<label class="sr-only" for="password">Contraseña</label> <input
+						type="password"
+						class="form-control mb-2 mr-sm-2 ${param.password != null ? (errorPassword == null ? 'is-valid' : 'is-invalid') : ''}"
+						id="password" placeholder="Contraseña" name="password">
+					<div class="invalid-feedback">${errorPassword}</div>
+					<div class="valid-feedback">El formato de contraseña es
+						correcto</div>
+				</div>
 				<button type="submit" class="btn btn-primary mb-2">Login</button>
 			</form>
 		</div>
 	</nav>
+	
 	<c:if test="${error != null}">
 		<div class="alert alert-danger alert-dismissible fade show"
 			role="alert">
@@ -91,7 +102,7 @@ DESTINO = http://localhost:8081/mf0227/ + detalles.html
 								class="decimales">,95€</span></span> <span class="descuento">-5%</span>
 						</p>
 					</div>
-					
+
 					<div class="corazon card-text-">
 						<%-- TODO Cambiar SVG por estilo que lo incluya--%>
 						<svg width="1em" height="1em" viewBox="0 0 16 16"
@@ -100,7 +111,8 @@ DESTINO = http://localhost:8081/mf0227/ + detalles.html
  								<path fill-rule="evenodd"
 								d="M8 2.748l-.717-.737C5.6.281 2.514.878 1.4 3.053c-.523 1.023-.641 2.5.314 4.385.92 1.815 2.834 3.989 6.286 6.357 3.452-2.368 5.365-4.542 6.286-6.357.955-1.886.838-3.362.314-4.385C13.486.878 10.4.28 8.717 2.01L8 2.748zM8 15C-7.333 4.868 3.279-3.04 7.824 1.143c.06.055.119.112.176.171a3.12 3.12 0 0 1 .176-.17C12.72-3.042 23.333 4.867 8 15z" />
 						</svg>
-					<div>
+						<div></div>
+					</div>
 				</div>
 			</div>
 		</div>

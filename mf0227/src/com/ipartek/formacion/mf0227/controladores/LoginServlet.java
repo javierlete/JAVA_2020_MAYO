@@ -15,6 +15,14 @@ public class LoginServlet extends HttpServlet {
 		String usuario = request.getParameter("usuario");
 		String password = request.getParameter("password");
 		
+		if(usuario == null || usuario.trim().length() == 0) {
+			request.setAttribute("errorUsuario", "El usuario no puede estar vacío");
+		}
+		
+		if(password == null || password.trim().length() == 0) {
+			request.setAttribute("errorPassword", "La contraseña no puede estar vacía");
+		}
+		
 		if("administrador".equals(usuario) && "123456".equals(password)) {
 			request.getSession().setAttribute("usuario", usuario);
 			response.sendRedirect("admin/index.html");
