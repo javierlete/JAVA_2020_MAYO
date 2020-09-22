@@ -20,8 +20,9 @@ public class PresentacionConsola {
 		do {
 			p("1. Listar");
 			p("2. Insertar");
-			p("3. Borrar");
-			p("4. Salir");
+			p("3. Modificar");
+			p("4. Borrar");
+			p("0. Salir");
 			p();
 
 			opcion = s();
@@ -34,16 +35,35 @@ public class PresentacionConsola {
 				insertar();
 				break;
 			case "3":
-				borrar();
+				modificar();
 				break;
 			case "4":
+				borrar();
+				break;
+			case "0":
 				p("Abandonando la aplicación");
 				break;
 			}
 
-		} while (!opcion.equals("4"));
+		} while (!opcion.equals("0"));
 
 		p("¡Hasta otra!");
+	}
+
+	private static void modificar() {
+		listar();
+
+		p("¿Id del libro a modificar?");
+		Long id = Long.parseLong(s());
+
+		for (int i = 0; i < libros.size(); i++) {
+			if (libros.get(i).getId() == id) {
+				pedirDatosLibro(libros.get(i));
+				return;
+			}
+		}
+
+		p("No se ha encontrado ese ID");
 	}
 
 	private static void borrar() {
@@ -65,25 +85,34 @@ public class PresentacionConsola {
 	private static void insertar() {
 		Libro libro = new Libro();
 
-		do {
-			libro.setCorrecto(true);
+		pedirDatosLibro(libro);
 
-			p("Id:");
-			libro.setId(s()); // se pide por consola el ID y se guarda como texto. Eso provoca la validación del texto
+		libros.add(libro);
+	}
 
-			if (libro.isCorrecto()) { // libro.isCorrecto() == true
-				for (Libro l : libros) {
-					if (l.getId() == libro.getId()) { // si uno de los libros de la lista tiene el mismo ID que el ID que nos acaban de introducir
-						libro.setErrorId("Ese ID ya existe. Elige otro.");
-						p(libro.getErrorId());
+	private static void pedirDatosLibro(Libro libro) {
+		if (libro.getId() == null) {
+			do {
+				libro.setCorrecto(true);
+
+				p("Id:");
+				libro.setId(s()); // se pide por consola el ID y se guarda como texto. Eso provoca la validación
+									// del texto
+
+				if (libro.isCorrecto()) { // libro.isCorrecto() == true
+					for (Libro l : libros) {
+						if (l.getId() == libro.getId()) { // si uno de los libros de la lista tiene el mismo ID que el
+															// ID que nos acaban de introducir
+							libro.setErrorId("Ese ID ya existe. Elige otro.");
+							p(libro.getErrorId());
+						}
 					}
+				} else {
+					p(libro.getErrorId());
 				}
-			} else {
-				p(libro.getErrorId());
-			}
 
-		} while (!libro.isCorrecto());
-
+			} while (!libro.isCorrecto());
+		}
 		do {
 			libro.setCorrecto(true);
 
@@ -122,8 +151,6 @@ public class PresentacionConsola {
 
 		p("Imagen:");
 		libro.setImagen(s());
-
-		libros.add(libro);
 	}
 
 	private static void listar() {
