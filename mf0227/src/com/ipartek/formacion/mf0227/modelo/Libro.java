@@ -62,6 +62,9 @@ public class Libro {
 	}
 	
 	public void setId(Long id) {
+		if(id < 0) {
+			setErrorId("El id no puede ser negativo");
+		}
 		this.id = id;
 	}
 

@@ -15,6 +15,14 @@ public class PresentacionConsola {
 		libros.add(new Libro("1", "Mi libro", "123.12", "23", "Javier Lete", "milibro.jpg"));
 		libros.add(new Libro("2", "Mi segundo libro", "23.12", "3", "Pepe", "pelibro.jpg"));
 
+		p(libros.get(0).isCorrecto());
+		
+		libros.get(0).setId(0L);
+		
+		p(libros.get(0).isCorrecto());
+		
+		p(libros.get(0).getErrorId());
+		
 		String opcion;
 
 		do {
@@ -58,7 +66,7 @@ public class PresentacionConsola {
 
 		for (int i = 0; i < libros.size(); i++) {
 			if (libros.get(i).getId() == id) {
-				pedirDatosLibro(libros.get(i));
+				pedirDatosLibro(libros.get(i)); // La otra opción hubiera sido en este formato: libros.set(i, pedirDatosLibro());
 				return;
 			}
 		}
