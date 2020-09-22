@@ -113,6 +113,11 @@ public class PresentacionConsola {
 
 			} while (!libro.isCorrecto());
 		}
+		
+		if(libro.getNombre() != null) {
+			p("Nombre actual: " + libro.getNombre());
+		}
+		
 		do {
 			libro.setCorrecto(true);
 
@@ -124,6 +129,10 @@ public class PresentacionConsola {
 			}
 		} while (!libro.isCorrecto());
 
+		if(libro.getPrecio() != null) {
+			p("Precio actual: " + libro.getPrecio());
+		}
+		
 		do {
 			libro.setCorrecto(true);
 
@@ -135,6 +144,10 @@ public class PresentacionConsola {
 			}
 		} while (!libro.isCorrecto());
 
+		if(libro.getDescuento() != null) {
+			p("Descuento actual: " + libro.getDescuento());
+		}
+		
 		do {
 			libro.setCorrecto(true);
 
@@ -146,9 +159,17 @@ public class PresentacionConsola {
 			}
 		} while (!libro.isCorrecto());
 
+		if(libro.getAutor() != null) {
+			p("Autor actual: " + libro.getAutor());
+		}
+		
 		p("Autor:");
 		libro.setAutor(s());
 
+		if(libro.getImagen() != null) {
+			p("Imagen actual: " + libro.getImagen());
+		}
+		
 		p("Imagen:");
 		libro.setImagen(s());
 	}
