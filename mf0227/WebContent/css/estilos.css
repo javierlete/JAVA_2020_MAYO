@@ -1,0 +1,76 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;700&display=swap');
+
+:root {
+	--color-texto: #333333;
+	--color-destacado: #ff6666;
+	--color-separador: #aaaaaa;
+}
+
+.ficha {
+	font-family: 'Roboto', sans-serif;
+}
+
+.ficha img {
+	margin: 1em auto;
+    display: block;
+    border: 1px solid var(--color-texto);
+}
+
+.ficha-texto {
+	border-top: 1px solid var(--color-separador);
+    padding-top: 1em;
+    
+    display: flex;
+}
+
+.corazon {
+	margin-left: auto;
+}
+
+.titulo, .corazon {
+	color: var(--color-texto);
+}
+
+.autor {
+	font-weight: bold;
+	text-transform: uppercase;
+}
+
+.precios {
+	font-size: 1.2em;
+}
+
+.precios * {
+	margin-right: 0.25em;
+}
+.precio {
+	color: var(--color-destacado); /* TODO usar variables CSS */
+}
+
+.precio-sin-descuento {
+    position: relative;
+    
+    color: var(--color-texto);
+}
+ 
+.precio-sin-descuento:before {
+    position: absolute;
+    content: "";
+    left: 0;
+    top: 50%;
+    right: 0;
+    border-top: 1px solid;
+    border-color: var(--color-texto);
+    
+    transform:rotate(-20deg);
+}
+
+.descuento {
+	background-color: var(--color-destacado);
+	color: white;
+	padding: 0.25em;
+}
+
+.decimales {
+	font-size: 0.75em;
+}
