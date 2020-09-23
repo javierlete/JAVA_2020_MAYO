@@ -54,18 +54,18 @@ DESTINO = http://localhost:8081/mf0227/ + detalles.html
 			<form class="form-inline my-2 my-lg-0" action="login" method="post">
 				<div>
 					<label class="sr-only" for="usuario">Usuario</label> <input
-						type="text"
-						class="form-control mb-2 mr-sm-2 ${param.usuario != null ? (errorUsuario == null ? 'is-valid' : 'is-invalid') : ''}"
+						type="text" value="${login.usuario}"
+						class="form-control mb-2 mr-sm-2 ${param.usuario != null ? (login.errorUsuario == null ? 'is-valid' : 'is-invalid') : ''}"
 						id="usuario" placeholder="Usuario" name="usuario" />
-					<div class="invalid-feedback">${errorUsuario}</div>
+					<div class="invalid-feedback">${login.errorUsuario}</div>
 					<div class="valid-feedback">El formato de usuario es correcto</div>
 				</div>
 				<div>
 					<label class="sr-only" for="password">Contraseña</label> <input
 						type="password"
-						class="form-control mb-2 mr-sm-2 ${param.password != null ? (errorPassword == null ? 'is-valid' : 'is-invalid') : ''}"
+						class="form-control mb-2 mr-sm-2 ${param.password != null ? (login.errorPassword == null ? 'is-valid' : 'is-invalid') : ''}"
 						id="password" placeholder="Contraseña" name="password">
-					<div class="invalid-feedback">${errorPassword}</div>
+					<div class="invalid-feedback">${login.errorPassword}</div>
 					<div class="valid-feedback">El formato de contraseña es
 						correcto</div>
 				</div>
