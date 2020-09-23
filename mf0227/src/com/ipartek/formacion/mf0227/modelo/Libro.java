@@ -7,7 +7,7 @@ public class Libro {
 	private String nombre; // Cadena de texto que contiene nombre + descripción, mínimo 2 letras máximo 150
 	private BigDecimal precio; // número mayor que cero y con dos decimales
 	private Integer descuento; // valor numérico entre 0 y 100
-	private String autor; // Cadena texto, si no se pone “anónimo”
+	private String autor; // Cadena texto, si no se pone "anónimo"
 	private String imagen; // cadena texto con la url de la imagen, no validar, si no es correcta una por
 							// defecto
 
@@ -16,6 +16,15 @@ public class Libro {
 
 	public Libro() {}
 	
+	/**
+	 * Constructor que recibe todo String para poder llamarlo directamente con los datos recibidos en parámetros de una web
+	 * @param id
+	 * @param nombre
+	 * @param precio
+	 * @param descuento
+	 * @param autor
+	 * @param imagen
+	 */
 	public Libro(String id, String nombre, String precio, String descuento, String autor, String imagen) {
 		setId(id);
 		setNombre(nombre);
@@ -25,6 +34,15 @@ public class Libro {
 		setImagen(imagen);
 	}
 
+	/**
+	 * Constructor con id Long y resto de tipos String
+	 * @param id
+	 * @param nombre
+	 * @param precio
+	 * @param descuento
+	 * @param autor
+	 * @param imagen
+	 */
 	public Libro(Long id, String nombre, String precio, String descuento, String autor, String imagen) {
 		setId(id);
 		setNombre(nombre);
@@ -34,6 +52,15 @@ public class Libro {
 		setImagen(imagen);
 	}
 
+	/**
+	 * Constructor principal que usa los tipos originales
+	 * @param id
+	 * @param nombre
+	 * @param precio
+	 * @param descuento
+	 * @param autor
+	 * @param imagen
+	 */
 	public Libro(Long id, String nombre, BigDecimal precio, Integer descuento, String autor, String imagen) {
 		setId(id);
 		setNombre(nombre);
@@ -47,6 +74,10 @@ public class Libro {
 		return id;
 	}
 
+	/**
+	 * 
+	 * @param id no debe ser nulo, ni un número positivo o excesivamente largo
+	 */
 	public void setId(String id) {
 		if (id == null) {
 			setErrorId("Se debe introducir un id");
@@ -61,6 +92,10 @@ public class Libro {
 		}
 	}
 	
+	/**
+	 * 
+	 * @param id debe ser positivo
+	 */
 	public void setId(Long id) {
 		if(id < 0) {
 			setErrorId("El id no puede ser negativo");
@@ -72,6 +107,10 @@ public class Libro {
 		return nombre;
 	}
 
+	/**
+	 * 
+	 * @param nombre no debe ser nulo y debe tener de 2 a 150 caracteres
+	 */
 	public void setNombre(String nombre) {
 		if (nombre == null) {
 			setErrorNombre("El nombre no puede ser nulo");
@@ -86,6 +125,10 @@ public class Libro {
 		return precio;
 	}
 
+	/**
+	 * 
+	 * @param precio dos decimales y positivo
+	 */
 	public void setPrecio(String precio) {
 		if (precio == null) {
 			setErrorPrecio("Se debe introducir un precio");
@@ -100,6 +143,10 @@ public class Libro {
 		}
 	}
 
+	/**
+	 * 
+	 * @param precio mayor que cero
+	 */
 	public void setPrecio(BigDecimal precio) {
 		if (precio == null) {
 			setErrorPrecio("Se debe introducir un precio");
@@ -113,6 +160,10 @@ public class Libro {
 		return descuento;
 	}
 
+	/**
+	 * 
+	 * @param descuento número positivo
+	 */
 	public void setDescuento(String descuento) { // setDescuento("123")
 		if (descuento == null) {
 			setErrorDescuento("Se debe introducir un descuento");
@@ -127,6 +178,10 @@ public class Libro {
 		}
 	}
 
+	/**
+	 * 
+	 * @param descuento entero entre 0 y 100
+	 */
 	public void setDescuento(Integer descuento) { // setDescuento(5)
 		if (descuento == null) {
 			setErrorDescuento("Se debe introducir un descuento");
@@ -140,6 +195,10 @@ public class Libro {
 		return autor;
 	}
 
+	/**
+	 * 
+	 * @param autor si no está rellenado tomará el valor "Anónimo"
+	 */
 	public void setAutor(String autor) {
 		if (autor == null || autor.trim().length() == 0) { // " pepe ".trim() -> "pepe", " ".trim() -> ""
 			this.autor = "Anónimo";
@@ -152,6 +211,10 @@ public class Libro {
 		return imagen;
 	}
 
+	/**
+	 * 
+	 * @param imagen si no se rellena se utilizará "pordefecto.jpg"
+	 */
 	public void setImagen(String imagen) {
 		if(imagen == null || !imagen.matches("\\w+\\.jpg")) {
 			this.imagen = "pordefecto.jpg";
@@ -172,6 +235,10 @@ public class Libro {
 		return errorId;
 	}
 
+	/**
+	 * Se establece también el estado correcto = false para todo el objeto
+	 * @param errorId
+	 */
 	public void setErrorId(String errorId) {
 		correcto = false;
 		this.errorId = errorId;
@@ -181,6 +248,10 @@ public class Libro {
 		return errorNombre;
 	}
 
+	/**
+	 * Se establece también el estado correcto = false para todo el objeto
+	 * @param errorNombre
+	 */
 	public void setErrorNombre(String errorNombre) {
 		correcto = false;
 		this.errorNombre = errorNombre;
@@ -190,6 +261,10 @@ public class Libro {
 		return errorPrecio;
 	}
 
+	/**
+	 * Se establece también el estado correcto = false para todo el objeto
+	 * @param errorPrecio
+	 */
 	public void setErrorPrecio(String errorPrecio) {
 		correcto = false;
 		this.errorPrecio = errorPrecio;
@@ -199,6 +274,10 @@ public class Libro {
 		return errorDescuento;
 	}
 
+	/**
+	 * Se establece también el estado correcto = false para todo el objeto
+	 * @param errorDescuento
+	 */
 	public void setErrorDescuento(String errorDescuento) {
 		correcto = false;
 		this.errorDescuento = errorDescuento;

@@ -12,6 +12,7 @@
 	integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z"
 	crossorigin="anonymous">
 
+<!-- Hoja de estilos para DataTables adaptados a Bootstrap4 -->
 <link rel="stylesheet"
 	href="https://cdn.datatables.net/1.10.21/css/dataTables.bootstrap4.min.css" />
 
@@ -34,7 +35,11 @@
 			</ul>
 		</div>
 	</nav>
+	
+	<!-- Scroll horizontal independiente para cuando las celdas de la tabla abarcan demasiado ancho -->
 	<div class="table-responsive">
+	
+		<!-- Tabla con bandas, bordes, efecto al pasar el ratón por las filas, y tamaño compacto -->
 		<table class="table table-striped table-bordered table-hover table-sm">
 			<caption>Lista de libros disponibles</caption>
 			<thead class="thead-dark">
@@ -226,17 +231,26 @@
 		src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"
 		integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV"
 		crossorigin="anonymous"></script>
+	
+	
+	<!-- Scripts extras de jQuery para dataTables -->
 	<script
 		src="https://cdn.datatables.net/1.10.21/js/jquery.dataTables.min.js"></script>
+	
+	<!-- Scripts para adaptación a Bootstrap 4 para dataTables -->
 	<script
 		src="https://cdn.datatables.net/1.10.21/js/dataTables.bootstrap4.min.js"></script>
 
 	<script>
+		/* Script que activa DataTables (paginación, búsquedas, ordenación) en todos los table */
+	
+		// Cuando cargue todo el documento
 		$(function() {
-			$('table')
+			// seleccionamos todos los elementos table
+			$('table') // y le aplicamos DataTables
 					.DataTable(
 							{
-								"language" : {
+								"language" : { // Traducción de los mensajes de datatables, como siguiente, anterior, etc...
 									"url" : "http://cdn.datatables.net/plug-ins/1.10.21/i18n/Spanish.json"
 								}
 							});

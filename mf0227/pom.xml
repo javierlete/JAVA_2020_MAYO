@@ -6,9 +6,12 @@
 	<artifactId>mf0227</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<packaging>war</packaging>
+	
 	<properties>
+		<!-- Colocamos la codificación UTF-8 por defecto para todos los ficheros de código fuente -->
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 	</properties>
+	
 	<build>
 		<sourceDirectory>src</sourceDirectory>
 		<plugins>
@@ -31,6 +34,7 @@
 	</build>
 
 	<dependencies>
+		<!-- Necesario para poder compilar los códigos de Servlets -->
 		<!-- https://mvnrepository.com/artifact/javax.servlet/javax.servlet-api -->
 		<dependency>
 			<groupId>javax.servlet</groupId>
@@ -39,12 +43,15 @@
 			<scope>provided</scope>
 		</dependency>
 
+		<!-- Conector de JDBC para MySQL -->
 		<!-- https://mvnrepository.com/artifact/mysql/mysql-connector-java -->
 		<dependency>
 			<groupId>mysql</groupId>
 			<artifactId>mysql-connector-java</artifactId>
 			<version>8.0.21</version>
 		</dependency>
+		
+		<!-- TagLib para etiquetas <c:*>, <fmt:*> y otras -->
 		<!-- https://mvnrepository.com/artifact/javax.servlet/jstl -->
 		<dependency>
 			<groupId>javax.servlet</groupId>

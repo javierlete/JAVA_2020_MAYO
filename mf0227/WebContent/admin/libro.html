@@ -12,9 +12,6 @@
 	integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z"
 	crossorigin="anonymous">
 
-<link rel="stylesheet"
-	href="https://cdn.datatables.net/1.10.21/css/dataTables.bootstrap4.min.css" />
-
 <title>Administración Libros</title>
 </head>
 <body class="container-fluid">
@@ -35,6 +32,8 @@
 		</div>
 	</nav>
 
+	<!-- La clase needs-validation activa la validación de Bootstrap -->
+	<!-- El atributo novalidate desactiva los mensajes de errores del navegador -->
 	<form class="needs-validation" novalidate action="index.html">
 		<div class="form-group row">
 			<label for="id" class="col-sm-2 col-form-label">Id</label>
@@ -46,8 +45,13 @@
 		<div class="form-group row">
 			<label for="nombre" class="col-sm-2 col-form-label">Nombre</label>
 			<div class="col-sm-10">
+				
+				<!-- pattern="\w{2,150}" validación de texto entre 2 y 150 caracteres -->
+				<!-- maxlength="150" evita que el usuario pueda teclear más de 150 caracteres -->
 				<input type="text" pattern="\w{2,150}" maxlength="150"
 					class="form-control" id="nombre">
+				
+				<!-- Texto que se muestra cuando hay un error en este campo -->
 				<div class="invalid-feedback">El texto debe tener entre 2 y
 					150 caracteres</div>
 			</div>
@@ -55,6 +59,9 @@
 		<div class="form-group row">
 			<label for="precio" class="col-sm-2 col-form-label">Precio</label>
 			<div class="col-sm-10">
+				
+				<!-- step=".01" necesario para poder introducir dos decimales -->
+				<!-- min="0.01" para obligar a meter un número positivo distinto de cero -->
 				<input type="number" step=".01" min="0.01" class="form-control"
 					id="precio">
 				<div class="invalid-feedback">El precio debe ser mayor que
@@ -79,6 +86,8 @@
 		<div class="form-group row">
 			<label for="imagen" class="col-sm-2 col-form-label">Imagen</label>
 			<div class="col-sm-10">
+			
+				<!-- cualquier fichero que tenga al menos un caracter de nombre y extensión jpg -->
 				<input type="text" pattern="\w+\.jpg" class="form-control"
 					id="imagen">
 				<div class="invalid-feedback">La imagen debe ser sólo un
@@ -106,25 +115,9 @@
 		src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"
 		integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV"
 		crossorigin="anonymous"></script>
-	<script
-		src="https://cdn.datatables.net/1.10.21/js/jquery.dataTables.min.js"></script>
-	<script
-		src="https://cdn.datatables.net/1.10.21/js/dataTables.bootstrap4.min.js"></script>
 
 	<script>
-		$(function() {
-			$('table')
-					.DataTable(
-							{
-								"language" : {
-									"url" : "http://cdn.datatables.net/plug-ins/1.10.21/i18n/Spanish.json"
-								}
-							});
-		});
-	</script>
-
-	<script>
-		// Example starter JavaScript for disabling form submissions if there are invalid fields
+		// Evita el envío del formulario si hay campos incorrectos (Bootstrap)
 		(function() {
 			'use strict';
 			window.addEventListener('load',

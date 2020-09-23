@@ -1,5 +1,10 @@
 package com.ipartek.formacion.mf0227.modelo;
 
+/**
+ * Clase que representa la información del formulario de Login en el menú
+ * @author JavierLete
+ *
+ */
 public class Login {
 	private Long id;
 	private String usuario;
@@ -24,6 +29,11 @@ public class Login {
 	public String getUsuario() {
 		return usuario;
 	}
+	
+	/**
+	 * Comprueba si el usuario está rellenado y establece un errorUsuario en el caso de que no
+	 * @param usuario
+	 */
 	public void setUsuario(String usuario) {
 		if(usuario == null || usuario.trim().length() == 0) {
 			setErrorUsuario("El usuario no puede estar vacío");
@@ -33,6 +43,11 @@ public class Login {
 	public String getPassword() {
 		return password;
 	}
+	
+	/**
+	 * Comprueba si la password está rellenada y establece un errorPassword en el caso de que no
+	 * @param password
+	 */
 	public void setPassword(String password) {
 		if(password == null || password.trim().length() == 0) {
 			setErrorPassword("La contraseña no puede estar vacía");
@@ -40,6 +55,10 @@ public class Login {
 		this.password = password;
 	}
 	
+	/**
+	 * 
+	 * @return boolean true si no hay ningún error en las validaciones del objeto y false si hay algún error
+	 */
 	public boolean isCorrecto() {
 		return correcto;
 	}
@@ -52,6 +71,10 @@ public class Login {
 		return errorUsuario;
 	}
 
+	/**
+	 * Al establecer este error, se modifica globalmente el estado correcto a false
+	 * @param errorUsuario
+	 */
 	public void setErrorUsuario(String errorUsuario) {
 		correcto = false;
 		this.errorUsuario = errorUsuario;
@@ -61,6 +84,10 @@ public class Login {
 		return errorPassword;
 	}
 
+	/**
+	 * Al establecer este error, se modifica globalmente el estado correcto a false
+	 * @param errorPassword
+	 */
 	public void setErrorPassword(String errorPassword) {
 		correcto = false;
 		this.errorPassword = errorPassword;

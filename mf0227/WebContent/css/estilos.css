@@ -1,5 +1,7 @@
+/* Tipo de letra Roboto: usar con font-family: 'Roboto' */
 @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;700&display=swap');
 
+/* Custom properties de CSS (como variables), aplicadas a todo (:root) */
 :root {
 	--color-texto: #333333;
 	--color-destacado: #ff6666;
@@ -11,20 +13,20 @@
 }
 
 .ficha img {
-	margin: 1em auto;
-    display: block;
-    border: 1px solid var(--color-texto);
+	display: block;   /* Lo activamos para que funcione el centrado posterior */
+	margin: 1em auto; /* Centramos la imagen */
+    border: 1px solid var(--color-texto); /* Encuadramos la imagen en un border */
 }
 
 .ficha-texto {
-	border-top: 1px solid var(--color-separador);
+	border-top: 1px solid var(--color-separador); /* Línea separadora entre imagen y texto de las fichas */
     padding-top: 1em;
     
-    display: flex;
+    display: flex; /* Necesario para que los elementos de dentro puedan hacer margin auto */
 }
 
 .corazon {
-	margin-left: auto;
+	margin-left: auto; /* Depende de display: flex en el contenedor */
 }
 
 .titulo, .corazon {
@@ -41,12 +43,13 @@
 }
 
 .precios * {
-	margin-right: 0.25em;
+	margin-right: 0.25em; /* Separación entre los tres bloques de precio */
 }
 .precio {
-	color: var(--color-destacado); /* TODO usar variables CSS */
+	color: var(--color-destacado);
 }
 
+/* INICIO tachado del precio */
 .precio-sin-descuento {
     position: relative;
     
@@ -59,11 +62,12 @@
     left: 0;
     top: 50%;
     right: 0;
-    border-top: 1px solid;
-    border-color: var(--color-texto);
+    border-top: 1px solid; /* Grosor de la raya y patrón de la misma */
+    border-color: var(--color-texto); /* Color de la raya */
     
-    transform:rotate(-20deg);
+    transform:rotate(-20deg); /* Aquí se controla el ángulo de la raya */
 }
+/* FIN tachado del precio */
 
 .descuento {
 	background-color: var(--color-destacado);
