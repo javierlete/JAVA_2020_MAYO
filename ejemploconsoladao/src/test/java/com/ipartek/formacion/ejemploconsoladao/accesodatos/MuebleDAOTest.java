@@ -106,4 +106,20 @@ public class MuebleDAOTest {
 
 		assertEquals(mueble, MuebleDAO.obtenerPorId(3L));
 	}
+	
+	@Test
+	public void modificar() {
+		Mueble mueble = MuebleDAO.obtenerPorId(1L);
+		
+		mueble.setNombre("Modificado");
+		mueble.setAlto(21.32);
+		mueble.setAncho(56.78);
+		mueble.setLargo(78.90);
+		
+		MuebleDAO.modificar(mueble);
+		
+		Mueble modificado = MuebleDAO.obtenerPorId(1L);
+		
+		assertEquals(mueble, modificado);
+	}
 }
