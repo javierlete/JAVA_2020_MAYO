@@ -3,6 +3,9 @@ package com.ipartek.formacion.ejemploconsoladao.accesodatos;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
 
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.Statement;
 import java.util.ArrayList;
 
 import org.junit.After;
@@ -15,15 +18,26 @@ import com.ipartek.formacion.ejemploconsoladao.modelos.Mueble;
 
 public class MuebleDAOTest {
 
+	private static final String URL = "jdbc:mysql://localhost:3306/ejemploconsoladao?serverTimezone=UTC";
+	private static final String usuario = "debian-sys-maint";
+	private static final String password = "o8lAkaNtX91xMUcV";
+
 	private static Mueble m1 = new Mueble(1L, "Mueble1", 1.0, 2.0, 3.0);
 	private static Mueble m2 = new Mueble(2L, "Mueble2", 2.0, 3.0, 4.0);
 	
-	/*
-	 INSERT INTO `ejemploconsoladao`.`muebles` (`nombre`, `largo`, `ancho`, `alto`) VALUES ('Mueble1', '1.0', '2.0', '3.0');
-INSERT INTO `ejemploconsoladao`.`muebles` (`nombre`, `largo`, `ancho`, `alto`) VALUES ('Mueble2', '2.0', '3.0', '4.0');
-
-	 */
+	private static final String TRUNCATE_MUEBLES = "TRUNCATE muebles";
+	private static final String INSERT_M1 = "INSERT INTO `ejemploconsoladao`.`muebles` (`nombre`, `largo`, `ancho`, `alto`) VALUES ('Mueble1', '1.0', '2.0', '3.0')";
+	private static final String INSERT_M2 = "INSERT INTO `ejemploconsoladao`.`muebles` (`nombre`, `largo`, `ancho`, `alto`) VALUES ('Mueble2', '2.0', '3.0', '4.0')";
 	
+
+	/*
+	 * INSERT INTO `ejemploconsoladao`.`muebles` (`nombre`, `largo`, `ancho`,
+	 * `alto`) VALUES ('Mueble1', '1.0', '2.0', '3.0'); INSERT INTO
+	 * `ejemploconsoladao`.`muebles` (`nombre`, `largo`, `ancho`, `alto`) VALUES
+	 * ('Mueble2', '2.0', '3.0', '4.0');
+	 * 
+	 */
+
 	@BeforeClass
 	public static void setUpBeforeClass() throws Exception {
 	}
@@ -34,6 +48,13 @@ INSERT INTO `ejemploconsoladao`.`muebles` (`nombre`, `largo`, `ancho`, `alto`) V
 
 	@Before
 	public void setUp() throws Exception {
+		try (Connection con = DriverManager.getConnection(URL, usuario, password)) {
+			try (Statement st = con.createStatement()) {
+				st.executeUpdate(TRUNCATE_MUEBLES);
+				st.executeUpdate(INSERT_M1);
+				st.executeUpdate(INSERT_M2);
+			}
+		}
 	}
 
 	@After
@@ -43,11 +64,11 @@ INSERT INTO `ejemploconsoladao`.`muebles` (`nombre`, `largo`, `ancho`, `alto`) V
 	@Test
 	public void obtenerTodos() {
 		ArrayList<Mueble> muebles = MuebleDAO.obtenerTodos();
-		
+
 		assertNotNull(muebles);
-		
+
 		assertEquals(2, muebles.size());
-		
+
 		assertEquals(m1, muebles.get(0));
 		assertEquals(m2, muebles.get(1));
 	}
