@@ -57,6 +57,11 @@ public class MuebleDAOTest {
 
 	@AfterClass
 	public static void tearDownAfterClass() throws Exception {
+		try (Statement st = con.createStatement()) {
+			st.executeUpdate(TRUNCATE_MUEBLES);
+			st.executeUpdate(INSERT_M1);
+			st.executeUpdate(INSERT_M2);
+		}
 		con.close();
 	}
 

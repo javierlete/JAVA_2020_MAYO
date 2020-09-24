@@ -5,6 +5,8 @@ public class Mueble {
 	private String nombre;
 	private Double largo, ancho, alto;
 	
+	public Mueble() {}
+	
 	public Mueble(Long id, String nombre, Double largo, Double ancho, Double alto) {
 		super();
 		this.id = id;
