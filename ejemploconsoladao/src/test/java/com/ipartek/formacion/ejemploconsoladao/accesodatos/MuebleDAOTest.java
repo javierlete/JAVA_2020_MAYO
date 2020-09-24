@@ -25,36 +25,47 @@ public class MuebleDAOTest {
 
 	private static Mueble m1 = new Mueble(1L, "Mueble1", 1.0, 2.0, 3.0);
 	private static Mueble m2 = new Mueble(2L, "Mueble2", 2.0, 3.0, 4.0);
-	
+
 	private static final String TRUNCATE_MUEBLES = "TRUNCATE muebles";
 	private static final String INSERT_M1 = "INSERT INTO `ejemploconsoladao`.`muebles` (`nombre`, `largo`, `ancho`, `alto`) VALUES ('Mueble1', '1.0', '2.0', '3.0')";
 	private static final String INSERT_M2 = "INSERT INTO `ejemploconsoladao`.`muebles` (`nombre`, `largo`, `ancho`, `alto`) VALUES ('Mueble2', '2.0', '3.0', '4.0')";
-	
+
+	private static Connection con;
 
 	/*
-	 * INSERT INTO `ejemploconsoladao`.`muebles` (`nombre`, `largo`, `ancho`,
-	 * `alto`) VALUES ('Mueble1', '1.0', '2.0', '3.0'); INSERT INTO
-	 * `ejemploconsoladao`.`muebles` (`nombre`, `largo`, `ancho`, `alto`) VALUES
-	 * ('Mueble2', '2.0', '3.0', '4.0');
+	 * @BeforeClass
 	 * 
+	 * @Before
+	 * 
+	 * @Test
+	 * 
+	 * @After
+	 * 
+	 * @Before
+	 * 
+	 * @Test
+	 * 
+	 * @After
+	 * 
+	 * @AfterClass
 	 */
 
 	@BeforeClass
 	public static void setUpBeforeClass() throws Exception {
+		con = DriverManager.getConnection(URL, usuario, password);
 	}
 
 	@AfterClass
 	public static void tearDownAfterClass() throws Exception {
+		con.close();
 	}
 
 	@Before
 	public void setUp() throws Exception {
-		try (Connection con = DriverManager.getConnection(URL, usuario, password)) {
-			try (Statement st = con.createStatement()) {
-				st.executeUpdate(TRUNCATE_MUEBLES);
-				st.executeUpdate(INSERT_M1);
-				st.executeUpdate(INSERT_M2);
-			}
+		try (Statement st = con.createStatement()) {
+			st.executeUpdate(TRUNCATE_MUEBLES);
+			st.executeUpdate(INSERT_M1);
+			st.executeUpdate(INSERT_M2);
 		}
 	}
 
@@ -77,22 +88,22 @@ public class MuebleDAOTest {
 	@Test
 	public void obtenerPorId() {
 		Mueble mueble = MuebleDAO.obtenerPorId(1L);
-		
+
 		assertEquals(m1, mueble);
-		
+
 		mueble = MuebleDAO.obtenerPorId(5L);
-		
+
 		assertNull(mueble);
 	}
-	
+
 	@Test
 	public void insertar() {
 		Mueble mueble = new Mueble(null, "Prueba", 1.2, 3.4, 5.6);
-		
+
 		MuebleDAO.insertar(mueble);
-		
+
 		mueble.setId(3L);
-		
+
 		assertEquals(mueble, MuebleDAO.obtenerPorId(3L));
 	}
 }
