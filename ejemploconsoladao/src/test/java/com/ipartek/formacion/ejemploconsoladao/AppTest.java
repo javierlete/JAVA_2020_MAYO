@@ -1,27 +1,15 @@
 package com.ipartek.formacion.ejemploconsoladao;
 
 import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertTrue;
 
 import org.junit.Test;
 
-/**
- * Unit test for simple App.
- */
 public class AppTest 
 {
-    @Test
-    public void sumar() {
-    	int resultado = Utilidades.sumar(5, 3);
-    	assertEquals(8, resultado);
-    }
+	private static final String MENU = "1. Listar\n2. Obtener por id\n3. Insertar\n4. Modificar\n5. Borrar\n0. Salir\n";
 	
-	/**
-     * Rigorous Test :-)
-     */
-    @Test
-    public void shouldAnswerWithTrue()
-    {
-        assertTrue( true );
-    }
+	@Test
+	public void obtenerMenu() {
+		assertEquals(MENU, App.obtenerMenu());
+	}
 }
