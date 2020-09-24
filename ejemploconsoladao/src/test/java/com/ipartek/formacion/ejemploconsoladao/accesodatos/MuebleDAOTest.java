@@ -122,4 +122,14 @@ public class MuebleDAOTest {
 		
 		assertEquals(mueble, modificado);
 	}
+	
+	@Test
+	public void borrar() {
+		assertNotNull(MuebleDAO.obtenerPorId(1L));
+		
+		MuebleDAO.borrar(1L);
+		
+		assertNull(MuebleDAO.obtenerPorId(1L));
+		
+	}
 }
