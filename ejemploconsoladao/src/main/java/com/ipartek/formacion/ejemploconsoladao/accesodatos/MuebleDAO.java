@@ -19,6 +19,7 @@ public class MuebleDAO {
 	
 	private static final String SQL_SELECT = "SELECT * FROM muebles";
 	private static final String SQL_SELECT_ID = "SELECT * FROM muebles WHERE id = ?";
+	private static final String SQL_INSERT = "INSERT INTO muebles (nombre, largo, ancho, alto) VALUES (?, ?, ?, ?)";
 
 	public static ArrayList<Mueble> obtenerTodos() {
 		try(Connection con = DriverManager.getConnection(URL, usuario, password)) {
@@ -59,6 +60,21 @@ public class MuebleDAO {
 			}
 		} catch (SQLException e) {
 			throw new AccesoDatosException("No se ha podido recibir los datos de la base de datos", e);
+		}
+	}
+
+	public static void insertar(Mueble mueble) {
+		try(Connection con = DriverManager.getConnection(URL, usuario, password)) {
+			try(PreparedStatement pst = con.prepareStatement(SQL_INSERT)) {
+				pst.setString(1, mueble.getNombre());
+				pst.setDouble(2, mueble.getLargo());
+				pst.setDouble(3, mueble.getAncho());
+				pst.setDouble(4, mueble.getAlto());
+				
+				pst.executeUpdate();
+			}
+		} catch (SQLException e) {
+			throw new AccesoDatosException("No se han podido insertar los datos de la base de datos", e);
 		}
 	}
 }

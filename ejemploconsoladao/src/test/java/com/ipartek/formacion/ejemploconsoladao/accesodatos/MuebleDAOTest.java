@@ -85,7 +85,6 @@ public class MuebleDAOTest {
 		assertNull(mueble);
 	}
 	
-	/*
 	@Test
 	public void insertar() {
 		Mueble mueble = new Mueble(null, "Prueba", 1.2, 3.4, 5.6);
@@ -96,5 +95,4 @@ public class MuebleDAOTest {
 		
 		assertEquals(mueble, MuebleDAO.obtenerPorId(3L));
 	}
-	*/
 }
