@@ -2,6 +2,7 @@ package com.ipartek.formacion.ejemploconsoladao.accesodatos;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertNull;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -73,4 +74,27 @@ public class MuebleDAOTest {
 		assertEquals(m2, muebles.get(1));
 	}
 
+	@Test
+	public void obtenerPorId() {
+		Mueble mueble = MuebleDAO.obtenerPorId(1L);
+		
+		assertEquals(m1, mueble);
+		
+		mueble = MuebleDAO.obtenerPorId(5L);
+		
+		assertNull(mueble);
+	}
+	
+	/*
+	@Test
+	public void insertar() {
+		Mueble mueble = new Mueble(null, "Prueba", 1.2, 3.4, 5.6);
+		
+		MuebleDAO.insertar(mueble);
+		
+		mueble.setId(3L);
+		
+		assertEquals(mueble, MuebleDAO.obtenerPorId(3L));
+	}
+	*/
 }

@@ -2,6 +2,7 @@ package com.ipartek.formacion.ejemploconsoladao.accesodatos;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -17,6 +18,7 @@ public class MuebleDAO {
 	private static final String password = "o8lAkaNtX91xMUcV";
 	
 	private static final String SQL_SELECT = "SELECT * FROM muebles";
+	private static final String SQL_SELECT_ID = "SELECT * FROM muebles WHERE id = ?";
 
 	public static ArrayList<Mueble> obtenerTodos() {
 		try(Connection con = DriverManager.getConnection(URL, usuario, password)) {
@@ -33,6 +35,26 @@ public class MuebleDAO {
 					}
 					
 					return muebles;
+				}
+			}
+		} catch (SQLException e) {
+			throw new AccesoDatosException("No se ha podido recibir los datos de la base de datos", e);
+		}
+	}
+
+	public static Mueble obtenerPorId(Long id) {
+		try(Connection con = DriverManager.getConnection(URL, usuario, password)) {
+			try(PreparedStatement pst = con.prepareStatement(SQL_SELECT_ID)) {
+				pst.setLong(1, id);
+				
+				try(ResultSet rs = pst.executeQuery()) {
+					Mueble mueble = null;
+					
+					if(rs.next()) {
+						mueble = new Mueble(rs.getLong("id"), rs.getString("nombre"), rs.getDouble("largo"), rs.getDouble("ancho"), rs.getDouble("alto"));
+					}
+					
+					return mueble;
 				}
 			}
 		} catch (SQLException e) {
