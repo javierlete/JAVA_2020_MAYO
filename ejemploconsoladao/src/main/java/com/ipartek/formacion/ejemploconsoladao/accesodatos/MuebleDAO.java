@@ -92,7 +92,7 @@ public class MuebleDAO {
 				pst.executeUpdate();
 			}
 		} catch (SQLException e) {
-			throw new AccesoDatosException("No se han podido insertar los datos de la base de datos", e);
+			throw new AccesoDatosException("No se han podido modificar los datos de la base de datos", e);
 		}
 	}
 
@@ -104,7 +104,7 @@ public class MuebleDAO {
 				pst.executeUpdate();
 			}
 		} catch (SQLException e) {
-			throw new AccesoDatosException("No se han podido insertar los datos de la base de datos", e);
+			throw new AccesoDatosException("No se han podido borrar los datos de la base de datos", e);
 		}
 	}
 }
