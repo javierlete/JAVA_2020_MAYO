@@ -164,11 +164,11 @@ public class PresentacionEscritorio {
 		int fila = tabla.rowAtPoint(e.getPoint());
 
 		if (fila > -1) {
-			txtId.setText((String) modelo.getValueAt(fila, 0));
-			txtNombre.setText((String) modelo.getValueAt(fila, 1));
-			txtLargo.setText((String) modelo.getValueAt(fila, 2));
-			txtAncho.setText((String) modelo.getValueAt(fila, 3));
-			txtAlto.setText((String) modelo.getValueAt(fila, 4));
+			txtId.setText(modelo.getValueAt(fila, 0).toString());
+			txtNombre.setText(modelo.getValueAt(fila, 1).toString());
+			txtLargo.setText(modelo.getValueAt(fila, 2).toString());
+			txtAncho.setText(modelo.getValueAt(fila, 3).toString());
+			txtAlto.setText(modelo.getValueAt(fila, 4).toString());
 		}
 	}
 
