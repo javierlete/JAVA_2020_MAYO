@@ -32,6 +32,7 @@ public class PresentacionEscritorio {
 
 	private DefaultTableModel modelo; // Modelo utilizado para la tabla
 	private JButton btnModificar;
+	private JButton btnBorrar;
 
 	/**
 	 * Launch the application.
@@ -135,7 +136,7 @@ public class PresentacionEscritorio {
 				insertarFila();
 			}
 		});
-		btnAceptar.setBounds(321, 12, 117, 25);
+		btnAceptar.setBounds(347, 12, 91, 25);
 		panel.add(btnAceptar);
 		
 		btnModificar = new JButton("Modificar");
@@ -144,8 +145,17 @@ public class PresentacionEscritorio {
 				modificarFila();
 			}
 		});
-		btnModificar.setBounds(202, 12, 117, 25);
+		btnModificar.setBounds(250, 12, 99, 25);
 		panel.add(btnModificar);
+		
+		btnBorrar = new JButton("Borrar");
+		btnBorrar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				borrar();
+			}
+		});
+		btnBorrar.setBounds(174, 12, 79, 25);
+		panel.add(btnBorrar);
 
 		tabla = new JTable(modelo); // Hacemos referencia al modelo de la tabla en el constructor de la tabla
 		tabla.addMouseListener(new MouseAdapter() {
@@ -180,6 +190,8 @@ public class PresentacionEscritorio {
 //			txtAncho.setText(modelo.getValueAt(fila, 3).toString());
 //			txtAlto.setText(modelo.getValueAt(fila, 4).toString());
 		}
+		
+		cargarListado();
 	}
 
 	protected void insertarFila() {
@@ -212,6 +224,14 @@ public class PresentacionEscritorio {
 		MuebleDAO.modificar(mueble);
 
 		cargarListado();
+	}
+	
+	protected void borrar() {
+		MuebleDAO.borrar(Long.parseLong(txtId.getText()));
+		
+		cargarListado();
+		
+		vaciarRegistro();
 	}
 	
 	private void vaciarRegistro() {
