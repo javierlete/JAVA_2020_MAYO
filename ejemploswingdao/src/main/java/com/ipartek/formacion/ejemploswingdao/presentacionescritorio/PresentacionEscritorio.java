@@ -1,20 +1,23 @@
 package com.ipartek.formacion.ejemploswingdao.presentacionescritorio;
 
 import java.awt.EventQueue;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 
+import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 import javax.swing.table.DefaultTableModel;
-import javax.swing.JScrollPane;
-import javax.swing.JButton;
-import java.awt.event.ActionListener;
-import java.awt.event.ActionEvent;
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
+
+import com.ipartek.formacion.ejemploswingdao.accesodatos.MuebleDAO;
+import com.ipartek.formacion.ejemploswingdao.modelos.Mueble;
 
 public class PresentacionEscritorio {
 
@@ -57,6 +60,16 @@ public class PresentacionEscritorio {
 		initialize(); // Introducido por el WindowBuilder
 
 		// Esto lo haremos después de que ya se haya creado la pantalla
+		cargarListado();
+	}
+
+	private void cargarListado() {
+		Object[] fila;
+
+		for (Mueble mueble : MuebleDAO.obtenerTodos()) {
+			fila = new Object[] { mueble.getId(), mueble.getNombre(), mueble.getLargo(), mueble.getAncho(), mueble.getAlto() };
+			modelo.addRow(fila); // Añade una fila al final
+		}
 	}
 
 	/**
@@ -151,11 +164,11 @@ public class PresentacionEscritorio {
 		int fila = tabla.rowAtPoint(e.getPoint());
 
 		if (fila > -1) {
-			txtId.setText((String)modelo.getValueAt(fila, 0));
-			txtNombre.setText((String)modelo.getValueAt(fila, 1));
-			txtLargo.setText((String)modelo.getValueAt(fila, 2));
-			txtAncho.setText((String)modelo.getValueAt(fila, 3));
-			txtAlto.setText((String)modelo.getValueAt(fila, 4));
+			txtId.setText((String) modelo.getValueAt(fila, 0));
+			txtNombre.setText((String) modelo.getValueAt(fila, 1));
+			txtLargo.setText((String) modelo.getValueAt(fila, 2));
+			txtAncho.setText((String) modelo.getValueAt(fila, 3));
+			txtAlto.setText((String) modelo.getValueAt(fila, 4));
 		}
 	}
 
