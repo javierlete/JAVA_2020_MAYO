@@ -31,6 +31,7 @@ public class PresentacionEscritorio {
 	private JTextField txtAlto;
 
 	private DefaultTableModel modelo; // Modelo utilizado para la tabla
+	private JButton btnModificar;
 
 	/**
 	 * Launch the application.
@@ -136,6 +137,15 @@ public class PresentacionEscritorio {
 		});
 		btnAceptar.setBounds(321, 12, 117, 25);
 		panel.add(btnAceptar);
+		
+		btnModificar = new JButton("Modificar");
+		btnModificar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				modificarFila();
+			}
+		});
+		btnModificar.setBounds(202, 12, 117, 25);
+		panel.add(btnModificar);
 
 		tabla = new JTable(modelo); // Hacemos referencia al modelo de la tabla en el constructor de la tabla
 		tabla.addMouseListener(new MouseAdapter() {
@@ -173,9 +183,9 @@ public class PresentacionEscritorio {
 	}
 
 	protected void insertarFila() {
-		MuebleDAO.insertar(
-				new Mueble(txtId.getText().trim().length() != 0 ? Long.parseLong(txtId.getText()) : null, txtNombre.getText(), Double.parseDouble(txtLargo.getText()),
-						Double.parseDouble(txtAncho.getText()), Double.parseDouble(txtAlto.getText())));
+		Mueble mueble = registroAObjeto();
+		
+		MuebleDAO.insertar(mueble);
 
 		cargarListado();
 		
@@ -188,6 +198,20 @@ public class PresentacionEscritorio {
 //		modelo.addRow(fila); // Añade una fila al final
 		// modelo.setValueAt ("nuevo valor", 0, 1); // Cambia el valor de la fila 1,
 		// columna 2.
+	}
+
+	private Mueble registroAObjeto() {
+		Mueble mueble = new Mueble(txtId.getText().trim().length() != 0 ? Long.parseLong(txtId.getText()) : null, txtNombre.getText(), Double.parseDouble(txtLargo.getText()),
+				Double.parseDouble(txtAncho.getText()), Double.parseDouble(txtAlto.getText()));
+		return mueble;
+	}
+	
+	protected void modificarFila() {
+		Mueble mueble = registroAObjeto();
+		
+		MuebleDAO.modificar(mueble);
+
+		cargarListado();
 	}
 	
 	private void vaciarRegistro() {
