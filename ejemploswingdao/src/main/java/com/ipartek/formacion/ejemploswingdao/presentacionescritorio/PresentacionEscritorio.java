@@ -63,15 +63,6 @@ public class PresentacionEscritorio {
 		cargarListado();
 	}
 
-	private void cargarListado() {
-		Object[] fila;
-
-		for (Mueble mueble : MuebleDAO.obtenerTodos()) {
-			fila = new Object[] { mueble.getId(), mueble.getNombre(), mueble.getLargo(), mueble.getAncho(), mueble.getAlto() };
-			modelo.addRow(fila); // Añade una fila al final
-		}
-	}
-
 	/**
 	 * Initialize the contents of the frame.
 	 */
@@ -136,7 +127,7 @@ public class PresentacionEscritorio {
 		txtAlto.setBounds(97, 172, 341, 30);
 		panel.add(txtAlto);
 
-		JButton btnAceptar = new JButton("Aceptar");
+		JButton btnAceptar = new JButton("Insertar");
 		btnAceptar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				insertarFila();
@@ -173,11 +164,30 @@ public class PresentacionEscritorio {
 	}
 
 	protected void insertarFila() {
-		Object[] fila;
-		fila = new Object[] { txtId.getText(), txtNombre.getText(), txtLargo.getText(), txtAncho.getText(),
-				txtAlto.getText() };
-		modelo.addRow(fila); // Añade una fila al final
+		MuebleDAO.insertar(
+				new Mueble(Long.parseLong(txtId.getText()), txtNombre.getText(), Double.parseDouble(txtLargo.getText()),
+						Double.parseDouble(txtAncho.getText()), Double.parseDouble(txtAlto.getText())));
+
+		cargarListado();
+		
+//		Object[] fila;
+//		fila = new Object[] { txtId.getText(), txtNombre.getText(), txtLargo.getText(), txtAncho.getText(),
+//				txtAlto.getText() };
+//
+//		modelo.addRow(fila); // Añade una fila al final
 		// modelo.setValueAt ("nuevo valor", 0, 1); // Cambia el valor de la fila 1,
 		// columna 2.
+	}
+	
+	private void cargarListado() {
+		modelo.setRowCount(0);
+		
+		Object[] fila;
+
+		for (Mueble mueble : MuebleDAO.obtenerTodos()) {
+			fila = new Object[] { mueble.getId(), mueble.getNombre(), mueble.getLargo(), mueble.getAncho(),
+					mueble.getAlto() };
+			modelo.addRow(fila); // Añade una fila al final
+		}
 	}
 }
