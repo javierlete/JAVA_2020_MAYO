@@ -83,6 +83,7 @@ public class PresentacionEscritorio {
 		panel.add(lblId);
 
 		txtId = new JTextField();
+		txtId.setEditable(false);
 		txtId.setBounds(97, 10, 53, 30);
 		panel.add(txtId);
 		txtId.setColumns(10);
@@ -155,20 +156,30 @@ public class PresentacionEscritorio {
 		int fila = tabla.rowAtPoint(e.getPoint());
 
 		if (fila > -1) {
-			txtId.setText(modelo.getValueAt(fila, 0).toString());
-			txtNombre.setText(modelo.getValueAt(fila, 1).toString());
-			txtLargo.setText(modelo.getValueAt(fila, 2).toString());
-			txtAncho.setText(modelo.getValueAt(fila, 3).toString());
-			txtAlto.setText(modelo.getValueAt(fila, 4).toString());
+			Mueble mueble = MuebleDAO.obtenerPorId((Long)modelo.getValueAt(fila, 0));
+			
+			txtId.setText(mueble.getId().toString());
+			txtNombre.setText(mueble.getNombre().toString());
+			txtLargo.setText(mueble.getLargo().toString());
+			txtAncho.setText(mueble.getAncho().toString());
+			txtAlto.setText(mueble.getAlto().toString());
+			
+//			txtId.setText(modelo.getValueAt(fila, 0).toString());
+//			txtNombre.setText(modelo.getValueAt(fila, 1).toString());
+//			txtLargo.setText(modelo.getValueAt(fila, 2).toString());
+//			txtAncho.setText(modelo.getValueAt(fila, 3).toString());
+//			txtAlto.setText(modelo.getValueAt(fila, 4).toString());
 		}
 	}
 
 	protected void insertarFila() {
 		MuebleDAO.insertar(
-				new Mueble(Long.parseLong(txtId.getText()), txtNombre.getText(), Double.parseDouble(txtLargo.getText()),
+				new Mueble(txtId.getText().trim().length() != 0 ? Long.parseLong(txtId.getText()) : null, txtNombre.getText(), Double.parseDouble(txtLargo.getText()),
 						Double.parseDouble(txtAncho.getText()), Double.parseDouble(txtAlto.getText())));
 
 		cargarListado();
+		
+		vaciarRegistro();
 		
 //		Object[] fila;
 //		fila = new Object[] { txtId.getText(), txtNombre.getText(), txtLargo.getText(), txtAncho.getText(),
@@ -179,6 +190,15 @@ public class PresentacionEscritorio {
 		// columna 2.
 	}
 	
+	private void vaciarRegistro() {
+		txtId.setText("");
+		txtNombre.setText("");
+		txtLargo.setText("");
+		txtAncho.setText("");
+		txtAlto.setText("");
+		
+	}
+
 	private void cargarListado() {
 		modelo.setRowCount(0);
 		
