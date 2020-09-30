@@ -18,6 +18,7 @@ import javax.swing.table.DefaultTableModel;
 
 import com.ipartek.formacion.ejemploswingdao.accesodatos.MuebleDAO;
 import com.ipartek.formacion.ejemploswingdao.modelos.Mueble;
+import java.awt.Color;
 
 public class PresentacionEscritorio {
 
@@ -33,6 +34,10 @@ public class PresentacionEscritorio {
 	private DefaultTableModel modelo; // Modelo utilizado para la tabla
 	private JButton btnModificar;
 	private JButton btnBorrar;
+	private JLabel lblErrorLargo;
+	private JLabel lblErrorAncho;
+	private JLabel lblErrorAlto;
+	private JLabel lblErrorNombre;
 
 	/**
 	 * Launch the application.
@@ -61,6 +66,8 @@ public class PresentacionEscritorio {
 
 		initialize(); // Introducido por el WindowBuilder
 
+		limpiarErrores();
+
 		// Esto lo haremos después de que ya se haya creado la pantalla
 		cargarListado();
 	}
@@ -75,13 +82,13 @@ public class PresentacionEscritorio {
 		frame.getContentPane().setLayout(null);
 
 		JPanel panel = new JPanel();
-		panel.setBounds(0, 0, 450, 219);
+		panel.setBounds(0, 0, 450, 269);
 		frame.getContentPane().add(panel);
 		panel.setLayout(null);
 
 		lblId = new JLabel("Id");
 		lblId.setHorizontalAlignment(SwingConstants.TRAILING);
-		lblId.setBounds(12, 12, 67, 25);
+		lblId.setBounds(22, 12, 67, 25);
 		panel.add(lblId);
 
 		txtId = new JTextField();
@@ -92,42 +99,42 @@ public class PresentacionEscritorio {
 
 		JLabel lblNombre = new JLabel("Nombre");
 		lblNombre.setHorizontalAlignment(SwingConstants.TRAILING);
-		lblNombre.setBounds(12, 57, 67, 25);
+		lblNombre.setBounds(22, 50, 67, 25);
 		panel.add(lblNombre);
 
 		txtNombre = new JTextField();
 		txtNombre.setColumns(10);
-		txtNombre.setBounds(97, 55, 341, 30);
+		txtNombre.setBounds(97, 48, 341, 30);
 		panel.add(txtNombre);
 
 		JLabel lblLargo = new JLabel("Largo");
 		lblLargo.setHorizontalAlignment(SwingConstants.TRAILING);
-		lblLargo.setBounds(12, 96, 67, 25);
+		lblLargo.setBounds(22, 102, 67, 25);
 		panel.add(lblLargo);
 
 		txtLargo = new JTextField();
 		txtLargo.setColumns(10);
-		txtLargo.setBounds(97, 94, 341, 30);
+		txtLargo.setBounds(97, 100, 341, 30);
 		panel.add(txtLargo);
 
 		JLabel lblAncho = new JLabel("Ancho");
 		lblAncho.setHorizontalAlignment(SwingConstants.TRAILING);
-		lblAncho.setBounds(12, 135, 67, 25);
+		lblAncho.setBounds(22, 154, 67, 25);
 		panel.add(lblAncho);
 
 		txtAncho = new JTextField();
 		txtAncho.setColumns(10);
-		txtAncho.setBounds(97, 133, 341, 30);
+		txtAncho.setBounds(97, 152, 341, 30);
 		panel.add(txtAncho);
 
 		JLabel lblAlto = new JLabel("Alto");
 		lblAlto.setHorizontalAlignment(SwingConstants.TRAILING);
-		lblAlto.setBounds(12, 174, 67, 25);
+		lblAlto.setBounds(22, 206, 67, 25);
 		panel.add(lblAlto);
 
 		txtAlto = new JTextField();
 		txtAlto.setColumns(10);
-		txtAlto.setBounds(97, 172, 341, 30);
+		txtAlto.setBounds(97, 204, 341, 30);
 		panel.add(txtAlto);
 
 		JButton btnAceptar = new JButton("Insertar");
@@ -138,7 +145,7 @@ public class PresentacionEscritorio {
 		});
 		btnAceptar.setBounds(347, 12, 91, 25);
 		panel.add(btnAceptar);
-		
+
 		btnModificar = new JButton("Modificar");
 		btnModificar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
@@ -147,7 +154,7 @@ public class PresentacionEscritorio {
 		});
 		btnModificar.setBounds(250, 12, 99, 25);
 		panel.add(btnModificar);
-		
+
 		btnBorrar = new JButton("Borrar");
 		btnBorrar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -156,6 +163,26 @@ public class PresentacionEscritorio {
 		});
 		btnBorrar.setBounds(174, 12, 79, 25);
 		panel.add(btnBorrar);
+
+		lblErrorLargo = new JLabel("El largo debe ser un número con decimales");
+		lblErrorLargo.setForeground(Color.RED);
+		lblErrorLargo.setBounds(97, 129, 341, 24);
+		panel.add(lblErrorLargo);
+
+		lblErrorAncho = new JLabel("El ancho debe ser un número con decimales");
+		lblErrorAncho.setForeground(Color.RED);
+		lblErrorAncho.setBounds(97, 181, 341, 24);
+		panel.add(lblErrorAncho);
+
+		lblErrorAlto = new JLabel("El alto debe ser un número con decimales");
+		lblErrorAlto.setForeground(Color.RED);
+		lblErrorAlto.setBounds(97, 233, 341, 24);
+		panel.add(lblErrorAlto);
+
+		lblErrorNombre = new JLabel("Debe rellenarse el nombre");
+		lblErrorNombre.setForeground(Color.RED);
+		lblErrorNombre.setBounds(97, 77, 341, 24);
+		panel.add(lblErrorNombre);
 
 		tabla = new JTable(modelo); // Hacemos referencia al modelo de la tabla en el constructor de la tabla
 		tabla.addMouseListener(new MouseAdapter() {
@@ -167,42 +194,45 @@ public class PresentacionEscritorio {
 
 		JScrollPane scrollPane = new JScrollPane(tabla); // Al ScrollPane le pasamos en el constructor el contenido que
 															// queremos que tenga
-		scrollPane.setBounds(10, 223, 430, 352);
+		scrollPane.setBounds(10, 281, 430, 294);
 		frame.getContentPane().add(scrollPane);
 
 	}
 
 	protected void filaARegistro(MouseEvent e) {
-		int fila = tabla.rowAtPoint(e.getPoint());
+		int fila = tabla.rowAtPoint(e.getPoint()); // Coge la fila que se ha pulsado en base a las coordenadas del ratón
 
 		if (fila > -1) {
-			Mueble mueble = MuebleDAO.obtenerPorId((Long)modelo.getValueAt(fila, 0));
-			
+			Long id = (Long) modelo.getValueAt(fila, 0); // Sacamos el id de la fila correspondiente (pulsada)
+
+			Mueble mueble = MuebleDAO.obtenerPorId(id);
+
 			txtId.setText(mueble.getId().toString());
 			txtNombre.setText(mueble.getNombre().toString());
 			txtLargo.setText(mueble.getLargo().toString());
 			txtAncho.setText(mueble.getAncho().toString());
 			txtAlto.setText(mueble.getAlto().toString());
-			
+
 //			txtId.setText(modelo.getValueAt(fila, 0).toString());
 //			txtNombre.setText(modelo.getValueAt(fila, 1).toString());
 //			txtLargo.setText(modelo.getValueAt(fila, 2).toString());
 //			txtAncho.setText(modelo.getValueAt(fila, 3).toString());
 //			txtAlto.setText(modelo.getValueAt(fila, 4).toString());
 		}
-		
+
 		cargarListado();
 	}
 
 	protected void insertarFila() {
 		Mueble mueble = registroAObjeto();
-		
-		MuebleDAO.insertar(mueble);
+
+		if (mueble != null) {
+			MuebleDAO.insertar(mueble);
+			vaciarRegistro();
+		}
 
 		cargarListado();
-		
-		vaciarRegistro();
-		
+
 //		Object[] fila;
 //		fila = new Object[] { txtId.getText(), txtNombre.getText(), txtLargo.getText(), txtAncho.getText(),
 //				txtAlto.getText() };
@@ -213,39 +243,91 @@ public class PresentacionEscritorio {
 	}
 
 	private Mueble registroAObjeto() {
-		Mueble mueble = new Mueble(txtId.getText().trim().length() != 0 ? Long.parseLong(txtId.getText()) : null, txtNombre.getText(), Double.parseDouble(txtLargo.getText()),
-				Double.parseDouble(txtAncho.getText()), Double.parseDouble(txtAlto.getText()));
+		boolean correcto = true;
+
+		Long id = txtId.getText().trim().length() != 0 ? Long.parseLong(txtId.getText()) : null; // Si el ID está vacío,
+
+		String nombre = txtNombre.getText();
+
+		if (nombre.trim().length() == 0) {
+			lblErrorNombre.setVisible(true);
+			correcto = false;
+		} else {
+			lblErrorNombre.setVisible(false);
+		}
+
+		Double largo = null;
+		try {
+			largo = Double.parseDouble(txtLargo.getText());
+			lblErrorLargo.setVisible(false);
+		} catch (NumberFormatException e) {
+			lblErrorLargo.setVisible(true);
+			correcto = false;
+		}
+
+		Double ancho = null;
+		try {
+			ancho = Double.parseDouble(txtAncho.getText());
+			lblErrorAncho.setVisible(false);
+		} catch (NumberFormatException e) {
+			lblErrorAncho.setVisible(true);
+			correcto = false;
+		}
+
+		Double alto = null;
+		try {
+			alto = Double.parseDouble(txtAlto.getText());
+			lblErrorAlto.setVisible(false);
+		} catch (NumberFormatException e) {
+			lblErrorAlto.setVisible(true);
+			correcto = false;
+		}
+
+		Mueble mueble = null;
+
+		if (correcto) {
+			mueble = new Mueble(id, nombre, largo, ancho, alto);
+		}
+
 		return mueble;
 	}
-	
+
 	protected void modificarFila() {
 		Mueble mueble = registroAObjeto();
-		
+
 		MuebleDAO.modificar(mueble);
 
 		cargarListado();
 	}
-	
+
 	protected void borrar() {
 		MuebleDAO.borrar(Long.parseLong(txtId.getText()));
-		
+
 		cargarListado();
-		
+
 		vaciarRegistro();
 	}
-	
+
 	private void vaciarRegistro() {
 		txtId.setText("");
 		txtNombre.setText("");
 		txtLargo.setText("");
 		txtAncho.setText("");
 		txtAlto.setText("");
-		
+
+		limpiarErrores();
+	}
+	
+	private void limpiarErrores() {
+		lblErrorNombre.setVisible(false);
+		lblErrorLargo.setVisible(false);
+		lblErrorAncho.setVisible(false);
+		lblErrorAlto.setVisible(false);
 	}
 
 	private void cargarListado() {
 		modelo.setRowCount(0);
-		
+
 		Object[] fila;
 
 		for (Mueble mueble : MuebleDAO.obtenerTodos()) {

@@ -69,9 +69,9 @@ public class MuebleDAO {
 		try(Connection con = DriverManager.getConnection(URL, usuario, password)) {
 			try(PreparedStatement pst = con.prepareStatement(SQL_INSERT)) {
 				pst.setString(1, mueble.getNombre());
-				pst.setDouble(2, mueble.getLargo());
-				pst.setDouble(3, mueble.getAncho());
-				pst.setDouble(4, mueble.getAlto());
+				pst.setObject(2, mueble.getLargo());
+				pst.setObject(3, mueble.getAncho());
+				pst.setObject(4, mueble.getAlto());
 				
 				pst.executeUpdate();
 			}
@@ -84,9 +84,9 @@ public class MuebleDAO {
 		try(Connection con = DriverManager.getConnection(URL, usuario, password)) {
 			try(PreparedStatement pst = con.prepareStatement(SQL_UPDATE)) {
 				pst.setString(1, mueble.getNombre());
-				pst.setDouble(2, mueble.getLargo());
-				pst.setDouble(3, mueble.getAncho());
-				pst.setDouble(4, mueble.getAlto());
+				pst.setObject(2, mueble.getLargo());
+				pst.setObject(3, mueble.getAncho());
+				pst.setObject(4, mueble.getAlto());
 				pst.setLong(5, mueble.getId());
 				
 				pst.executeUpdate();
