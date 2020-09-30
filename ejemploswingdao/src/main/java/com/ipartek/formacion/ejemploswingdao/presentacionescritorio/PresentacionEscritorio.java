@@ -9,6 +9,7 @@ import java.awt.event.MouseEvent;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
@@ -50,6 +51,7 @@ public class PresentacionEscritorio {
 					window.frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
+					JOptionPane.showMessageDialog(null, e.getMessage());
 				}
 			}
 		});
@@ -199,47 +201,43 @@ public class PresentacionEscritorio {
 
 	}
 
-	protected void filaARegistro(MouseEvent e) {
-		int fila = tabla.rowAtPoint(e.getPoint()); // Coge la fila que se ha pulsado en base a las coordenadas del ratón
+	protected void filaARegistro(MouseEvent me) {
+		try {
+			int fila = tabla.rowAtPoint(me.getPoint()); // Coge la fila que se ha pulsado en base a las coordenadas del ratón
 
-		if (fila > -1) {
-			Long id = (Long) modelo.getValueAt(fila, 0); // Sacamos el id de la fila correspondiente (pulsada)
+			if (fila > -1) {
+				Long id = (Long) modelo.getValueAt(fila, 0); // Sacamos el id de la fila correspondiente (pulsada)
 
-			Mueble mueble = MuebleDAO.obtenerPorId(id);
+				Mueble mueble = MuebleDAO.obtenerPorId(id);
 
-			txtId.setText(mueble.getId().toString());
-			txtNombre.setText(mueble.getNombre().toString());
-			txtLargo.setText(mueble.getLargo().toString());
-			txtAncho.setText(mueble.getAncho().toString());
-			txtAlto.setText(mueble.getAlto().toString());
+				txtId.setText(mueble.getId().toString());
+				txtNombre.setText(mueble.getNombre().toString());
+				txtLargo.setText(mueble.getLargo().toString());
+				txtAncho.setText(mueble.getAncho().toString());
+				txtAlto.setText(mueble.getAlto().toString());
+			}
 
-//			txtId.setText(modelo.getValueAt(fila, 0).toString());
-//			txtNombre.setText(modelo.getValueAt(fila, 1).toString());
-//			txtLargo.setText(modelo.getValueAt(fila, 2).toString());
-//			txtAncho.setText(modelo.getValueAt(fila, 3).toString());
-//			txtAlto.setText(modelo.getValueAt(fila, 4).toString());
+			cargarListado();
+		} catch (Exception e) {
+			JOptionPane.showMessageDialog(null, e.getMessage());
+			e.printStackTrace();
 		}
-
-		cargarListado();
 	}
 
 	protected void insertarFila() {
-		Mueble mueble = registroAObjeto();
+		try {
+			Mueble mueble = registroAObjeto();
 
-		if (mueble != null) {
-			MuebleDAO.insertar(mueble);
-			vaciarRegistro();
+			if (mueble != null) {
+				MuebleDAO.insertar(mueble);
+				vaciarRegistro();
+			}
+
+			cargarListado();
+		} catch (Exception e) {
+			e.printStackTrace();
+			JOptionPane.showMessageDialog(null, e.getMessage());
 		}
-
-		cargarListado();
-
-//		Object[] fila;
-//		fila = new Object[] { txtId.getText(), txtNombre.getText(), txtLargo.getText(), txtAncho.getText(),
-//				txtAlto.getText() };
-//
-//		modelo.addRow(fila); // Añade una fila al final
-		// modelo.setValueAt ("nuevo valor", 0, 1); // Cambia el valor de la fila 1,
-		// columna 2.
 	}
 
 	private Mueble registroAObjeto() {
@@ -293,19 +291,29 @@ public class PresentacionEscritorio {
 	}
 
 	protected void modificarFila() {
-		Mueble mueble = registroAObjeto();
+		try {
+			Mueble mueble = registroAObjeto();
 
-		MuebleDAO.modificar(mueble);
+			MuebleDAO.modificar(mueble);
 
-		cargarListado();
+			cargarListado();
+		} catch (Exception e) {
+			JOptionPane.showMessageDialog(null, e.getMessage());
+			e.printStackTrace();
+		}
 	}
 
 	protected void borrar() {
-		MuebleDAO.borrar(Long.parseLong(txtId.getText()));
+		try {
+			MuebleDAO.borrar(Long.parseLong(txtId.getText()));
 
-		cargarListado();
+			cargarListado();
 
-		vaciarRegistro();
+			vaciarRegistro();
+		} catch (Exception e) {
+			JOptionPane.showMessageDialog(null, e.getMessage());
+			e.printStackTrace();
+		}
 	}
 
 	private void vaciarRegistro() {
