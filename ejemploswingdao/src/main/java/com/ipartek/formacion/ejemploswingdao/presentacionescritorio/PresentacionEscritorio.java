@@ -68,8 +68,6 @@ public class PresentacionEscritorio {
 
 		initialize(); // Introducido por el WindowBuilder
 
-		limpiarErrores();
-
 		// Esto lo haremos después de que ya se haya creado la pantalla
 		cargarListado();
 	}
@@ -166,22 +164,22 @@ public class PresentacionEscritorio {
 		btnBorrar.setBounds(174, 12, 79, 25);
 		panel.add(btnBorrar);
 
-		lblErrorLargo = new JLabel("El largo debe ser un número con decimales");
+		lblErrorLargo = new JLabel("");
 		lblErrorLargo.setForeground(Color.RED);
 		lblErrorLargo.setBounds(97, 129, 341, 24);
 		panel.add(lblErrorLargo);
 
-		lblErrorAncho = new JLabel("El ancho debe ser un número con decimales");
+		lblErrorAncho = new JLabel("");
 		lblErrorAncho.setForeground(Color.RED);
 		lblErrorAncho.setBounds(97, 181, 341, 24);
 		panel.add(lblErrorAncho);
 
-		lblErrorAlto = new JLabel("El alto debe ser un número con decimales");
+		lblErrorAlto = new JLabel("");
 		lblErrorAlto.setForeground(Color.RED);
 		lblErrorAlto.setBounds(97, 233, 341, 24);
 		panel.add(lblErrorAlto);
 
-		lblErrorNombre = new JLabel("Debe rellenarse el nombre");
+		lblErrorNombre = new JLabel("");
 		lblErrorNombre.setForeground(Color.RED);
 		lblErrorNombre.setBounds(97, 77, 341, 24);
 		panel.add(lblErrorNombre);
@@ -203,18 +201,15 @@ public class PresentacionEscritorio {
 
 	protected void filaARegistro(MouseEvent me) {
 		try {
-			int fila = tabla.rowAtPoint(me.getPoint()); // Coge la fila que se ha pulsado en base a las coordenadas del ratón
+			int fila = tabla.rowAtPoint(me.getPoint()); // Coge la fila que se ha pulsado en base a las coordenadas del
+														// ratón
 
 			if (fila > -1) {
 				Long id = (Long) modelo.getValueAt(fila, 0); // Sacamos el id de la fila correspondiente (pulsada)
 
 				Mueble mueble = MuebleDAO.obtenerPorId(id);
 
-				txtId.setText(mueble.getId().toString());
-				txtNombre.setText(mueble.getNombre().toString());
-				txtLargo.setText(mueble.getLargo().toString());
-				txtAncho.setText(mueble.getAncho().toString());
-				txtAlto.setText(mueble.getAlto().toString());
+				objetoARegistro(mueble);
 			}
 
 			cargarListado();
@@ -224,11 +219,24 @@ public class PresentacionEscritorio {
 		}
 	}
 
+	private void objetoARegistro(Mueble mueble) {
+		txtId.setText(mueble.getId() != null ? mueble.getId().toString() : "");
+		txtNombre.setText(mueble.getNombre());
+		txtLargo.setText(mueble.getLargo() != null ? mueble.getLargo().toString() : "");
+		txtAncho.setText(mueble.getAncho() != null ? mueble.getAncho().toString() : "");
+		txtAlto.setText(mueble.getAlto() != null ? mueble.getAlto().toString() : "");
+
+		lblErrorNombre.setText(mueble.getErrorNombre());
+		lblErrorLargo.setText(mueble.getErrorLargo());
+		lblErrorAncho.setText(mueble.getErrorAncho());
+		lblErrorAlto.setText(mueble.getErrorAlto());
+	}
+
 	protected void insertarFila() {
 		try {
 			Mueble mueble = registroAObjeto();
 
-			if (mueble != null) {
+			if (mueble.isCorrecto()) {
 				MuebleDAO.insertar(mueble);
 				vaciarRegistro();
 			}
@@ -241,51 +249,10 @@ public class PresentacionEscritorio {
 	}
 
 	private Mueble registroAObjeto() {
-		boolean correcto = true;
+		Mueble mueble = new Mueble(txtId.getText(), txtNombre.getText(), txtLargo.getText(), txtAncho.getText(),
+				txtAlto.getText());
 
-		Long id = txtId.getText().trim().length() != 0 ? Long.parseLong(txtId.getText()) : null; // Si el ID está vacío,
-
-		String nombre = txtNombre.getText();
-
-		if (nombre.trim().length() == 0) {
-			lblErrorNombre.setVisible(true);
-			correcto = false;
-		} else {
-			lblErrorNombre.setVisible(false);
-		}
-
-		Double largo = null;
-		try {
-			largo = Double.parseDouble(txtLargo.getText());
-			lblErrorLargo.setVisible(false);
-		} catch (NumberFormatException e) {
-			lblErrorLargo.setVisible(true);
-			correcto = false;
-		}
-
-		Double ancho = null;
-		try {
-			ancho = Double.parseDouble(txtAncho.getText());
-			lblErrorAncho.setVisible(false);
-		} catch (NumberFormatException e) {
-			lblErrorAncho.setVisible(true);
-			correcto = false;
-		}
-
-		Double alto = null;
-		try {
-			alto = Double.parseDouble(txtAlto.getText());
-			lblErrorAlto.setVisible(false);
-		} catch (NumberFormatException e) {
-			lblErrorAlto.setVisible(true);
-			correcto = false;
-		}
-
-		Mueble mueble = null;
-
-		if (correcto) {
-			mueble = new Mueble(id, nombre, largo, ancho, alto);
-		}
+		objetoARegistro(mueble);
 
 		return mueble;
 	}
@@ -294,7 +261,9 @@ public class PresentacionEscritorio {
 		try {
 			Mueble mueble = registroAObjeto();
 
-			MuebleDAO.modificar(mueble);
+			if (mueble.isCorrecto()) {
+				MuebleDAO.modificar(mueble);
+			}
 
 			cargarListado();
 		} catch (Exception e) {
@@ -305,7 +274,15 @@ public class PresentacionEscritorio {
 
 	protected void borrar() {
 		try {
-			MuebleDAO.borrar(Long.parseLong(txtId.getText()));
+			Mueble mueble = new Mueble();
+
+			mueble.setId(txtId.getText());
+
+			if (mueble.getId() != null) {
+				MuebleDAO.borrar(mueble.getId());
+			} else {
+				throw new Exception("Selecciona una fila para borrar");
+			}
 
 			cargarListado();
 
@@ -325,12 +302,12 @@ public class PresentacionEscritorio {
 
 		limpiarErrores();
 	}
-	
+
 	private void limpiarErrores() {
-		lblErrorNombre.setVisible(false);
-		lblErrorLargo.setVisible(false);
-		lblErrorAncho.setVisible(false);
-		lblErrorAlto.setVisible(false);
+		lblErrorNombre.setText("");
+		lblErrorLargo.setText("");
+		lblErrorAncho.setText("");
+		lblErrorAlto.setText("");
 	}
 
 	private void cargarListado() {

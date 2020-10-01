@@ -32,7 +32,7 @@ public class MuebleDAO {
 					Mueble mueble;
 					
 					while(rs.next()) {
-						mueble = new Mueble(rs.getLong("id"), rs.getString("nombre"), rs.getDouble("largo"), rs.getDouble("ancho"), rs.getDouble("alto"));
+						mueble = new Mueble(rs.getLong("id"), rs.getString("nombre"), (Double)rs.getObject("largo"), (Double)rs.getObject("ancho"), (Double)rs.getObject("alto"));
 						
 						muebles.add(mueble);
 					}
@@ -54,7 +54,7 @@ public class MuebleDAO {
 					Mueble mueble = null;
 					
 					if(rs.next()) {
-						mueble = new Mueble(rs.getLong("id"), rs.getString("nombre"), rs.getDouble("largo"), rs.getDouble("ancho"), rs.getDouble("alto"));
+						mueble = new Mueble(rs.getLong("id"), rs.getString("nombre"), (Double)rs.getObject("largo"), (Double)rs.getObject("ancho"), (Double)rs.getObject("alto"));
 					}
 					
 					return mueble;

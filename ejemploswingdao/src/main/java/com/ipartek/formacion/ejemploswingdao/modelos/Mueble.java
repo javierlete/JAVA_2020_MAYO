@@ -1,19 +1,35 @@
 package com.ipartek.formacion.ejemploswingdao.modelos;
 
 public class Mueble {
+	private static final String ERROR_LARGO = "El largo debe ser un número positivo";
+	private static final String ERROR_ANCHO = "El ancho debe ser un número positivo";
+	private static final String ERROR_ALTO = "El alto debe ser un número positivo";
+	
 	private Long id;
 	private String nombre;
 	private Double largo, ancho, alto;
-	
-	public Mueble() {}
-	
+
+	private boolean correcto = true;
+
+	private String errorId, errorNombre, errorLargo, errorAncho, errorAlto;
+
+	public Mueble() {
+	}
+
+	public Mueble(String id, String nombre, String largo, String ancho, String alto) {
+		setId(id);
+		setNombre(nombre);
+		setLargo(largo);
+		setAncho(ancho);
+		setAlto(alto);
+	}
+
 	public Mueble(Long id, String nombre, Double largo, Double ancho, Double alto) {
-		super();
-		this.id = id;
-		this.nombre = nombre;
-		this.largo = largo;
-		this.ancho = ancho;
-		this.alto = alto;
+		setId(id);
+		setNombre(nombre);
+		setLargo(largo);
+		setAncho(ancho);
+		setAlto(alto);
 	}
 
 	public Long getId() {
@@ -24,11 +40,26 @@ public class Mueble {
 		this.id = id;
 	}
 
+	public void setId(String id) {
+		try {
+			if(id == null || id.trim().length() == 0) {
+				this.id = null;
+				return;
+			}
+			this.id = Long.parseLong(id);
+		} catch (NumberFormatException e) {
+			setErrorId("El id debe ser numérico");
+		}
+	}
+
 	public String getNombre() {
 		return nombre;
 	}
 
 	public void setNombre(String nombre) {
+		if (nombre == null || nombre.trim().length() == 0) {
+			setErrorNombre("El nombre es obligatorio");
+		}
 		this.nombre = nombre;
 	}
 
@@ -36,24 +67,140 @@ public class Mueble {
 		return largo;
 	}
 
+	public void setLargo(String largo) {
+		if (largo == null || largo.trim().length() == 0) {
+			this.largo = null;
+			return;
+		}
+
+		try {
+			setLargo(Double.parseDouble(largo));
+		} catch (NumberFormatException e) {
+			setErrorLargo(ERROR_LARGO);
+		}
+	}
+
 	public void setLargo(Double largo) {
 		this.largo = largo;
+
+		if(largo == null) {
+			return;
+		}
+		
+		if (this.largo <= 0) {
+			setErrorLargo(ERROR_LARGO);
+		}
 	}
 
 	public Double getAncho() {
 		return ancho;
 	}
 
+	public void setAncho(String ancho) {
+		if (ancho == null || ancho.trim().length() == 0) {
+			this.ancho = null;
+			return;
+		}
+
+		try {
+			setAncho(Double.parseDouble(ancho));
+		} catch (NumberFormatException e) {
+			setErrorAncho(ERROR_ANCHO);
+		}
+	}
+
 	public void setAncho(Double ancho) {
 		this.ancho = ancho;
+
+		if(ancho == null) {
+			return;
+		}
+		
+		if (this.ancho <= 0) {
+			setErrorAncho(ERROR_ANCHO);
+		}
 	}
 
 	public Double getAlto() {
 		return alto;
 	}
 
+	public void setAlto(String alto) {
+		if (alto == null || alto.trim().length() == 0) {
+			this.alto = null;
+			return;
+		}
+
+		try {
+			setAlto(Double.parseDouble(alto));
+		} catch (NumberFormatException e) {
+			setErrorAlto(ERROR_ALTO);
+		}
+	}
+
 	public void setAlto(Double alto) {
 		this.alto = alto;
+
+		if(alto == null) {
+			return;
+		}
+		
+		if (this.alto <= 0) {
+			setErrorAlto(ERROR_ALTO);
+		}
+	}
+
+	public boolean isCorrecto() {
+		return correcto;
+	}
+
+	public void setCorrecto(boolean correcto) {
+		this.correcto = correcto;
+	}
+
+	public String getErrorId() {
+		return errorId;
+	}
+
+	public void setErrorId(String errorId) {
+		correcto = false;
+		this.errorId = errorId;
+	}
+
+	public String getErrorNombre() {
+		return errorNombre;
+	}
+
+	public void setErrorNombre(String errorNombre) {
+		correcto = false;
+		this.errorNombre = errorNombre;
+	}
+
+	public String getErrorLargo() {
+		return errorLargo;
+	}
+
+	public void setErrorLargo(String errorLargo) {
+		correcto = false;
+		this.errorLargo = errorLargo;
+	}
+
+	public String getErrorAncho() {
+		return errorAncho;
+	}
+
+	public void setErrorAncho(String errorAncho) {
+		correcto = false;
+		this.errorAncho = errorAncho;
+	}
+
+	public String getErrorAlto() {
+		return errorAlto;
+	}
+
+	public void setErrorAlto(String errorAlto) {
+		correcto = false;
+		this.errorAlto = errorAlto;
 	}
 
 	@Override
