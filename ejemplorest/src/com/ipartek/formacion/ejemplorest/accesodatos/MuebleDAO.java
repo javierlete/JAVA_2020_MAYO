@@ -23,6 +23,14 @@ public class MuebleDAO {
 	private static final String SQL_UPDATE = "UPDATE muebles SET nombre = ?, largo = ?, ancho = ?, alto = ? WHERE id = ?";
 	private static final String SQL_DELETE = "DELETE FROM muebles WHERE id = ?";
 
+	static {
+		try {
+			Class.forName("com.mysql.cj.jdbc.Driver");
+		} catch (ClassNotFoundException e) {
+			throw new AccesoDatosException("No se ha encontrado el driver");
+		}
+	}
+	
 	public static ArrayList<Mueble> obtenerTodos() {
 		try(Connection con = DriverManager.getConnection(URL, usuario, password)) {
 			try(Statement st = con.createStatement()) {
