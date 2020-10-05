@@ -1,6 +1,8 @@
 package com.ipartek.formacion.ejemplorest.apirest;
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.logging.Logger;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -14,6 +16,7 @@ import com.ipartek.formacion.ejemplorest.modelos.Mueble;
 
 @WebServlet("/api/muebles")
 public class MuebleServlet extends HttpServlet {
+	private static final Logger log = Logger.getLogger("REST_MUEBLES");
 
 	private static final long serialVersionUID = 1L;
 
@@ -27,10 +30,23 @@ public class MuebleServlet extends HttpServlet {
 		
 		String id = request.getParameter("id");
 
+		log.info("id = " + id); //log.log(Level.INFO, "id = " + id);
+		
 		if (id == null) {
-			response.getWriter().println(gson.toJson(MuebleDAO.obtenerTodos()));
+			ArrayList<Mueble> muebles = MuebleDAO.obtenerTodos();
+			
+			log.info(muebles.toString());
+			
+			String jsonMuebles = gson.toJson(muebles);
+			
+			response.getWriter().println(jsonMuebles);
 		} else {
-			response.getWriter().println(gson.toJson(MuebleDAO.obtenerPorId(Long.parseLong(id))));
+			Mueble mueble = MuebleDAO.obtenerPorId(Long.parseLong(id));
+			
+			log.info(mueble != null ? mueble.toString() : "No se ha encontrado el mueble");
+			
+			String jsonMueble = gson.toJson(mueble);
+			response.getWriter().println(jsonMueble);
 		}
 	}
 
@@ -39,14 +55,16 @@ public class MuebleServlet extends HttpServlet {
 			throws ServletException, IOException {
 		request.setCharacterEncoding("UTF-8");
 		
-		MuebleDAO.insertar(gson.fromJson(request.getReader(), Mueble.class));
+		Mueble mueble = gson.fromJson(request.getReader(), Mueble.class);
+		MuebleDAO.insertar(mueble);
 	}
 
 	@Override
 	protected void doPut(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		request.setCharacterEncoding("UTF-8");
 		
-		MuebleDAO.modificar(gson.fromJson(request.getReader(), Mueble.class));
+		Mueble mueble = gson.fromJson(request.getReader(), Mueble.class);
+		MuebleDAO.modificar(mueble);
 	}
 
 	@Override
