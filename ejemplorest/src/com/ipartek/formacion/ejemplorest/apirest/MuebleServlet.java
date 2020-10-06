@@ -30,7 +30,7 @@ public class MuebleServlet extends HttpServlet {
 		response.setContentType("application/json");
 		response.setCharacterEncoding("UTF-8");
 		
-		String id = obtenerId(request);
+		String id = obtenerId(request); // /api/muebles/3 -> 3   /api/muebles -> null
 
 		log.info("id = " + id); //log.log(Level.INFO, "id = " + id);
 		
@@ -40,7 +40,7 @@ public class MuebleServlet extends HttpServlet {
 			
 			log.info(muebles.toString());
 			
-			String jsonMuebles = gson.toJson(muebles);
+			String jsonMuebles = gson.toJson(muebles); // Objeto JAVA -> JSON
 			
 			response.getWriter().println(jsonMuebles);
 		} else {
@@ -50,6 +50,7 @@ public class MuebleServlet extends HttpServlet {
 			log.info(mueble != null ? mueble.toString() : "No se ha encontrado el mueble");
 			
 			String jsonMueble = gson.toJson(mueble);
+			
 			response.getWriter().println(jsonMueble);
 		}
 	}
@@ -60,7 +61,8 @@ public class MuebleServlet extends HttpServlet {
 			throws ServletException, IOException {
 		request.setCharacterEncoding("UTF-8");
 		
-		Mueble mueble = gson.fromJson(request.getReader(), Mueble.class);
+		Mueble mueble = gson.fromJson(request.getReader(), Mueble.class); // JSON -> Objeto JAVA
+		
 		MuebleDAO.insertar(mueble);
 	}
 
@@ -70,6 +72,7 @@ public class MuebleServlet extends HttpServlet {
 		request.setCharacterEncoding("UTF-8");
 		
 		Mueble mueble = gson.fromJson(request.getReader(), Mueble.class);
+		
 		MuebleDAO.modificar(mueble);
 	}
 
