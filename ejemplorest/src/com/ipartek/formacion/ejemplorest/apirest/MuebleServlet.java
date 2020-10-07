@@ -3,6 +3,8 @@ package com.ipartek.formacion.ejemplorest.apirest;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.logging.Logger;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -56,11 +58,10 @@ public class MuebleServlet extends HttpServlet {
 				response.getWriter().println(jsonMueble);
 			} else {
 				log.info("No se ha encontrado el mueble");
-				
+
 				response.setStatus(HttpServletResponse.SC_NOT_FOUND); // 404
 			}
 
-			
 		}
 	}
 
@@ -73,7 +74,7 @@ public class MuebleServlet extends HttpServlet {
 		Mueble mueble = gson.fromJson(request.getReader(), Mueble.class); // JSON -> Objeto JAVA
 
 		MuebleDAO.insertar(mueble);
-		
+
 		response.setStatus(HttpServletResponse.SC_CREATED); // 201
 	}
 
@@ -99,18 +100,42 @@ public class MuebleServlet extends HttpServlet {
 		response.setStatus(HttpServletResponse.SC_NO_CONTENT); // 204
 	}
 
-	// Extraer del pathInfo el id, si no se encuentra null
+	// Patrón que se corresponde con /numero/texto y separa el número del texto y de las barras
+	private static final Pattern p = Pattern.compile("^/(\\d+)/?(.*)$");
+
+	// Devuelve el id pasado por URL, y si no hay, null P.e.: /api/muebles/5 -> 5
 	private String obtenerId(HttpServletRequest request) {
+		return buscarDatoUrl(request, 1);
+	}
+
+	// Devuelve la subruta detrás del id P.e.: /api/muebles/5/resenas -> resenas
+	private String obtenerSubPath(HttpServletRequest request) {
+		String subPath = buscarDatoUrl(request, 2);
+		return subPath != null && subPath.trim().length() > 0 ? subPath : null;
+	}
+
+	private String buscarDatoUrl(HttpServletRequest request, int posicion) {
 		String id = null;
 
-		String pathInfo = request.getPathInfo();
+		if (request.getPathInfo() != null) {
+			Matcher m = p.matcher(request.getPathInfo());
 
-		log.info(pathInfo);
-
-		if (pathInfo != null && pathInfo.trim().length() != 0) {
-			id = pathInfo.substring(1);
+			if (m.find()) {
+				id = m.group(posicion);
+			}
 		}
-
+		
 		return id;
 	}
+
+	// Usamos OPTIONS en este caso para poder probar cosas desde Insomnia
+	@Override
+	protected void doOptions(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
+
+		response.getWriter().println(obtenerId(request));
+
+		response.getWriter().println(obtenerSubPath(request));
+	}
+
 }
