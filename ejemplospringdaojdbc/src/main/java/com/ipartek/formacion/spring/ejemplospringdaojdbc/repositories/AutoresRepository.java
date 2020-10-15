@@ -8,8 +8,8 @@ import org.springframework.stereotype.Repository;
 
 import com.ipartek.formacion.spring.ejemplospringdaojdbc.entities.Autor;
 
-@Repository
-public class AutoresRepository {
+//@Repository
+public class AutoresRepository implements Repositorio<Autor> {
 
 	@Autowired
 	JdbcTemplate jdbc;
@@ -32,7 +32,7 @@ public class AutoresRepository {
 		jdbc.update("INSERT INTO autores (nombre, apellidos) VALUES (?, ?)", 
 				new Object[] { autor.getNombre(), autor.getApellidos() });
 	}
-	
+
 	public void update(Autor autor) {
 		jdbc.update("UPDATE autores SET nombre = ?, apellidos = ? WHERE id = ?", 
 				new Object[] { autor.getNombre(), autor.getApellidos(), autor.getId() });

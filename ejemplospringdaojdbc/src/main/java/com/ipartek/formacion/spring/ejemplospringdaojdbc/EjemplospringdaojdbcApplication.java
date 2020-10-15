@@ -6,7 +6,7 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 import com.ipartek.formacion.spring.ejemplospringdaojdbc.entities.Autor;
-import com.ipartek.formacion.spring.ejemplospringdaojdbc.repositories.AutoresRepository;
+import com.ipartek.formacion.spring.ejemplospringdaojdbc.repositories.Repositorio;
 
 @SpringBootApplication
 public class EjemplospringdaojdbcApplication implements CommandLineRunner {
@@ -16,7 +16,7 @@ public class EjemplospringdaojdbcApplication implements CommandLineRunner {
 	}
 	
 	@Autowired
-	AutoresRepository autoresRepository;
+	Repositorio<Autor> autoresRepository;
 	
 	@Override
 	public void run(String... args) throws Exception {
@@ -28,7 +28,7 @@ public class EjemplospringdaojdbcApplication implements CommandLineRunner {
 		
 		listado();
 		
-		Autor autor = autoresRepository.getById(7L);
+		Autor autor = autoresRepository.getById(3L);
 		
 		autor.setNombre("Modificado");
 		autor.setApellidos("Modificadez");
@@ -37,7 +37,7 @@ public class EjemplospringdaojdbcApplication implements CommandLineRunner {
 		
 		listado();
 		
-		autoresRepository.delete(7L);
+		autoresRepository.delete(3L);
 		
 		listado();
 	}
