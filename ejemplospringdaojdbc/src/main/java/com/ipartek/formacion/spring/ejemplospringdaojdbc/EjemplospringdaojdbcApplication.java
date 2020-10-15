@@ -1,7 +1,5 @@
 package com.ipartek.formacion.spring.ejemplospringdaojdbc;
 
-import java.util.List;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
@@ -22,9 +20,30 @@ public class EjemplospringdaojdbcApplication implements CommandLineRunner {
 	
 	@Override
 	public void run(String... args) throws Exception {
-		List<Autor> autores = autoresRepository.getAll();
+		listado();
 		
-		for(Autor autor: autores) {
+		System.out.println(autoresRepository.getById(1L));
+		
+		autoresRepository.insert(new Autor(null, "Nuevo", "Nuevez"));
+		
+		listado();
+		
+		Autor autor = autoresRepository.getById(7L);
+		
+		autor.setNombre("Modificado");
+		autor.setApellidos("Modificadez");
+		
+		autoresRepository.update(autor);
+		
+		listado();
+		
+		autoresRepository.delete(7L);
+		
+		listado();
+	}
+
+	private void listado() {
+		for(Autor autor: autoresRepository.getAll()) {
 			System.out.println(autor);
 		}
 	}

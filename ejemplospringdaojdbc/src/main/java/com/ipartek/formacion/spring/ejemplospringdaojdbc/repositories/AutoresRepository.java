@@ -15,18 +15,30 @@ public class AutoresRepository {
 	JdbcTemplate jdbc;
 	
 	public List<Autor> getAll() {
-		// Java 8
 	    return jdbc.query(
 	        "SELECT id, nombre, apellidos FROM autores", new Object[] {},
 	        (rs, rowNum) -> new Autor(rs.getLong("id"), rs.getString("nombre"), rs.getString("apellidos"))
 	    );
-
-//		return jdbc.query("SELECT id, nombre, apellidos FROM autores",
-//				new Object[] {}, new RowMapper<Autor>() {
-//					@Override
-//					public Autor mapRow(ResultSet rs, int rowNum) throws SQLException {
-//						return new Autor(rs.getLong("id"), rs.getString("nombre"), rs.getString("apellidos");
-//					}
-//				});
+	}
+	
+	public Autor getById(Long id) {
+		return jdbc.queryForObject(
+		        "SELECT id, nombre, apellidos FROM autores WHERE id = ?", new Object[] { id },
+		        (rs, rowNum) -> new Autor(rs.getLong("id"), rs.getString("nombre"), rs.getString("apellidos"))
+		    );
+	}
+	
+	public void insert(Autor autor) {
+		jdbc.update("INSERT INTO autores (nombre, apellidos) VALUES (?, ?)", 
+				new Object[] { autor.getNombre(), autor.getApellidos() });
+	}
+	
+	public void update(Autor autor) {
+		jdbc.update("UPDATE autores SET nombre = ?, apellidos = ? WHERE id = ?", 
+				new Object[] { autor.getNombre(), autor.getApellidos(), autor.getId() });
+	}
+	
+	public void delete(Long id) {
+		jdbc.update("DELETE FROM autores WHERE id = ?", new Object[] { id });
 	}
 }
