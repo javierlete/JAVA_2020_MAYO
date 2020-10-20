@@ -1,0 +1,10 @@
+@charset "UTF-8";
+
+.error {
+	color: red;
+	font-weight: bold;
+}
+
+img.error {
+	width: 50px;
+}

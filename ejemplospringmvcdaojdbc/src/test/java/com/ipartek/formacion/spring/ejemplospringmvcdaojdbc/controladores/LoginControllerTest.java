@@ -5,6 +5,8 @@ import static org.assertj.core.api.Assertions.assertThat;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.ui.ExtendedModelMap;
+import org.springframework.ui.Model;
 
 import com.ipartek.formacion.spring.ejemplospringmvcdaojdbc.modelos.Usuario;
 
@@ -22,7 +24,10 @@ public class LoginControllerTest {
 	public void loginPost() {
 		Usuario usuarioOK = new Usuario(null, "javier@ipartek.com", "contra");
 		Usuario usuarioKO = new Usuario(null, "lakjsdlkfjasd@lkajshdlf.a", "lkajsdflk");
-		assertThat(login.loginPost(usuarioOK)).isEqualTo("index");
-		assertThat(login.loginPost(usuarioKO)).isEqualTo(null);
+		
+		Model modelo = new ExtendedModelMap();
+		
+		assertThat(login.loginPost(usuarioOK, modelo)).isEqualTo("index");
+		assertThat(login.loginPost(usuarioKO, modelo)).isEqualTo(null);
 	}
 }

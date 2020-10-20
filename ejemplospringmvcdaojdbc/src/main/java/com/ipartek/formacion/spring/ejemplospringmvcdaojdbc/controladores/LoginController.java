@@ -2,6 +2,7 @@ package com.ipartek.formacion.spring.ejemplospringmvcdaojdbc.controladores;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -23,7 +24,7 @@ public class LoginController {
 	}
 	
 	@PostMapping("/login")
-	public String loginPost(@ModelAttribute Usuario usuario) {
+	public String loginPost(@ModelAttribute Usuario usuario, Model modelo) {
 		log.info(usuario.toString());
 		
 		Usuario usuarioBD = repo.getByEmail(usuario.getEmail());
@@ -31,6 +32,9 @@ public class LoginController {
 		if(usuarioBD != null && usuario.getPassword().equals(usuarioBD.getPassword())) {
 			return "index";
 		}
+		
+		modelo.addAttribute("error", "El usuario y contraseña son incorrectos ❌");
+		modelo.addAttribute("errorimg", "/imgs/imagen.png");
 		
 		return null;
 	}

@@ -4,7 +4,13 @@
 <meta charset="UTF-8">
 <title>Login</title>
 </head>
+
+<link rel="stylesheet" href="/css/estilos.css" />
+
 <body>
+
+<p class="error" th:text="${error}" />
+<img class="error" th:src="${errorimg}" />
 
 <form action="login" method="post" th:object="${usuario}">
 	<div>
