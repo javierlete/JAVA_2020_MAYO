@@ -12,8 +12,8 @@ import com.ipartek.formacion.spring.ejemplospringmvcdaojdbc.repositorios.Usuario
 
 import lombok.extern.slf4j.Slf4j;
 
-@Controller
-@Slf4j
+@Controller // Spring entiende esta anotación como que cuando arranque su servlet front controller utilizará
+@Slf4j // Lombok crea una variable estática log con ese nombre a nivel de esta clase
 public class LoginController {
 	@Autowired
 	UsuarioRepository repo;
