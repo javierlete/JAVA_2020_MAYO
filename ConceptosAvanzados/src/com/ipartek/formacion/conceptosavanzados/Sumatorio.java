@@ -24,6 +24,7 @@ public class Sumatorio {
 		System.out.println(sumatorio());
 	}
 	
+	// Java 5
 	private static double sumatorio(double... datos) { //double[] datos
 		double total = 0;
 		

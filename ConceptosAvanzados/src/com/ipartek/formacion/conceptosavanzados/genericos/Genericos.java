@@ -3,6 +3,7 @@ package com.ipartek.formacion.conceptosavanzados.genericos;
 import java.math.BigDecimal;
 import java.math.BigInteger;
 
+//Java 5
 public class Genericos {
 	public static void main(String[] args) {
 		Punto punto = new Punto(5, 6);
