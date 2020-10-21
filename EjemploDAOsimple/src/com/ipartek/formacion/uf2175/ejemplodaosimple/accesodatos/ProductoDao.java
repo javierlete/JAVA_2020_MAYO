@@ -6,14 +6,14 @@ import java.util.ArrayList;
 import com.ipartek.formacion.uf2175.ejemplodaosimple.modelos.Producto;
 
 public class ProductoDao {
-	private final static String url = "jdbc:mysql://localhost:3306/tiendavirtual?serverTimezone=UTC";
-	private final static String usuario = "debian-sys-maint";
-	private final static String password = "o8lAkaNtX91xMUcV";
+	private final static String URL = "jdbc:mysql://localhost:3306/tiendavirtual?serverTimezone=UTC";
+	private final static String USUARIO = "debian-sys-maint";
+	private final static String PASSWORD = "o8lAkaNtX91xMUcV";
 	
 	private static Connection conectar() throws SQLException, ClassNotFoundException {
 		Class.forName("com.mysql.cj.jdbc.Driver");
 		//new com.mysql.cj.jdbc.Driver();
-		return DriverManager.getConnection(url, usuario, password);
+		return DriverManager.getConnection(URL, USUARIO, PASSWORD);
 	}
 	
 	public static ArrayList<Producto> obtenerTodos() throws SQLException, ClassNotFoundException {

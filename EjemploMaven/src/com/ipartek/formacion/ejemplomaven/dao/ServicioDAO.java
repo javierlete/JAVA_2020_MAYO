@@ -13,15 +13,15 @@ import com.ipartek.formacion.ejemplomaven.modelo.Servicio;
 
 public class ServicioDAO {
 	private static final String URL = "jdbc:mysql://localhost:3306/ejemplomaven?serverTimezone=UTC";
-	private static final String usuario = "debian-sys-maint";
-	private static final String password = "o8lAkaNtX91xMUcV";
+	private static final String USUARIO = "debian-sys-maint";
+	private static final String PASSWORD = "o8lAkaNtX91xMUcV";
 	private static final String SQL_SELECT = "SELECT * FROM servicios";
 
 	public static ArrayList<Servicio> obtenerTodos() {
 		try {
 			Class.forName("com.mysql.cj.jdbc.Driver");
 			
-			try (Connection con = DriverManager.getConnection(URL, usuario, password)) {
+			try (Connection con = DriverManager.getConnection(URL, USUARIO, PASSWORD)) {
 				try(Statement st = con.createStatement()){
 					try(ResultSet rs = st.executeQuery(SQL_SELECT)) {
 						ArrayList<Servicio> servicios = new ArrayList<>();
