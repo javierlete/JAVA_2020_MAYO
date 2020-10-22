@@ -10,6 +10,7 @@ import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
 import org.springframework.stereotype.Repository;
 
+import com.ipartek.formacion.spring.ejemplospringmvcdaojdbc.criptografia.AlgoritmosHash;
 import com.ipartek.formacion.spring.ejemplospringmvcdaojdbc.modelos.Usuario;
 
 @Repository
@@ -74,5 +75,10 @@ public class UsuarioRepository {
 			
 			return new Usuario(rs.getLong("id"), rs.getString("email"), rs.getString("password"));
 		}
+	}
+
+	public void insert(Usuario usuario) {
+		jdbc.update("INSERT INTO usuarios (email, password) VALUES (?, ?)",
+				usuario.getEmail(), AlgoritmosHash.sha512(usuario.getPassword()));
 	}
 }
