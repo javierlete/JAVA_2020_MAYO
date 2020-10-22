@@ -5,8 +5,11 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 
+import com.ipartek.formacion.spring.ejemplospringmvcdaojdbc.criptografia.AlgoritmosHash;
 import com.ipartek.formacion.spring.ejemplospringmvcdaojdbc.modelos.Usuario;
 import com.ipartek.formacion.spring.ejemplospringmvcdaojdbc.repositorios.UsuarioRepository;
 
@@ -17,6 +20,12 @@ import lombok.extern.slf4j.Slf4j;
 public class LoginController {
 	@Autowired
 	UsuarioRepository repo;
+	
+	@RequestMapping({"/sha512/{dato}", "/sha512"})
+	public String prueba(Model modelo, @PathVariable(required = false) String dato) {
+		modelo.addAttribute("dato", dato != null ? AlgoritmosHash.sha512(dato) : "Pasa por URL como path extra el dato que quieres convertir");
+		return "sha512";
+	}
 	
 	@GetMapping("/login")
 	public String loginGet(@ModelAttribute Usuario usuario) {
