@@ -38,7 +38,7 @@ public class LoginController {
 		
 		Usuario usuarioBD = repo.getByEmail(usuario.getEmail());
 		
-		if(usuarioBD != null && usuario.getPassword().equals(usuarioBD.getPassword())) {
+		if(usuarioBD != null && AlgoritmosHash.sha512(usuario.getPassword()).equals(usuarioBD.getPassword())) {
 			return "index";
 		}
 		
