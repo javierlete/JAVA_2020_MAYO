@@ -9,14 +9,13 @@ import org.springframework.security.config.annotation.authentication.builders.Au
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
-import org.springframework.security.core.userdetails.User;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
 @Configuration
 @EnableWebSecurity
 public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
-
+// https://www.baeldung.com/spring-security-jdbc-authentication
 	@Autowired
 	private DataSource dataSource;
 	
@@ -25,10 +24,12 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 	  throws Exception {
 	    auth.jdbcAuthentication()
 	      .dataSource(dataSource)
-	      .withDefaultSchema()
-	      .withUser(User.withUsername("user")
-	        .password(passwordEncoder().encode("pass"))
-	        .roles("USER"));
+	      .usersByUsernameQuery("select email,password,1 "
+	    	        + "from usuarios "
+	    	        + "where email = ?")
+	    	      .authoritiesByUsernameQuery("select email,rol "
+	    	        + "from usuarios "
+	    	        + "where email = ?");
 	}
 	
 	@Bean
@@ -40,7 +41,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 	protected void configure(HttpSecurity http) throws Exception {
 		http
 		.authorizeRequests()
-			.antMatchers("/", "/home","/h2-console/**")
+			.antMatchers("/", "/home")
 			.permitAll()
 			.anyRequest()
 			.authenticated()
@@ -51,11 +52,6 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 			.and()
 		.logout()
 			.permitAll();
-		
-		http.csrf().ignoringAntMatchers("/h2-consola/**");
-		http.headers()
-        .frameOptions()
-        .sameOrigin();
 	}
 
 }
