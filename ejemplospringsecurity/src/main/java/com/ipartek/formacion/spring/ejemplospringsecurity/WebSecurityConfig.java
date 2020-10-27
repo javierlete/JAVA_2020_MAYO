@@ -51,7 +51,10 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 			.permitAll()
 			.and()
 		.logout()
-			.permitAll();
+			.permitAll()
+			.and()
+		.exceptionHandling()
+			.accessDeniedPage("/login?mensaje=No tienes los privilegios necesarios");
 	}
 
 }

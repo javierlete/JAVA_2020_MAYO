@@ -5,6 +5,7 @@
         <title>Spring Security Example </title>
     </head>
     <body>
+    	<div th:if="${param.mensaje}" th:text="${param.mensaje}"></div>
         <div th:if="${param.error}">
             Usuario o contraseña inválidos
         </div>
