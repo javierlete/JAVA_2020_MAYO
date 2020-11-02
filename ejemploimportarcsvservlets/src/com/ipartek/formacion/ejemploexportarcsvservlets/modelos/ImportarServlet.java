@@ -21,21 +21,24 @@ import javax.servlet.http.Part;
 @WebServlet("/csv")
 @MultipartConfig // Necesario para recibir contenido de un enctype="multipart/form-data"
 public class ImportarServlet extends HttpServlet {
+	private static final boolean NO_AUTO_COMMIT = false;
+
 	private static final long serialVersionUID = 1L;
-       
+
 	private static final String URL = "jdbc:mysql://localhost:3306/gestiondocente";
 	private static final String USUARIO = "debian-sys-maint";
 	private static final String PASSWORD = "o8lAkaNtX91xMUcV";
 
-	private static final String SQL = "INSERT INTO alumno (codigo, nombre, apellidos, email, telefono, dni) VALUES (?,?,?,?,?,?)";
-	
+	private static final String SQL_INSERT = "INSERT INTO alumno (codigo, nombre, apellidos, email, telefono, dni) VALUES (?,?,?,?,?,?)";
+
 //	https://stackoverflow.com/questions/2422468/how-to-upload-files-to-server-using-jsp-servlet
-	
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+
+	protected void doPost(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
 		Part filePart = request.getPart("ficherocsv"); // Retrieves <input type="file" name="file">
 //	    String fichero = Paths.get(filePart.getSubmittedFileName()).getFileName().toString(); // MSIE fix.
-	    InputStream contenido = filePart.getInputStream();
-	    
+		InputStream contenido = filePart.getInputStream();
+
 //	    byte[] buffer = new byte[contenido.available()];
 //	    contenido.read(buffer);
 //	 
@@ -43,56 +46,64 @@ public class ImportarServlet extends HttpServlet {
 //	    try (OutputStream outStream = new FileOutputStream(targetFile)) {
 //			outStream.write(buffer);
 //		}
-	    
+
 //	    PrintWriter out = response.getWriter();
 //		out.println(fichero);
-	    
+
 		Alumno alumno;
-		
+
 		List<Alumno> alumnos = new ArrayList<>();
-		
-	    try (Scanner s = new Scanner(contenido)) {
-	    	s.nextLine();
-	    	
+
+		try (Scanner s = new Scanner(contenido)) {
+			s.nextLine();
+
 			String linea;
-			while(s.hasNext()) {
+			while (s.hasNext()) {
 				linea = s.nextLine();
 //				out.println(linea);
-				
+
 				String[] datos = linea.split(";");
-				
+
 				alumno = new Alumno();
-				
+
 				alumno.setCodigo(Long.parseLong(datos[0]));
 				alumno.setNombre(datos[1].replaceAll("\"", ""));
 				alumno.setApellidos(datos[2].replaceAll("\"", ""));
 				alumno.setEmail(datos[3].replaceAll("\"", ""));
 
 //				out.println(alumno);
-				
+
 				alumnos.add(alumno);
 			}
 		}
-	    
-	    try {
+
+		try {
 			Class.forName("com.mysql.cj.jdbc.Driver");
 		} catch (ClassNotFoundException e) {
 			throw new ServletException(e);
 		}
-	    
-	    try(Connection con = DriverManager.getConnection(URL, USUARIO, PASSWORD);
-				PreparedStatement ps = con.prepareStatement(SQL);) {
-			
-			for(Alumno a: alumnos) {
-				ps.setObject(1, null);
-				//ps.setLong(1, a.getCodigo());
-				ps.setString(2,  a.getNombre());
-				ps.setString(3, a.getApellidos());
-				ps.setString(4, a.getEmail());
-				ps.setLong(5, 0L);
-				ps.setString(6, a.getCodigo().toString());
-				
-				ps.executeUpdate();
+
+		try (Connection con = DriverManager.getConnection(URL, USUARIO, PASSWORD)) {
+			try (PreparedStatement ps = con.prepareStatement(SQL_INSERT)) {
+
+				con.setAutoCommit(NO_AUTO_COMMIT); // Inicia la transacción
+
+				for (Alumno a : alumnos) {
+					ps.setObject(1, null);
+					// ps.setLong(1, a.getCodigo());
+					ps.setString(2, a.getNombre());
+					ps.setString(3, a.getApellidos());
+					ps.setString(4, a.getEmail());
+					ps.setLong(5, 0L);
+					ps.setString(6, a.getCodigo().toString());
+
+					ps.executeUpdate();
+				}
+
+				con.commit(); // Confirma la transacción
+			} catch (SQLException e) {
+				con.rollback(); // Deshace la transacción
+				throw new ServletException(e);
 			}
 		} catch (SQLException e) {
 			throw new ServletException(e);
