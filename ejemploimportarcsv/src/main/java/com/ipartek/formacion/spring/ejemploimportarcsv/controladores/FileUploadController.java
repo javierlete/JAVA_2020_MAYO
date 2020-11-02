@@ -14,7 +14,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
-import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.ipartek.formacion.spring.ejemploimportarcsv.modelos.Alumno;
 
@@ -23,32 +22,31 @@ import com.ipartek.formacion.spring.ejemploimportarcsv.modelos.Alumno;
 public class FileUploadController {
 	@Autowired
 	private JdbcTemplate jdbc;
-	
+
 	@GetMapping()
 	public String index() {
 		return "index";
 	}
-	
+
 	@PostMapping()
 	@ResponseBody
-	public String handleFileUpload(@RequestParam("file") MultipartFile file,
-			RedirectAttributes redirectAttributes) throws IOException {
+	public String handleFileUpload(@RequestParam("ficherocsv") MultipartFile file) throws IOException {
 		try (Scanner s = new Scanner(file.getInputStream())) {
 			StringBuffer sb = new StringBuffer();
-			
+
 			Alumno alumno;
-			
+
 			List<Alumno> alumnos = new ArrayList<>();
-			
+
 			String linea;
-			
+
 			s.nextLine();
-			
-			while(s.hasNext()) {
+
+			while (s.hasNext()) {
 				linea = s.nextLine();
-				
+
 				sb.append(linea).append("<br />");
-				
+
 				String[] datos = linea.split(";");
 
 				alumno = new Alumno();
@@ -65,12 +63,13 @@ public class FileUploadController {
 				jdbc.update("INSERT INTO alumno (codigo, nombre, apellidos, email, telefono, dni) VALUES (?,?,?,?,?,?)",
 						null, a.getNombre(), a.getApellidos(), a.getEmail(), 0L, a.getCodigo().toString());
 			}
-			
-			//jdbc.batchUpdate("INSERT INTO alumno (codigo, nombre, apellidos, email, telefono, dni) VALUES (?,?,?,?,?,?)", alumnos);
+
+			// jdbc.batchUpdate("INSERT INTO alumno (codigo, nombre, apellidos, email,
+			// telefono, dni) VALUES (?,?,?,?,?,?)", alumnos);
 
 //		redirectAttributes.addFlashAttribute("message",
 //				"You successfully uploaded " + file.getOriginalFilename() + "!");
-			
+
 			return sb.toString();
 		}
 	}
