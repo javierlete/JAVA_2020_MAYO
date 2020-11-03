@@ -1,11 +1,14 @@
 package com.ipartek.formacion.spring.ejemploimportarcsv.controladores;
 
 import java.io.IOException;
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.jdbc.core.BatchPreparedStatementSetter;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Controller;
 import org.springframework.transaction.annotation.Transactional;
@@ -61,13 +64,29 @@ public class FileUploadController {
 				alumnos.add(alumno);
 			}
 
-			for (Alumno a : alumnos) {
-				jdbc.update("INSERT INTO alumno (codigo, nombre, apellidos, email, telefono, dni) VALUES (?,?,?,?,?,?)",
-						null, a.getNombre(), a.getApellidos(), a.getEmail(), 0L, a.getCodigo().toString());
-			}
+//			for (Alumno a : alumnos) {
+//				jdbc.update("INSERT INTO alumno (codigo, nombre, apellidos, email, telefono, dni) VALUES (?,?,?,?,?,?)",
+//						null, a.getNombre(), a.getApellidos(), a.getEmail(), 0L, a.getCodigo().toString());
+//			}
 
-			// jdbc.batchUpdate("INSERT INTO alumno (codigo, nombre, apellidos, email,
-			// telefono, dni) VALUES (?,?,?,?,?,?)", alumnos);
+			 jdbc.batchUpdate("INSERT INTO alumno (codigo, nombre, apellidos, email, telefono, dni) VALUES (?,?,?,?,?,?)", 
+					 new BatchPreparedStatementSetter() {
+
+						@Override
+						public void setValues(PreparedStatement ps, int i) throws SQLException {
+							//ps.setLong(1, alumnos.get(i).getCodigo());
+							ps.setObject(1, null);
+							ps.setString(2, alumnos.get(i).getNombre());
+							ps.setString(3, alumnos.get(i).getApellidos());
+							ps.setString(4, alumnos.get(i).getEmail());
+							ps.setLong(5, 0L);
+							ps.setString(6, alumnos.get(i).getCodigo().toString());
+						}
+
+						@Override
+						public int getBatchSize() {
+							return alumnos.size();
+						}});
 
 //		redirectAttributes.addFlashAttribute("message",
 //				"You successfully uploaded " + file.getOriginalFilename() + "!");
