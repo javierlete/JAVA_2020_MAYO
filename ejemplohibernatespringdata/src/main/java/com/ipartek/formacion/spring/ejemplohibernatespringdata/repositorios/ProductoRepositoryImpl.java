@@ -25,16 +25,20 @@ public class ProductoRepositoryImpl implements ProductoRepository {
 
 	@Override
 	public <S extends Producto> S save(S entity) {
-		Long id = productos.size() > 0 ? productos.lastKey() + 1L : 0L;
-		entity.setId(id);
-		productos.put(id, entity);
+		if (entity.getId() == null) {
+			Long id = productos.size() > 0 ? productos.lastKey() + 1L : 0L;
+			entity.setId(id);
+		}
+		
+		productos.put(entity.getId(), entity);
+		
 		return entity;
 	}
 
 	@Override
 	public <S extends Producto> Iterable<S> saveAll(Iterable<S> entities) {
 		for (Producto producto : entities) {
-			productos.put(producto.getId(), producto);
+			save(producto);
 		}
 		return entities;
 	}
@@ -96,8 +100,8 @@ public class ProductoRepositoryImpl implements ProductoRepository {
 	public List<Producto> findByNombre(String nombre) {
 		ArrayList<Producto> respuesta = new ArrayList<>();
 
-		for (Producto producto: productos.values()) {
-			if(producto.getNombre().equals(nombre)) {
+		for (Producto producto : productos.values()) {
+			if (producto.getNombre().equals(nombre)) {
 				respuesta.add(producto);
 			}
 		}
@@ -109,8 +113,8 @@ public class ProductoRepositoryImpl implements ProductoRepository {
 	public List<Producto> findByPrecioBetween(BigDecimal desde, BigDecimal hasta) {
 		ArrayList<Producto> respuesta = new ArrayList<>();
 
-		for (Producto producto: productos.values()) {
-			if(producto.getPrecio().compareTo(desde) > 0 && producto.getPrecio().compareTo(hasta) < 0) {
+		for (Producto producto : productos.values()) {
+			if (producto.getPrecio().compareTo(desde) > 0 && producto.getPrecio().compareTo(hasta) < 0) {
 				respuesta.add(producto);
 			}
 		}
@@ -122,8 +126,8 @@ public class ProductoRepositoryImpl implements ProductoRepository {
 	public List<Producto> findByNombreIgualPrecio() {
 		ArrayList<Producto> respuesta = new ArrayList<>();
 
-		for (Producto producto: productos.values()) {
-			if(producto.getNombre().equals(producto.getPrecio().toString())) {
+		for (Producto producto : productos.values()) {
+			if (producto.getNombre().equals(producto.getPrecio().toString())) {
 				respuesta.add(producto);
 			}
 		}
