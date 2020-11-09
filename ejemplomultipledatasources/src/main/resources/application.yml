@@ -1,0 +1,24 @@
+spring:
+  datasource-write:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    jdbc-url: jdbc:mysql://localhost:3306/ejemplohibernatedestino
+    username: 'debian-sys-maint'
+    password: 'o8lAkaNtX91xMUcV'
+    platform: mysql
+    hikari:
+      idle-timeout: 10000
+      maximum-pool-size: 10
+      minimum-idle: 5
+      pool-name: WriteHikariPool
+
+  datasource-read:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    jdbc-url: jdbc:mysql://localhost:3306/ejemplohibernateorigen
+    username: 'debian-sys-maint'
+    password: 'o8lAkaNtX91xMUcV'
+    platform: mysql
+    hikari:
+      idle-timeout: 10000
+      maximum-pool-size: 10
+      minimum-idle: 5
+      pool-name: ReadHikariPool
