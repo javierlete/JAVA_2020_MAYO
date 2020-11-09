@@ -1,3 +1,6 @@
+#https://dzone.com/articles/spring-boot-2-with-multiple-datasources
+#https://github.com/ehsaniara/spring-boot-multi-data-source
+
 spring:
   datasource-write:
     driver-class-name: com.mysql.cj.jdbc.Driver
