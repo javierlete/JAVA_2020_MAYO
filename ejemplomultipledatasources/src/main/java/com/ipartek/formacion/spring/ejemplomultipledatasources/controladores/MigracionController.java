@@ -3,6 +3,7 @@ package com.ipartek.formacion.spring.ejemplomultipledatasources.controladores;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
 import com.ipartek.formacion.spring.ejemplomultipledatasources.modelos.Producto;
@@ -27,5 +28,10 @@ public class MigracionController {
 		exportacion.saveAll(productos);
 		
 		return "index";
+	}
+	
+	@GetMapping("/{ruta}")
+	public String generico(@PathVariable("ruta") String ruta) {
+		return ruta;
 	}
 }
