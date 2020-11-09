@@ -1,5 +1,7 @@
 package com.ipartek.formacion.spring.ejemplomultipledatasources.configuraciones;
 
+import java.util.Properties;
+
 import javax.persistence.EntityManagerFactory;
 
 import org.hibernate.jpa.HibernatePersistenceProvider;
@@ -42,7 +44,16 @@ public class DataSourceConfigWrite extends HikariConfig {
             setPersistenceProviderClass(HibernatePersistenceProvider.class);
             setPersistenceUnitName(PERSISTENCE_UNIT_NAME);
             setPackagesToScan(EjemplomultipledatasourcesApplication.MODEL_PACKAGE);
-            setJpaProperties(EjemplomultipledatasourcesApplication.JPA_PROPERTIES);
+            setJpaProperties(new Properties() {
+        		private static final long serialVersionUID = -7687270585872239808L;
+
+        		{
+        			put("hibernate.dialect", "org.hibernate.dialect.MySQL57InnoDBDialect");
+        			put("hibernate.hbm2ddl.auto", "create");
+        			put("hibernate.ddl-auto", "create");
+        			put("show-sql", "true");
+        		}
+        	});
         }};
     }
 
