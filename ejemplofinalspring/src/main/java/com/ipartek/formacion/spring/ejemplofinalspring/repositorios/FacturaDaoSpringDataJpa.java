@@ -6,7 +6,7 @@ import org.springframework.stereotype.Repository;
 import com.ipartek.formacion.spring.ejemplofinalspring.entidades.Factura;
 
 @Repository
-public class FacturaDaoSpringDataJpa implements Dao<Factura>{
+public class FacturaDaoSpringDataJpa implements FacturaDao {
 
 	@Autowired
 	private FacturaRepository repo;
@@ -34,6 +34,11 @@ public class FacturaDaoSpringDataJpa implements Dao<Factura>{
 	@Override
 	public void borrar(Factura factura) {
 		repo.delete(factura);
+	}
+
+	@Override
+	public Iterable<Factura> buscarTodosProfundo() {
+		throw new RepositoriosException("buscarTodosProfundo no está implementado todavía");
 	}
 
 }
