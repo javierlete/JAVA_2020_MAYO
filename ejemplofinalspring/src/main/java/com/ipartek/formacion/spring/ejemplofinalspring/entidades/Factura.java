@@ -12,6 +12,8 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 
+import org.springframework.format.annotation.DateTimeFormat;
+
 import lombok.Data;
 
 @Entity
@@ -24,6 +26,7 @@ public class Factura {
 	@NotNull
 	private String numero;
 	@NotNull
+	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	private LocalDate fecha;
 	
 	@ManyToOne
