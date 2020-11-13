@@ -2,6 +2,7 @@ package com.ipartek.formacion.spring.ejemplofinalspring.presentacion.controlador
 
 import javax.validation.Valid;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -10,6 +11,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.ipartek.formacion.spring.ejemplofinalspring.entidades.Factura;
+import com.ipartek.formacion.spring.ejemplofinalspring.servicios.FacturaService;
 
 import lombok.extern.slf4j.Slf4j;
 
@@ -17,6 +19,9 @@ import lombok.extern.slf4j.Slf4j;
 @RequestMapping("/")
 @Slf4j
 public class FacturaController {
+	@Autowired
+	private FacturaService servicio;
+	
 	@GetMapping
 	public String get() {
 		return "index";
@@ -29,6 +34,8 @@ public class FacturaController {
 		if(bindingResult.hasErrors()) {
 			return "index";
 		}
+		
+		servicio.crearNuevaFactura(factura);
 		
 		return "facturalineas";
 	}

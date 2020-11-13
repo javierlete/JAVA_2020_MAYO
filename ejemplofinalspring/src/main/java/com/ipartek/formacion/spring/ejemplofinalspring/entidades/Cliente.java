@@ -29,7 +29,7 @@ public class Cliente {
 	private String apellidos;
 	@NotBlank
 	@Size(min = 9, max = 9)
-	@Column(columnDefinition = "CHAR(9)")
+	@Column(columnDefinition = "CHAR(9)", unique=true)
 	@Pattern(regexp = "[A-Z\\d]\\d{7}[A-Z\\d]", message = "El CIF del cliente debe tener un formato adecuado y es obligatorio. Por ejemplo: B12345678 ó X1234567A ó 12345678A")
 	private String cif;
 	

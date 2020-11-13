@@ -3,6 +3,7 @@ package com.ipartek.formacion.spring.ejemplofinalspring.entidades;
 import java.time.LocalDate;
 import java.util.Set;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -31,7 +32,7 @@ public class Factura {
 	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	private LocalDate fecha;
 	
-	@ManyToOne
+	@ManyToOne(cascade = { CascadeType.PERSIST, CascadeType.MERGE })
 	@NotNull
 	@Valid
 	private Cliente cliente;
