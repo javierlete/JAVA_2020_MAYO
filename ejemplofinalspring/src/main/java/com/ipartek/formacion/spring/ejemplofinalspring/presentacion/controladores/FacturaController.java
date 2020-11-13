@@ -4,9 +4,11 @@ import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
@@ -23,7 +25,7 @@ public class FacturaController {
 	private FacturaService servicio;
 	
 	@GetMapping
-	public String get() {
+	public String get(Factura factura) {
 		return "index";
 	}
 	
@@ -37,6 +39,13 @@ public class FacturaController {
 		
 		servicio.crearNuevaFactura(factura);
 		
-		return "facturalineas";
+		return "redirect:/factura/" + factura.getId();
+	}
+	
+	@GetMapping("/factura/{id}")
+	public String factura(@PathVariable Long id, Model modelo) {
+		modelo.addAttribute("factura", servicio.obtenerFacturaPorId(id));
+		
+		return "factura";
 	}
 }

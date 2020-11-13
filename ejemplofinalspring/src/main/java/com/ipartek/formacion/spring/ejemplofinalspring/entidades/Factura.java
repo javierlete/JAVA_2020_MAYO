@@ -37,6 +37,6 @@ public class Factura {
 	@Valid
 	private Cliente cliente;
 	
-	@OneToMany(mappedBy = "factura")
+	@OneToMany // (mappedBy = "factura")
 	private Set<LineaFactura> lineas;
 }

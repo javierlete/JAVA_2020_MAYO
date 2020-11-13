@@ -20,9 +20,9 @@ public class LineaFactura {
 	@NotNull
 	private Integer cantidad;
 	
-	@ManyToOne
-	@NotNull
-	private Factura factura;
+//	@ManyToOne
+//	@NotNull
+//	private Factura factura;
 	@ManyToOne
 	@NotNull
 	private Producto producto;

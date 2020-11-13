@@ -32,4 +32,13 @@ public class FacturaServiceImpl implements FacturaService {
 		
 		return facturas;
 	}
+
+	@Override
+	public Factura obtenerFacturaPorId(Long id) {
+		log.trace("Se va a obtener una factura por su id: " + id);
+		Factura factura = dao.buscarPorId(id);
+		log.trace("Se ha obtenido la factura");
+		
+		return factura;
+	}
 }
