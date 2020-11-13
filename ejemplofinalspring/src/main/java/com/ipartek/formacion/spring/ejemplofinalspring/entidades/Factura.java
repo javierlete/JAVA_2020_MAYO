@@ -10,6 +10,8 @@ import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import javax.validation.Valid;
+import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 
 import org.springframework.format.annotation.DateTimeFormat;
@@ -23,7 +25,7 @@ public class Factura {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
-	@NotNull
+	@NotBlank
 	private String numero;
 	@NotNull
 	@DateTimeFormat(pattern = "yyyy-MM-dd")
@@ -31,9 +33,9 @@ public class Factura {
 	
 	@ManyToOne
 	@NotNull
+	@Valid
 	private Cliente cliente;
 	
 	@OneToMany(mappedBy = "factura")
-	@NotNull
 	private Set<LineaFactura> lineas;
 }

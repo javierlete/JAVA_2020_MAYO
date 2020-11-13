@@ -17,7 +17,7 @@
 <body class="container">
 	<h1>Facturas</h1>
 
-	<form th:action="@{/}" method="post">
+	<form th:action="@{/}" th:object="${factura}" method="post">
 		<fieldset>
 			<legend>Datos factura</legend>
 
@@ -25,13 +25,25 @@
 				<label for="numero" class="col-sm-2 col-form-label">Numero
 					de factura</label>
 				<div class="col-sm-10">
-					<input type="text" class="form-control" id="numero" name="numero">
+					<input type="text" class="form-control"
+						th:classappend="${#fields.hasErrors('numero')} ? is-invalid : is-valid"
+						id="numero" th:field="*{numero}">
+					<div th:if="${#fields.hasErrors('numero')}"
+						class="invalid-feedback">
+						El número de factura <span th:errors="*{numero}"></span>
+					</div>
 				</div>
 			</div>
 			<div class="form-group row">
 				<label for="fecha" class="col-sm-2 col-form-label">Fecha</label>
 				<div class="col-sm-10">
-					<input type="date" class="form-control" id="fecha" name="fecha">
+					<input type="date" class="form-control" id="fecha"
+						th:classappend="${#fields.hasErrors('fecha')} ? is-invalid : is-valid"
+						th:field="*{fecha}"> 
+					<div th:if="${#fields.hasErrors('fecha')}"
+						class="invalid-feedback">
+						La fecha <span th:errors="*{fecha}"></span>
+					</div>
 				</div>
 			</div>
 		</fieldset>
@@ -40,21 +52,41 @@
 			<div class="form-group row">
 				<label for="cif" class="col-sm-2 col-form-label">CIF</label>
 				<div class="col-sm-10">
-					<input type="text" class="form-control" id="cif" name="cliente.cif">
+					<input type="text" class="form-control" id="cliente.cif"
+						th:classappend="${#fields.hasErrors('cliente.cif')} ? is-invalid : is-valid"
+						th:field="*{cliente.cif}"
+						placeholder="B12345678 ó X1234567A ó 12345678A"> 
+					<div th:if="${#fields.hasErrors('cliente.cif')}"
+						class="invalid-feedback">
+						El CIF del cliente debe tener un formato adecuado y es obligatorio. Por ejemplo: B12345678 ó X1234567A ó 12345678A
+					</div>
+
 				</div>
 			</div>
 			<div class="form-group row">
 				<label for="nombre" class="col-sm-2 col-form-label">Nombre</label>
 				<div class="col-sm-10">
-					<input type="text" class="form-control" id="nombre"
-						name="cliente.nombre">
+					<input type="text" class="form-control" id="cliente.nombre"
+						th:classappend="${#fields.hasErrors('cliente.nombre')} ? is-invalid : is-valid"
+						th:field="*{cliente.nombre}"> 
+					<div th:if="${#fields.hasErrors('cliente.nombre')}"
+						class="invalid-feedback">
+						El nombre del cliente <span th:errors="*{cliente.nombre}"></span>
+					</div>
+
 				</div>
 			</div>
 			<div class="form-group row">
 				<label for="apellidos" class="col-sm-2 col-form-label">Apellidos</label>
 				<div class="col-sm-10">
-					<input type="text" class="form-control" id="apellidos"
-						name="cliente.apellidos">
+					<input type="text" class="form-control" id="cliente.apellidos"
+						th:classappend="${#fields.hasErrors('cliente.apellidos')} ? is-invalid : is-valid"
+						th:field="*{cliente.apellidos}"> 
+					<div th:if="${#fields.hasErrors('cliente.apellidos')}"
+						class="invalid-feedback">
+						Los apellidos del cliente <span th:errors="*{cliente.apellidos}"></span>
+					</div>
+
 				</div>
 			</div>
 		</fieldset>

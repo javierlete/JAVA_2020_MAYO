@@ -1,11 +1,13 @@
 package com.ipartek.formacion.spring.ejemplofinalspring.presentacion.controladores;
 
+import javax.validation.Valid;
+
 import org.springframework.stereotype.Controller;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.ipartek.formacion.spring.ejemplofinalspring.entidades.Factura;
 
@@ -21,10 +23,13 @@ public class FacturaController {
 	}
 	
 	@PostMapping
-	@ResponseBody
-	public String post(@ModelAttribute Factura factura) {
+	public String post(@Valid @ModelAttribute Factura factura, BindingResult bindingResult) {
 		log.trace(factura.toString());
 		
-		return factura.toString();
+		if(bindingResult.hasErrors()) {
+			return "index";
+		}
+		
+		return "facturalineas";
 	}
 }
