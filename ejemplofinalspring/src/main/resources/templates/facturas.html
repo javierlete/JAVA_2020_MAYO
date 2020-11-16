@@ -19,12 +19,16 @@
 	<table class="table">
 		<thead>
 			<tr>
-				<th>Número</th><th>Fecha</th><th>Nombre de cliente</th>
+				<th>Número</th>
+				<th>Fecha</th>
+				<th>Nombre de cliente</th>
 			</tr>
 		</thead>
 		<tbody>
 			<tr th:each="factura : ${facturas}">
-				<th th:text="${factura.numero}"></th><td th:text="${factura.fecha}"></td><td th:text="${factura.cliente.nombreCompleto}"></td>
+				<th th:text="${factura.numero}"></th>
+				<td th:text="${factura.fecha}"></td>
+				<td th:text="${factura.cliente.nombreCompleto}"></td>
 			</tr>
 		</tbody>
 	</table>
