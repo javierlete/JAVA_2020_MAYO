@@ -15,9 +15,11 @@
 </head>
 <body class="container">
 
-	<form th:action="@{/}" th:object="${factura}" method="post">
+	<form th:action="@{/factura}" th:object="${factura}" method="post">
 		<fieldset>
 			<legend>Datos factura</legend>
+
+			<input type="hidden" th:field="*{id}" />
 
 			<div class="form-group row">
 				<label for="numero" class="col-sm-2 col-form-label">Numero
@@ -46,6 +48,9 @@
 		</fieldset>
 		<fieldset>
 			<legend>Cliente</legend>
+			
+			<input type="hidden" th:field="*{cliente.id}" />
+			
 			<div class="form-group row">
 				<label for="cif" class="col-sm-2 col-form-label">CIF</label>
 				<div class="col-sm-10">
@@ -90,7 +95,7 @@
 		<fieldset>
 			<div class="form-group row">
 				<div class="col-sm-10">
-					<button type="submit" class="btn btn-primary">Agregar
+					<button type="submit" class="btn btn-primary">Modificar
 						factura</button>
 				</div>
 			</div>

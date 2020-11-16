@@ -51,6 +51,21 @@ public class FacturaController {
 		return "factura";
 	}
 	
+	@PostMapping("/factura")
+	public String modificarFactura(@Valid @ModelAttribute Factura factura, BindingResult bindingResult) {
+		log.trace(factura.toString());
+		
+		if(bindingResult.hasErrors()) {
+			return "index";
+		}
+		
+		factura.setLineas(servicio.obtenerFacturaPorId(factura.getId()).getLineas());
+		
+		servicio.modificarFactura(factura);
+		
+		return "redirect:/factura/" + factura.getId();
+	}
+	
 	@PostMapping("/factura/agregarlinea")
 	public String agregarLinea(Long idFactura, LineaFactura lineaFactura) {
 		System.out.println("EN MI METODO AGREGAR LINEA");
