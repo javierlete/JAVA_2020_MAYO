@@ -40,4 +40,8 @@ public class Cliente {
 	
 	@OneToMany(mappedBy = "cliente")
 	private List<Factura> facturas;
+	
+	public String getNombreCompleto() {
+		return nombre + " " + apellidos;
+	}
 }

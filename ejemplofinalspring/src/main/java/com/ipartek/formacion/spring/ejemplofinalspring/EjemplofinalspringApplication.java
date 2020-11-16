@@ -23,13 +23,7 @@ public class EjemplofinalspringApplication implements CommandLineRunner {
 	private Dao<Producto> productos;
 	
 	@Autowired
-	private Dao<LineaFactura> lineaFacturas;
-	
-	@Autowired
 	private Dao<Factura> facturas;
-	
-	@Autowired
-	private Dao<Cliente> clientes;
 	
 	public static void main(String[] args) {
 		SpringApplication.run(EjemplofinalspringApplication.class, args);
@@ -38,6 +32,7 @@ public class EjemplofinalspringApplication implements CommandLineRunner {
 	@Override
 	public void run(String... args) throws Exception {
 		Cliente javier = new Cliente(null, "Javier", "Lete", "12345678Z", null);
+		Cliente pepe = new Cliente(null, "Pepe", "Pérez", "87654321A", null);
 		
 		Producto monitor = new Producto(null, "Monitor", new BigDecimal("123"));
 		Producto raton = new Producto(null, "Ratón", new BigDecimal("12"));
@@ -53,6 +48,13 @@ public class EjemplofinalspringApplication implements CommandLineRunner {
 		lineas.add(new LineaFactura(null, 2, monitor));
 		
 		facturas.insertar(new Factura(null, "1234", LocalDate.now(), javier, lineas));
+		
+		lineas = new HashSet<>();
+		
+		lineas.add(new LineaFactura(null, 1, monitor));
+		lineas.add(new LineaFactura(null, 1, teclado));
+		
+		facturas.insertar(new Factura(null, "2345", LocalDate.now(), pepe, lineas));
 	}
 
 }

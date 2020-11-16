@@ -66,4 +66,10 @@ public class FacturaController {
 		
 		return "redirect:/factura/" + idFactura;
 	}
+	
+	@GetMapping("/facturas")
+	public String facturas(Model modelo) {
+		modelo.addAttribute("facturas", servicio.obtenerFacturas());
+		return "facturas";
+	}
 }
