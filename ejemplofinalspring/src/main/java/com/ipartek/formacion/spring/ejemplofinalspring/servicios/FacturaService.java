@@ -9,4 +9,5 @@ public interface FacturaService {
 	Factura obtenerFacturaPorId(Long id);
 	void modificarFactura(Factura factura);
 	Iterable<Producto> obtenerProductos();
+	void borrarFactura(Long id);
 }

@@ -30,11 +30,17 @@
 				<th th:text="${factura.numero}"></th>
 				<td th:text="${factura.fecha}"></td>
 				<td th:text="${factura.cliente.nombreCompleto}"></td>
-				<td><a th:href="|factura/${factura.id}|" class="btn btn-primary">Editar</a></td>
+				<td>
+					<a th:href="|@{/factura}/${factura.id}|" class="btn btn-primary">Editar</a>
+					<a th:href="|@{/facturas/borrar}/${factura.id}|" class="btn btn-danger">Borrar</a>
+				</td>
 			</tr>
 		</tbody>
 	</table>
 
+	<p>
+		<a th:href="@{/}" class="btn btn-primary">Añadir</a>
+	</p>
 
 	<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
 		integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"

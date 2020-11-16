@@ -61,4 +61,11 @@ public class FacturaServiceImpl implements FacturaService {
 		
 		return productos;
 	}
+
+	@Override
+	public void borrarFactura(Long id) {
+		log.trace("Se va a borrar la factura id: " + id);
+		dao.borrar(dao.buscarPorId(id));
+		log.trace("Factura borrada");
+	}
 }

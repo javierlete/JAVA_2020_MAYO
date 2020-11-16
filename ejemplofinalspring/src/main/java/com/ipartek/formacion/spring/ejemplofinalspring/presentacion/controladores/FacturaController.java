@@ -72,4 +72,11 @@ public class FacturaController {
 		modelo.addAttribute("facturas", servicio.obtenerFacturas());
 		return "facturas";
 	}
+	
+	@GetMapping("/facturas/borrar/{id}")
+	public String borrarFactura(@PathVariable Long id) {
+		servicio.borrarFactura(id);
+		
+		return "redirect:/facturas";
+	}
 }
