@@ -10,23 +10,28 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
 
+import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 @Entity
-@Data
+@Data @AllArgsConstructor @NoArgsConstructor
 @Table(name = "clientes")
 public class Cliente {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
+	@NotNull
 	@NotBlank
 	@Size(min = 3, max = 255)
 	private String nombre;
 	@Size(max = 255)
 	private String apellidos;
+	@NotNull
 	@NotBlank
 	@Size(min = 9, max = 9)
 	@Column(columnDefinition = "CHAR(9)", unique=true)

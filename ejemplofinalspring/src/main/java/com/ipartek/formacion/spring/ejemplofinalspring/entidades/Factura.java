@@ -18,15 +18,18 @@ import javax.validation.constraints.NotNull;
 
 import org.springframework.format.annotation.DateTimeFormat;
 
+import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 @Entity
-@Data
+@Data @AllArgsConstructor @NoArgsConstructor
 @Table(name = "facturas")
 public class Factura {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
+	@NotNull
 	@NotBlank
 	private String numero;
 	@NotNull

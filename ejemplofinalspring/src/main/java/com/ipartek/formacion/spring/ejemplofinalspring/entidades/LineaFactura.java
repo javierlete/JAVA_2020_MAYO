@@ -9,10 +9,12 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 
+import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 @Entity
-@Data
+@Data @AllArgsConstructor @NoArgsConstructor
 @Table(name = "lineas_facturas")
 public class LineaFactura {
 	@Id
