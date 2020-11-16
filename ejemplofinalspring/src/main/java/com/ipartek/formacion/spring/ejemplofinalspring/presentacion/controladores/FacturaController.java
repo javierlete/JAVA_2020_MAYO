@@ -40,7 +40,7 @@ public class FacturaController {
 		
 		servicio.crearNuevaFactura(factura);
 		
-		return "redirect:/factura/" + factura.getId();
+		return "redirect:/facturas";
 	}
 	
 	@GetMapping("/factura/{id}")
