@@ -22,6 +22,7 @@
 				<th>Número</th>
 				<th>Fecha</th>
 				<th>Nombre de cliente</th>
+				<th>Opciones</th>
 			</tr>
 		</thead>
 		<tbody>
@@ -29,6 +30,7 @@
 				<th th:text="${factura.numero}"></th>
 				<td th:text="${factura.fecha}"></td>
 				<td th:text="${factura.cliente.nombreCompleto}"></td>
+				<td><a th:href="|factura/${factura.id}|" class="btn btn-primary">Editar</a></td>
 			</tr>
 		</tbody>
 	</table>
