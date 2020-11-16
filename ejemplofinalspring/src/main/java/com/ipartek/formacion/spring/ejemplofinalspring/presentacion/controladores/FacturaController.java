@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.ipartek.formacion.spring.ejemplofinalspring.entidades.Factura;
+import com.ipartek.formacion.spring.ejemplofinalspring.entidades.LineaFactura;
 import com.ipartek.formacion.spring.ejemplofinalspring.servicios.FacturaService;
 
 import lombok.extern.slf4j.Slf4j;
@@ -43,9 +44,26 @@ public class FacturaController {
 	}
 	
 	@GetMapping("/factura/{id}")
-	public String factura(@PathVariable Long id, Model modelo) {
+	public String factura(@PathVariable Long id, Model modelo, LineaFactura lineaFactura) {
 		modelo.addAttribute("factura", servicio.obtenerFacturaPorId(id));
+		modelo.addAttribute("productos", servicio.obtenerProductos());
 		
 		return "factura";
+	}
+	
+	@PostMapping("/factura/agregarlinea")
+	public String agregarLinea(Long idFactura, LineaFactura lineaFactura) {
+		System.out.println("EN MI METODO AGREGAR LINEA");
+		
+		log.trace(idFactura.toString());
+		log.trace(lineaFactura.toString());
+		
+		Factura factura = servicio.obtenerFacturaPorId(idFactura);
+		
+		factura.getLineas().add(lineaFactura);
+		
+		servicio.modificarFactura(factura);
+		
+		return "redirect:/factura/" + idFactura;
 	}
 }

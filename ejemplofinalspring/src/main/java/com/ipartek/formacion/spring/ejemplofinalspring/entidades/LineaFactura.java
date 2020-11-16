@@ -1,6 +1,7 @@
 package com.ipartek.formacion.spring.ejemplofinalspring.entidades;
 
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -20,10 +21,10 @@ public class LineaFactura {
 	@NotNull
 	private Integer cantidad;
 	
-//	@ManyToOne
+//	@ManyToOne(fetch = FetchType.LAZY)
 //	@NotNull
 //	private Factura factura;
-	@ManyToOne
+	@ManyToOne(fetch = FetchType.LAZY)
 	@NotNull
 	private Producto producto;
 }

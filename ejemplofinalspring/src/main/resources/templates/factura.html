@@ -96,7 +96,7 @@
 			</div>
 		</fieldset>
 	</form>
-	
+
 	<table class="table">
 		<thead>
 			<tr>
@@ -104,25 +104,25 @@
 				<th>Cantidad</th>
 		</thead>
 		<tbody>
-			<th:block th:each="linea : ${factura.lineas}">
-				<tr>
-					<td th:text="${linea.producto.nombre}">...</td>
-					<td th:text="${linea.cantidad}">...</td>
-				</tr>
-			</th:block>
+			<tr th:each="linea : ${factura.lineas}">
+				<td th:text="${linea.producto.nombre}">...</td>
+				<td th:text="${linea.cantidad}">...</td>
+			</tr>
 		</tbody>
 	</table>
 
-	<form th:action="@{/}" method="post" class="form-inline">
-		<label class="sr-only" for="producto">Producto</label> <select
-			class="custom-select">
-			<option selected>Selecciona el producto</option>
-			<option value="1">One</option>
-			<option value="2">Two</option>
-			<option value="3">Three</option>
+	<form th:action="@{/factura/agregarlinea}" method="post"
+		class="form-inline" th:object="${lineaFactura}">
+		
+		<input type="hidden" name="idFactura" th:value="${factura.id}" /> <label
+			class="sr-only" for="producto">Producto</label> <select
+			class="custom-select" th:field="*{producto}">
+			<option selected value="0">Selecciona el producto</option>
+			<option th:each="producto : ${productos}" th:value="${producto.id}"
+				th:text="${producto.nombre}"></option>
 		</select> <label class="sr-only" for="cantidad">Cantidad</label> <input
 			type="number" class="form-control mb-2 mr-sm-2" id="cantidad"
-			placeholder="Cantidad">
+			placeholder="Cantidad" th:field="*{cantidad}">
 
 		<button type="submit" class="btn btn-primary mb-2">Agregar
 			línea</button>

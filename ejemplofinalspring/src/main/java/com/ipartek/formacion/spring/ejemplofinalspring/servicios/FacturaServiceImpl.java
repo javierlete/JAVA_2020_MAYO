@@ -4,6 +4,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.ipartek.formacion.spring.ejemplofinalspring.entidades.Factura;
+import com.ipartek.formacion.spring.ejemplofinalspring.entidades.Producto;
+import com.ipartek.formacion.spring.ejemplofinalspring.repositorios.Dao;
 import com.ipartek.formacion.spring.ejemplofinalspring.repositorios.FacturaDao;
 
 import lombok.extern.slf4j.Slf4j;
@@ -14,6 +16,8 @@ public class FacturaServiceImpl implements FacturaService {
 
 	@Autowired
 	private FacturaDao dao;
+	@Autowired
+	private Dao<Producto> daoProducto;
 	
 	@Override
 	public void crearNuevaFactura(Factura factura) {
@@ -40,5 +44,21 @@ public class FacturaServiceImpl implements FacturaService {
 		log.trace("Se ha obtenido la factura");
 		
 		return factura;
+	}
+
+	@Override
+	public void modificarFactura(Factura factura) {
+		log.trace("Se va a modificar la factura");
+		dao.modificar(factura);
+		log.trace("Factura modificada");
+	}
+
+	@Override
+	public Iterable<Producto> obtenerProductos() {
+		log.trace("Se va a buscar todos los productos");
+		Iterable<Producto> productos = daoProducto.buscarTodos();
+		log.trace("Productos obtenidos");
+		
+		return productos;
 	}
 }
